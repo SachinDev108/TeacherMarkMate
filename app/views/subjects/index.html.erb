@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="well">
+    <%= link_to 'Add subject', new_subject_path, remote: true %>
+  </div>
+  <br>
+  <div id="subject-form"></div>
+  <br>
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <td>&nbsp;</td>
+        <td>Actions</td>
+      </tr>
+    </thead>
+    <tbody class="subject-index">
+      <%= render "index" %>
+    </tbody>
+  </table>
+</div>

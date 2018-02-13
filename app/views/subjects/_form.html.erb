@@ -1,0 +1,11 @@
+<%= form_for @subject, remote: true, html: { style: "display:inline;" } do |f| %>
+  <div>
+    <div class="form-group">
+      <%= f.label :name, class:"control-label" %>
+      <%= f.text_field :name, class: "form-control" %>
+    </div>
+  </div>
+  <div>
+    <%= f.submit 'save', class: "btn" %>
+  </div>
+<% end %>
