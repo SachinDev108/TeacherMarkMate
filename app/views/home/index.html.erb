@@ -1,29 +1,13 @@
 <div class="row">
   <div class="col-sm-6 col-md-6">
-  	<div>
-	    <div class="well">
-		    <%= link_to 'Add subject', new_subject_path, {:remote => true, 'data-controls-modal' =>  "modal-window", 'data-backdrop' => true, 'data-keyboard' => true} %>
-		  </div>
-		  <br>
-		  <div id="subject-form"></div>
-		  <br>
-		  <table class="table table-bordered table-striped">
-		    <thead>
-		      <tr>
-		        <th>Name</th>
-		        <td>Actions</td>
-		      </tr>
-		    </thead>
-		    <tbody class="subject-index">
-		      <%= render "subjects/index" %>
-		    </tbody>
-		  </table>
-		</div>
-	</div>
+    <div>
+      <%= render "subjects/index"%>
+    </div>
+  </div>
 
   <div class="col-sm-6 col-md-6">
     <div>
-		  <%= render "children/index" %>
-		</div>
+      <%= render "children/index" %>
+    </div>
   </div>
 </div>

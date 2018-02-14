@@ -7,6 +7,9 @@ class ChildrenController < ApplicationController
 
   def new
     @child = Child.new
+    current_teacher.subjects.each do |subject|
+      @child.students.build(subject_id: subject.id)
+    end
   end
 
   def create
@@ -33,7 +36,7 @@ class ChildrenController < ApplicationController
 	end
 
 	def child_params
-	  params.require(:child).permit(:name, :teacher_id)
+	  params.require(:child).permit(:name, :teacher_id, students_attributes: [ :subject_id, :_destroy ] )
 	end
 
 end

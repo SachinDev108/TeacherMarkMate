@@ -1,0 +1,7 @@
+
+	<div class="form-group">
+	  <%#= f.collection_select :id, Subject.all, :id, :name,{}, {multiple: true} %>
+	  <%= check_box_tag :id%>
+	  <%= f.hidden_field :subject_id, value: f.object.subject.id %>
+	  <%= f.object.subject.name %>
+	</div>

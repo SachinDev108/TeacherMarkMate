@@ -1,3 +1,23 @@
 <h3>Subject: <%= @subject.name %></h3>
 
-<%= render "students/index" %>
+<div class="">
+  <p>List of students</p>
+  <% if @subject.students.present? %>
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @subject.students.each do |student| %>
+          <tr>
+            <td><%= student.child.name %></td>
+            <td>delete</td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</div>
