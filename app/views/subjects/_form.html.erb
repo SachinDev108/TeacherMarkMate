@@ -6,14 +6,20 @@
       <%= form_for @subject, remote: true, html: { style: "display:inline;" } do |f| %>
         <div class="modal-body">
           <ul class="errors"></ul>
-
           <div class="form-group">
-            <%= f.label :name, class:"control-label" %>
+            <%= f.label 'Subject Name', class:"control-label" %>
             <%= f.text_field :name, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.fields_for :grades do |builder| %>
+              <%= render 'grade', f: builder %>
+              <br>
+            <% end %>
+              <%= link_to_add_fields 'Add Grade', f, :grades %>
           </div>
         </div>
         <div class="modal-footer">
-          <%= f.submit class: "btn btn-primary", id: "create_subject" %>
+          <%= f.submit class: "btn btn-primary" %>
           <%= link_to "Cancel", "#", class: "btn", data: {dismiss: "modal"} %>
         </div>
       <% end %>
