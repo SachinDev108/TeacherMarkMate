@@ -1,0 +1,16 @@
+<% if @errors.present? %>
+  <% @errors.each do |error| %>
+    <div class="alert alert-danger">
+      <a class="close" data-dismiss="alert">&#215;</a>
+        <ul> <%= error %> </ul>
+    <div>
+  <% end %>
+<% end %>
+<% if @success.present? %>
+  <% @success.each do |success| %>
+    <div class="alert alert-info">
+      <a class="close" data-dismiss="alert">&#215;</a>
+      <ul> <%= success %> </ul>
+    <div>
+  <% end %>
+<% end %>

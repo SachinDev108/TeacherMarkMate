@@ -1,2 +1,5 @@
-$(".subject-index").html("<%= escape_javascript(render 'list') %>")
-$('#subject-form').html("")
+$('#error_section').html("<%= escape_javascript( render :partial => '/layouts/message_flash') %>")
+<% unless @errors.present? %>
+  $(".subject-index").html("<%= escape_javascript(render 'list') %>")
+  $('#subject-form').html("")
+<% end %>

@@ -12,8 +12,10 @@ class SubjectsController < ApplicationController
   def create
     @subject = current_teacher.subjects.new(subject_params)
     if @subject.save
-      flash[:notice] = "Subject was successfully created."
-    end 
+      @success = ["Subject was successfully created."]
+    else
+      @errors = @subject.errors.full_messages
+    end
     @subjects = current_teacher.subjects
   end
 
@@ -25,7 +27,9 @@ class SubjectsController < ApplicationController
 
   def update
     if @subject.update(subject_params)
-      flash[:notice] = "Subject was successfully updated."
+      @success = ["Subject was successfully updated."]
+    else
+      @errors = @subject.errors.full_messages
     end
      @subjects = current_teacher.subjects
   end
