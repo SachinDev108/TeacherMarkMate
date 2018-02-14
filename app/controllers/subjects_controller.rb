@@ -2,11 +2,11 @@ class SubjectsController < ApplicationController
   before_action :set_subject, only: [:show, :edit, :update, :destroy]
 
   def index
-  	@subjects = current_teacher.subjects
+    @subjects = current_teacher.subjects
   end
 
   def new
-  	@subject = Subject.new
+    @subject = Subject.new
   end
 
   def create
@@ -17,29 +17,32 @@ class SubjectsController < ApplicationController
     @subjects = current_teacher.subjects
   end
 
+  def show
+  end
+
   def edit
   end
 
   def update
-  	if @subject.update(subject_params)
+    if @subject.update(subject_params)
       flash[:notice] = "Subject was successfully updated."
     end
      @subjects = current_teacher.subjects
   end
 
   def destroy
-  	@subject.destroy
-  	@subjects = current_teacher.subjects
+    @subject.destroy
+    @subjects = current_teacher.subjects
   end
 
   private
 
-	def set_subject
-	  @subject = Subject.find(params[:id])
-	end
+  def set_subject
+    @subject = Subject.find(params[:id])
+  end
 
-	def subject_params
-	  params.require(:subject).permit(:name, :teacher_id)
-	end
+  def subject_params
+    params.require(:subject).permit(:name, :teacher_id)
+  end
 
 end

@@ -1,6 +1,6 @@
 <div class="container">
   <div class="well">
-    <%= link_to 'Add subject', new_subject_path, remote: true %>
+    <%= link_to "Add subject", new_subject_path, :class => "btn", :remote => true, "data-toggle" => "modal", "data-target" => "my-modal" %>
   </div>
   <br>
   <div id="subject-form"></div>
@@ -9,7 +9,6 @@
     <thead>
       <tr>
         <th>Name</th>
-        <td>&nbsp;</td>
         <td>Actions</td>
       </tr>
     </thead>

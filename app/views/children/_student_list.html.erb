@@ -1,0 +1,20 @@
+<div class="child-index">
+	<% if @children.present? %>
+		<table class="table table-bordered table-striped">
+		  <thead>
+		    <tr>
+		      <th>Name</th>
+		      <th>Actions</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <% @children.each do |student| %>
+				  <tr>
+				    <td><%= student.name %></td>
+				    <td><%= link_to 'Delete',new_child_path(student),method: :delete,data: { confirm: 'Are you sure?' }, remote: true, class: "btn btn-default"  %></td>
+				  </tr>
+				<% end %>
+		  </tbody>
+		</table>
+	<% end %>
+</div>
