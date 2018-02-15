@@ -15,5 +15,9 @@ module ApplicationHelper
     end
     link_to(name, '#', class: "add_fields", data: {id: id, fields: fields.gsub("\n", "")})
   end
+
+  def grade
+    @subject.grades.collect { |c| ["#{c.name} -#{c.marks} -#{c.abr}", c.id]}
+  end
   
 end

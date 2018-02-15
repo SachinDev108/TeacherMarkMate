@@ -20,7 +20,7 @@
       <%= text_area_tag :comment, '', class: 'form-control', value: params[:search]%>
     </div>
     <div class="col-md-3">
-      <%= select_tag :grade, options_for_select(@subject.grades.collect { |c| [c.name, c.id]}), class: 'form-control', value: params[:search]%>
+      <%= select_tag :grade, options_for_select(grade), class: 'form-control'%>
     </div>
   </div><br>
 <% end %>
