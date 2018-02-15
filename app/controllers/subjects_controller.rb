@@ -39,6 +39,11 @@ class SubjectsController < ApplicationController
     @subjects = current_teacher.subjects
   end
 
+  def fetch_children
+    @subject = Subject.find_by_id(params[:id])
+    @children = @subject.present? ? @subject.children : nil
+  end
+
   private
 
   def set_subject
@@ -46,7 +51,7 @@ class SubjectsController < ApplicationController
   end
 
   def subject_params
-    params.require(:subject).permit(:name, :teacher_id, grades_attributes: [:id, :name, :marks, :_destroy])
+    params.require(:subject).permit(:name, :teacher_id, grades_attributes: [:id, :name, :marks, :abr, :_destroy])
   end
 
 end

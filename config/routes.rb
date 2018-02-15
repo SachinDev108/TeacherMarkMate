@@ -3,6 +3,11 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'home#index'
 
-  resources :subjects
+  resources :subjects do
+    collection do
+      get :fetch_children
+    end 
+  end
   resources :children
+  resources :sheets
 end
