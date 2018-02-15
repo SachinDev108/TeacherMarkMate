@@ -11,8 +11,10 @@
         <% @children.each do |child| %>
           <tr>
             <td><%= child.name %></td>
-            <td><%= link_to "Edit", edit_child_path(child), remote: true, class: "btn btn-default" %></td>
-            <td><%= link_to 'Delete',new_child_path(child),method: :delete,data: { confirm: 'Are you sure?' }, remote: true, class: "btn btn-default"  %></td>
+            <td>
+              <%= link_to "Edit", edit_child_path(child), remote: true, class: "btn btn-default" %>
+              <%= link_to 'Delete', child_path(child), method: :delete,data: { confirm: 'Are you sure?' }, remote: true, class: "btn btn-default"  %>
+            </td>
           </tr>
         <% end %>
       </tbody>

@@ -15,7 +15,9 @@ class ChildrenController < ApplicationController
   def create
     @child = current_teacher.children.new(child_params)
     if @child.save
-      flash[:notice] = "Child was successfully created."
+      @success = ["Child was successfully created."]
+    else
+      @errors = @subject.errors.full_messages
     end 
     @children = current_teacher.children
   end
@@ -27,6 +29,8 @@ class ChildrenController < ApplicationController
   end
 
   def destroy
+    @child.destroy
+    @children = current_teacher.children
   end
 
   private

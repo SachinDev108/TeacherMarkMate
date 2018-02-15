@@ -1,2 +1,2 @@
 $(".child-index").html("<%= escape_javascript(render 'children/student_list') %>")
-$('#subject-form').html("")
+$('.error_section').html("<%= escape_javascript( render :partial => '/layouts/message_flash') %>")
