@@ -10,6 +10,11 @@
   <body> 
     <nav class="navbar navbar-inverse">
       <div class="container-fluid">
+        <ul class="nav navbar-nav navbar-left">
+          <% if current_teacher %>
+            <li><span class="nav-text"><%= current_teacher.name %></span></li>
+          <% end %>
+        </ul>
         <ul class="nav navbar-nav navbar-right">
           <% if current_teacher %>
             <%= link_to "Logout", destroy_teacher_session_path, method: :delete, :class => 'navbar-link'  %>

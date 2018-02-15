@@ -14,3 +14,10 @@
   padding-left: 10px;
   padding-right: -10px;
 }
+
+.nav-text{
+  display: inline-block;
+  color: #fff;
+  position: inherit;
+  padding-top: 12px;
+}
