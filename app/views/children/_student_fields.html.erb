@@ -1,7 +1,8 @@
 
-	<div class="form-group">
-	  <%#= f.collection_select :id, Subject.all, :id, :name,{}, {multiple: true} %>
-	  <%= check_box_tag :id%>
-	  <%= f.hidden_field :subject_id, value: f.object.subject.id %>
-	  <%= f.object.subject.name %>
-	</div>
+<div class="form-group test">
+  <%#= f.collection_select :id, Subject.all, :id, :name,{}, {multiple: true} %>
+  <%= f.check_box :id, onclick: "getId('#{f.index}')"%>
+  <%= f.hidden_field :_destroy, value: true %>
+  <%= f.hidden_field :subject_id, value: f.object.subject.id %>
+  <%= f.object.subject.name %>
+</div>

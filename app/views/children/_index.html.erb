@@ -5,3 +5,14 @@
   <br>
   <%= render "children/student_list" %>
 </div>
+
+<script type="text/javascript">
+  function getId(id){
+    if ($("#child_students_attributes_"+id+"_id").is(":checked")) {
+      $("#child_students_attributes_"+id+"__destroy").val("false")
+    }
+    else {
+      $("#child_students_attributes_"+id+"__destroy").val("true")
+    }
+  }
+</script>
