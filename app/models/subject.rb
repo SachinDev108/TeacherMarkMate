@@ -5,5 +5,5 @@ class Subject < ApplicationRecord
   belongs_to :teacher
   accepts_nested_attributes_for :grades, allow_destroy: true
 
-  validates :name, :teacher_id, presence: true
+  validates :name, :teacher_id, :grades, presence: true
 end

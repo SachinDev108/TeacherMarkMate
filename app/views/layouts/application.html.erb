@@ -12,7 +12,7 @@
       <div class="container-fluid">
         <ul class="nav navbar-nav navbar-left">
           <% if current_teacher %>
-            <li><span class="nav-text"><%= current_teacher.name %></span></li>
+            <li><span class="nav-text">Welcome to <%= current_teacher.name.capitalize %></span></li>
           <% end %>
         </ul>
         <ul class="nav navbar-nav navbar-right">

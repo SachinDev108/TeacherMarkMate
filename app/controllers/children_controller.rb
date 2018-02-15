@@ -17,7 +17,7 @@ class ChildrenController < ApplicationController
     if @child.save
       @success = ["Child was successfully created."]
     else
-      @errors = @subject.errors.full_messages
+      @errors = @child.errors.full_messages
     end 
     @children = current_teacher.children
   end
