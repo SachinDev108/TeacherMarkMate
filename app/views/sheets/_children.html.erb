@@ -1,29 +1,12 @@
 <%#= f.fields_for :students do |builder| %>
   <%#= render 'student_fields', f: builder %>
 <%# end %>
-<%if @children.present? %>
-	<div class="form-group row">
-	<label class="col-md-3 control-label">
-    Student Name
-  </label>
-  <label class="col-md-6 control-label" style="text-align: center;">
-    Add Comment
-  </label>
-  <label class="col-md-3 control-label">
-    Assgin Grade
-  </label>
-</div><br>
-<% @children.each do |child|%>
-  <div class="form-group row">
-  	<div class="col-md-3"><%=  child.name.capitalize %></div>
-    <div class="col-md-6">
-      <%= text_area_tag :comment, '', class: 'form-control', value: params[:search]%>
-    </div>
-    <div class="col-md-3">
-      <%= select_tag :grade, options_for_select(grade), class: 'form-control'%>
-    </div>
-  </div><br>
-<% end %>
-<%else%>
-	<p style="color: red">Select subject then add grade to students</p>
-<%end %>
+<table class="table table-bordered table-striped">
+  <tbody>
+    <% @children.each do |child| %>
+      <tr>
+        <td><%= link_to child.name, add_child_sheet_path(@sheet, child_id: child.id), remote: true %></td>
+      </tr>
+    <% end if @children.present? %>
+  </tbody>
+</table>

@@ -1,0 +1,13 @@
+<div>
+  <% if @children.present? %>
+    <table class="table table-bordered table-striped">
+      <tbody>
+        <% @children.each do |child| %>
+          <tr>
+            <%= child.name %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</div>

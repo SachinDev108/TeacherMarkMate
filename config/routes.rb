@@ -9,5 +9,13 @@ Rails.application.routes.draw do
     end 
   end
   resources :children
-  resources :sheets
+  resources :sheets do
+    collection do
+      get :fetch_children
+    end 
+    member do
+      get :add_child
+      post :create_child
+    end
+  end
 end

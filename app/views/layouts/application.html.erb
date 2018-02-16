@@ -17,7 +17,7 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <% if current_teacher %>
-            <li><%= link_to "Perform Test", sheets_path, :class => 'navbar-link'  %></li>
+            <li><%= link_to "Reports", sheets_path, :class => 'navbar-link'  %></li>
             <li><%= link_to "Logout", destroy_teacher_session_path, method: :delete, :class => 'navbar-link'  %></li>
           <% else %>
             <li><a href="/teachers/sign_up"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>

@@ -1,39 +1,30 @@
-<div class="row">
-  <div class="col-md-7 col-md-offset-2">
-    <div class="well">
-      <h2>Mark Book </h2>
-      <%= form_for @sheet, remote: true, html: { style: "display:inline;" } do |f| %>
-      <div class="form-group">
-        <%= f.label :title %><br />
-        <%= f.text_field :title, autofocus: true, class: 'form-control', placeholder: 'Name' %>
-      </div>
-      <div class="form-group">
-        <%= f.label :subject %><br />
-        <%= f.select :subject_id, options_for_select(current_teacher.subjects.collect { |c| [c.name, c.id]}), {:prompt => "Select Subject"},  { class: 'form-control'}%>
-      </div>
-      <div class="form-group student-list">
-        <%= render "children" %>
-      </div>
-      <div class = "">
-        <div class="actions">
-          <%= f.submit  "Save", class: 'btn btn-primary btn-sm' %>
-        </div>
-      </div>
-      <% end %>
+<div class="well">
+  <%= link_to 'Add test', new_sheet_path %>
+</div>
+<br>
+<div class="col-md-12 col-sm-12">
+  <div class="col-md-8">
+    <%= form_tag sheets_path, :method => "get",:remote=> true do %>
+      <%= select_tag :sheet, options_for_select(sheets),:prompt => "Select Test", class: 'form-control sheet_subject_id' %>
+    <% end %><br>
+    <div class="form-group form-section">
+      
     </div>
   </div>
-</div>
+  <div class="col-md-4 student-list">
+    <%= render "children" %>
+  </div>
+</div><br>
 
 <script type="text/javascript">
-  $("#sheet_subject_id").change(function(){
-    var id = this.value
+  $(".sheet_subject_id").change(function(){
     $.ajax({
       data: { 'id' : this.value },
-      url: "<%= fetch_children_subjects_path %>",
+      url: "<%= fetch_children_sheets_path %>",
       //orther options ...
       success: function(data){
           //$("#floors_select").html(data);
       }
     });
   })
-</script>>
+</script>

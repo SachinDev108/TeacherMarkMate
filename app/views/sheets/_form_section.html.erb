@@ -1,0 +1,3 @@
+<%= form_tag create_child_sheet(@sheet), :method => "get",:remote=> true do %>
+  <%= text_area_tag :comment, '', class: 'form-control', rows: "10"%>
+<% end %>

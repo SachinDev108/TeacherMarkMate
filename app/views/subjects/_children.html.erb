@@ -1,0 +1,3 @@
+<% @children.each_with_index do |child, index|%>
+	<%= hidden_field_tag :child_id, '', name: "sheet[details_attributes][#{index}][child_id]", value: child.id%>
+<% end if @children.present? %>

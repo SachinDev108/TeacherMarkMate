@@ -5,4 +5,5 @@ class Teacher < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   has_many :subjects
   has_many :children
+  has_many :sheets
 end
