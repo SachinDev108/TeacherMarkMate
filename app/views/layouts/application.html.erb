@@ -38,7 +38,7 @@
     
     <div class="container">
       <% flash.each do |name, msg| %>
-        <%= content_tag(:div, class: "alert #{flash_class(name)}", style: (current_teacher ? 'margin-left: 13%' : ''))  do %>
+        <%= content_tag(:div, class: "alert #{flash_class(name)} flash-message", style: (current_teacher ? 'margin-left: 13%' : ''))  do %>
           <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <%= msg %>
         <% end %>
@@ -47,3 +47,11 @@
     </div>
   </body>
 </html>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    setTimeout(function(){
+      $('.flash-message').fadeOut();
+    }, 4000);
+  })
+</script>
