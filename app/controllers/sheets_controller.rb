@@ -1,5 +1,5 @@
 class SheetsController < ApplicationController
-  before_action :set_sheet, only: [:show, :fetch_children, :child_detail]
+  before_action :set_sheet, only: [:show, :fetch_children, :child_detail, :update_detail]
   def index
     @sheets = current_teacher.sheets
   end
@@ -32,6 +32,8 @@ class SheetsController < ApplicationController
   end
 
   def update_detail
+    @detail = @sheet.details.find_by_id(params[:detail_id])
+    @detail.update_attributes(comment: params[:detail][:comment], grade_id: params[:detail][:grade_id])
   end
 
   private

@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     end 
     member do
       get :child_detail
-      post :update_detail
+      patch :update_detail
     end
   end
 end

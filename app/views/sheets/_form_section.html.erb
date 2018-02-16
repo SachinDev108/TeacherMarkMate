@@ -1,8 +1,9 @@
-<%= form_for @detail, url: update_detail_sheet_path(@sheet) do |f| %>
+<%= form_for @detail, url: update_detail_sheet_path(@sheet), remote: true do |f| %>
   <%= label_tag @detail.child.name, nil, :class => "control-label" %>
   <div class="">
     <%= f.text_area :comment, class: 'form-control', rows: "6"%>
   </div>
+    <%= hidden_field_tag "detail_id", @detail.id%>
   <div class="col-sm-12 col-md-12">
     <div class="col-sm-4">
       <%= label_tag 'Grade List', nil, :class => "control-label radio-margin" %>
@@ -14,11 +15,11 @@
     </div>
     <div class="col-md-6 col-sm-6 grade-margin">
       <h5>Current Grade</h5>
-      <input type="text" class="form-control text-size" disabled="true">
-    </div>
+      <%= text_field_tag :marks, "", class: 'form-control text-size', disabled: true, value: @detail&.grade&.marks %>
+    </div> 
     <div class="col-md-2 col-sm-2">
-      <button type="button" class="btn btn-primary print-label">Print Label</button>
-      <button type="button" class="btn btn-primary print-label">Clear Label</button>
+      <%= f.submit 'Print Label',class: "btn btn-primary print-label" %>
+      <button type="button" class="btn btn-primary print-label clear-label">Clear Label</button>
     </div>
   </div>
 <% end %>
@@ -30,5 +31,14 @@
       var data = $("#detail_grade_id_"+id).data("marks")
       $(".text-size").val(data)
     }
+  }
+  $('.clear-label').click(function(){
+    $("#detail_comment").val('')
+  })
+  function PrintDiv() {
+    var popupWin = window.open('', '_blank', 'width=300,height=300');
+    popupWin.document.open();
+    popupWin.document.write('<html><body onload="window.print()">' + '<%= @detail.comment %>' + '</html>');
+    popupWin.document.close();
   }
 </script>

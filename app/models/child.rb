@@ -1,6 +1,6 @@
 class Child < ApplicationRecord
 	belongs_to :teacher
-	has_one :detail
+	has_many :details
 	has_many :students
 	has_many :subjects, through: :students
 
