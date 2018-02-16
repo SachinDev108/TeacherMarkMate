@@ -10,7 +10,63 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180213085710) do
+ActiveRecord::Schema.define(version: 20180215103434) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "children", force: :cascade do |t|
+    t.string "name"
+    t.bigint "teacher_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["teacher_id"], name: "index_children_on_teacher_id"
+  end
+
+  create_table "details", force: :cascade do |t|
+    t.string "comment"
+    t.integer "grade_id"
+    t.integer "sheet_id"
+    t.integer "child_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "grades", force: :cascade do |t|
+    t.string "name"
+    t.integer "marks"
+    t.bigint "subject_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "abr"
+    t.index ["subject_id"], name: "index_grades_on_subject_id"
+  end
+
+  create_table "sheets", force: :cascade do |t|
+    t.string "title"
+    t.integer "subject_id"
+    t.bigint "teacher_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["teacher_id"], name: "index_sheets_on_teacher_id"
+  end
+
+  create_table "students", force: :cascade do |t|
+    t.bigint "subject_id"
+    t.bigint "child_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["child_id"], name: "index_students_on_child_id"
+    t.index ["subject_id"], name: "index_students_on_subject_id"
+  end
+
+  create_table "subjects", force: :cascade do |t|
+    t.string "name"
+    t.bigint "teacher_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["teacher_id"], name: "index_subjects_on_teacher_id"
+  end
 
   create_table "teachers", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -30,4 +86,8 @@ ActiveRecord::Schema.define(version: 20180213085710) do
     t.index ["reset_password_token"], name: "index_teachers_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "children", "teachers"
+  add_foreign_key "grades", "subjects"
+  add_foreign_key "sheets", "teachers"
+  add_foreign_key "subjects", "teachers"
 end

@@ -14,8 +14,8 @@ Rails.application.routes.draw do
       get :fetch_children
     end 
     member do
-      get :add_child
-      post :create_child
+      get :child_detail
+      post :update_detail
     end
   end
 end

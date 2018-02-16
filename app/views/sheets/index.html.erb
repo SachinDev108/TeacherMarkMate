@@ -1,11 +1,12 @@
 <div class="sheet-index-page">
   <div class="well">
-    <%= link_to 'Add test', new_sheet_path %>
+    <%= link_to 'Add New MarkSheet', new_sheet_path %>
   </div>
   <br>
-  <div class="col-md-12 col-sm-12">
+  <div class="col-md-12 col-sm-12 reports">
     <div class="col-md-8">
       <%= form_tag sheets_path, :method => "get",:remote=> true do %>
+        <p>List of marksheets</p>
         <%= select_tag :sheet, options_for_select(sheets),:prompt => "Select Test", class: 'form-control sheet_subject_id' %>
       <% end %><br>
       <div class="form-group form-section">

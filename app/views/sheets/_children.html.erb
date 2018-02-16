@@ -1,12 +1,10 @@
 <%#= f.fields_for :students do |builder| %>
   <%#= render 'student_fields', f: builder %>
 <%# end %>
-<table class="table table-bordered table-striped">
-  <tbody>
-    <% @children.each do |child| %>
-      <tr>
-        <td><%= link_to child.name, add_child_sheet_path(@sheet, child_id: child.id), remote: true %></td>
-      </tr>
-    <% end if @children.present? %>
-  </tbody>
-</table>
+  <ul>
+    <% @details.each do |detail| %>
+      <li>
+        <%= link_to detail.child.name, child_detail_sheet_path(@sheet, detail: detail.id), remote: true %>
+      </li>
+    <% end if @details.present? %>
+  </ul>

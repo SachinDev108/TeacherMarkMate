@@ -10,11 +10,12 @@
   <body>
     <% if current_teacher %>
       <div class="sidenav">
-        <%= link_to "TeacherMarkMate", root_path, class: 'navbar-link teacher-markmate' %>
-        <%= link_to "Perform Test", sheets_path, class: 'navbar-link'  %>
-        <%= link_to "Reports", sheets_path, :class => 'navbar-link'  %>
-        <%= link_to 'Add subject', new_subject_path, {:remote => true, 'data-controls-modal' =>  "modal-window", 'data-backdrop' => true, 'data-keyboard' => true} %>
-        <%= link_to 'Add Children', new_child_path, remote: true %>
+        <ul class="">
+          <li><%= link_to "Dashboard", root_path, class: 'navbar-link teacher-markmate' %></li>
+          <li><%= link_to "New Marksheet", new_sheet_path, :class => 'navbar-link'  %></li>
+          <li><%= link_to "Marksheets", sheets_path, :class => 'navbar-link'  %></li>
+          <li><%= link_to "Reports", sheets_path, :class => 'navbar-link'  %></li>
+        </ul>
       </div>
       <nav class="navbar navbar-inverse marginleft13">
         <div class="container-fluid">

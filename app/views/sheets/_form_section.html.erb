@@ -1,3 +1,34 @@
-<%= form_tag create_child_sheet(@sheet), :method => "get",:remote=> true do %>
-  <%= text_area_tag :comment, '', class: 'form-control', rows: "10"%>
+<%= form_for @detail, url: update_detail_sheet_path(@sheet) do |f| %>
+  <%= label_tag @detail.child.name, nil, :class => "control-label" %>
+  <div class="">
+    <%= f.text_area :comment, class: 'form-control', rows: "6"%>
+  </div>
+  <div class="col-sm-12 col-md-12">
+    <div class="col-sm-4">
+      <%= label_tag 'Grade List', nil, :class => "control-label radio-margin" %>
+      <% @sheet.subject.grades.each do |grade| %>
+        <div class="radio radio-margin">
+          <label><%= f.radio_button :grade_id , grade.id, "data-marks" => grade.marks, onclick: "getGrade('#{grade.id}')" %><%= full_grade(grade) %></label>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-md-6 col-sm-6 grade-margin">
+      <h5>Current Grade</h5>
+      <input type="text" class="form-control text-size" disabled="true">
+    </div>
+    <div class="col-md-2 col-sm-2">
+      <button type="button" class="btn btn-primary print-label">Print Label</button>
+      <button type="button" class="btn btn-primary print-label">Clear Label</button>
+    </div>
+  </div>
 <% end %>
+
+
+<script type="text/javascript">
+  function getGrade(id){
+    if ($("#detail_grade_id_"+id).is(":checked")) {
+      var data = $("#detail_grade_id_"+id).data("marks")
+      $(".text-size").val(data)
+    }
+  }
+</script>

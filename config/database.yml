@@ -2,19 +2,19 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: 5
-  username: postgres
-  password: postgres
+  username: rails
+  password: rails
   host: localhost
   port: 5432
 
 development:
   <<: *default
-  database: teacher_developement
+  database: teacher_developement1
 
-test:
-  <<: *default
-  database: teacher_test
+# test:
+#   <<: *default
+#   database: teacher_test
 
-production:
-  <<: *default
-  database: teacher_production
+# production:
+#   <<: *default
+#   database: teacher_production

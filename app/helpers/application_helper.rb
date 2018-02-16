@@ -19,6 +19,10 @@ module ApplicationHelper
   def grade
     @subject.grades.collect { |c| ["#{c.name} -#{c.marks} -#{c.abr}", c.id]}
   end
+
+  def full_grade(grade)
+    "#{grade.name} -#{grade.marks} -#{grade.abr}"
+  end
   def sheets
     @sheets.collect { |c| [c.title, c.id]}
   end
