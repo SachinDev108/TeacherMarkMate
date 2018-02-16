@@ -1,10 +1,21 @@
 <%#= f.fields_for :students do |builder| %>
   <%#= render 'student_fields', f: builder %>
 <%# end %>
-  <ul>
-    <% @details.each do |detail| %>
-      <li>
-        <%= link_to detail.child.name, child_detail_sheet_path(@sheet, detail: detail.id), remote: true %>
-      </li>
-    <% end if @details.present? %>
-  </ul>
+<ul>
+<% @details.each do |detail| %>
+   <%= link_to detail.child.name.capitalize, child_detail_sheet_path(@sheet, detail: detail.id), remote: true, class: "child-name" %><br>
+<% end if @details.present? %>
+</ul>
+
+<script type="text/javascript">
+
+  $(document).ready(function(){
+    $('.child-name').first().addClass('active-child');
+  });
+
+  $(this).addClass('active-child');
+  $('.child-name').on('click', function(){
+    $(".child-name").removeClass('active-child');
+    $(this).addClass('active-child');
+  });
+</script>

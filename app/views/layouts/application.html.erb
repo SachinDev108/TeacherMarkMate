@@ -10,12 +10,10 @@
   <body>
     <% if current_teacher %>
       <div class="sidenav">
-        <ul class="">
-          <li><%= link_to "Dashboard", root_path, class: 'navbar-link teacher-markmate' %></li>
-          <li><%= link_to "New Marksheet", new_sheet_path, :class => 'navbar-link'  %></li>
-          <li><%= link_to "Marksheets", sheets_path, :class => 'navbar-link'  %></li>
-          <li><%= link_to "Reports", sheets_path, :class => 'navbar-link'  %></li>
-        </ul>
+        <%= link_to "Dashboard", root_path, class: 'navbar-link teacher-markmate' %>
+        <%= link_to "New Marksheet", new_sheet_path, :class => 'navbar-link'  %>
+        <%= link_to "Marksheets", sheets_path, :class => 'navbar-link'  %>
+        <%= link_to "Reports", sheets_path, :class => 'navbar-link'  %>
       </div>
       <nav class="navbar navbar-inverse marginleft13">
         <div class="container-fluid">
