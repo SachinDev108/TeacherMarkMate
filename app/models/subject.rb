@@ -1,6 +1,6 @@
 class Subject < ApplicationRecord
   has_many :grades, :dependent => :destroy
-  has_many :students
+  has_many :students, :dependent => :destroy
   has_many :children, through: :students
   has_many :sheets, :dependent => :destroy
   belongs_to :teacher

@@ -1,6 +1,6 @@
 class Sheet < ApplicationRecord
   belongs_to :teacher
-  has_many :details
+  has_many :details, :dependent => :destroy
   belongs_to :subject
 
   accepts_nested_attributes_for :details, allow_destroy: true
