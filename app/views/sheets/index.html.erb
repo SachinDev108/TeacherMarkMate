@@ -1,21 +1,22 @@
-<div class="well">
-  <%= link_to 'Add test', new_sheet_path %>
-</div>
-<br>
-<div class="col-md-12 col-sm-12">
-  <div class="col-md-8">
-    <%= form_tag sheets_path, :method => "get",:remote=> true do %>
-      <%= select_tag :sheet, options_for_select(sheets),:prompt => "Select Test", class: 'form-control sheet_subject_id' %>
-    <% end %><br>
-    <div class="form-group form-section">
-      
+<div class="sheet-index-page">
+  <div class="well">
+    <%= link_to 'Add test', new_sheet_path %>
+  </div>
+  <br>
+  <div class="col-md-12 col-sm-12">
+    <div class="col-md-8">
+      <%= form_tag sheets_path, :method => "get",:remote=> true do %>
+        <%= select_tag :sheet, options_for_select(sheets),:prompt => "Select Test", class: 'form-control sheet_subject_id' %>
+      <% end %><br>
+      <div class="form-group form-section">
+        
+      </div>
     </div>
-  </div>
-  <div class="col-md-4 student-list">
-    <%= render "children" %>
-  </div>
-</div><br>
-
+    <div class="col-md-4 student-list">
+      <%= render "children" %>
+    </div>
+  </div><br>
+</div>
 <script type="text/javascript">
   $(".sheet_subject_id").change(function(){
     $.ajax({

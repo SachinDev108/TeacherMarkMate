@@ -21,3 +21,52 @@
   position: inherit;
   padding-top: 26px;
 }
+
+.sidenav {
+    height: 100%;
+    width: 175px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #222;
+    border-color: #090909;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+.sidenav a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 18px;
+    color: #9d9d9d;
+    display: block;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.main {
+    margin-left: 160px; /* Same as the width of the sidenav */
+    font-size: 28px; /* Increased text to enable scrolling */
+    padding: 0px 10px;
+}
+
+.sidenav a.teacher-markmate {
+  color: white;
+  padding-bottom: 18px;
+}
+
+.marginleft13{
+  margin-left: 13%;
+}
+
+.sheet-index-page{
+  margin-left: 15%;
+  width: 75;
+}
+
+.marginleft11{
+  margin-left: 11%
+}
