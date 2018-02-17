@@ -42,8 +42,9 @@
     display: block;
 }
 
-.sidenav a:hover {
-    color: #f1f1f1;
+.sidenav li.active a{
+  background-color: #999999 !important;
+  color: #fff;
 }
 
 .main {

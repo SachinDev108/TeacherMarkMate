@@ -10,11 +10,23 @@
   <body>
     <% if current_teacher %>
       <div class="sidenav">
-        <%= link_to "Dashboard", root_path, class: 'navbar-link teacher-markmate' %>
-        <%= link_to "New Objective", new_sheet_path, class: 'navbar-link'  %>
-        <%= link_to "Markbook", sheets_path, class: 'navbar-link'  %>
-        <%= link_to "Reports", report_sheets_path, class: 'navbar-link'  %>
-        <%= link_to "Add Children", children_path, class: 'navbar-link'  %>
+      <ul class="list-unstyled">
+        <li class="<%= active_class('/') %>">
+          <%= link_to "Dashboard", '/' %>
+        </li>
+        <li class="<%= active_class('/sheets/new') %>">
+          <%= link_to "New Objective", '/sheets/new' %>
+        </li>
+        <li class="<%= active_class('/sheets') %>">
+          <%= link_to "Markbook", '/sheets' %>
+        </li>
+        <li class="<%= active_class('/sheets/report') %>">
+          <%= link_to "Reports", '/sheets/report' %>
+        </li>
+        <li class="<%= active_class('/children') %>">
+          <%= link_to "Add Children", '/children' %>
+        </li>    
+      </ul>
       </div>
       <nav class="navbar navbar-inverse marginleft13">
         <div class="container-fluid">

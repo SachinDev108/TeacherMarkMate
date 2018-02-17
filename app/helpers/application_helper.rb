@@ -35,5 +35,9 @@ module ApplicationHelper
   def subjects
     @subjects.collect { |s| [s.name, s.id]}
   end
+
+  def active_class(link_path)
+    current_page?(link_path) ? "active" : ""
+  end
   
 end

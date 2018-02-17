@@ -6,4 +6,5 @@ class Child < ApplicationRecord
 
 	accepts_nested_attributes_for :students, :allow_destroy => true
 	validates :name, presence: true
+	validates :students, presence: true
 end
