@@ -1,7 +1,7 @@
 <% @subjects.each do |subject| %>
   <tr>
     <td><%= subject.name %></td>
-    <td><%= link_to "Show", subject_path(subject), class: "btn btn-default" %> 
+    <td class="text-center"><%= link_to "Show", subject_path(subject), class: "btn btn-default" %> 
     <%= link_to "Edit", edit_subject_path(subject), remote: true, class: "btn btn-default" %>
     <%= link_to 'Delete', subject_path(subject), :method => :delete, data: { confirm: 'Are you sure?' }, remote: true, class: "btn btn-default" %></td>
   </tr>

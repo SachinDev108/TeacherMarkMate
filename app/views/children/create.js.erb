@@ -1,6 +1,7 @@
-
 $('.error_section').html("<%= escape_javascript( render :partial => '/layouts/message_flash') %>")
+$('#child_name').val('');
+$('.subject-check-box').prop('checked', false);
+$('.student-nested-destroy').val(true);
 <% unless @errors.present? %>
   $(".child-index").html("<%= escape_javascript(render 'children/student_list') %>")
 <% end %>
-

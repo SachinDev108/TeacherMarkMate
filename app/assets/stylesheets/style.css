@@ -70,6 +70,10 @@
   margin-left: 11%
 }
 
+.width50{
+  width: 50%;
+}
+
 .radio-margin{
   margin-left: -20px !important;
 }
@@ -99,4 +103,13 @@
 .subject-show-page{
   margin-left: 15%;
   width: 75%;
+}
+
+.page-single-table{
+  margin-left: 22%;
+  width: 70%;
+}
+
+.text-center{
+  text-align: center;
 }

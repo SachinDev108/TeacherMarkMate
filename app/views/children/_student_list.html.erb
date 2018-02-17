@@ -3,15 +3,15 @@
     <table class="table table-bordered table-striped">
       <thead>
         <tr>
-          <th>Name</th>
-          <th>Actions</th>
+          <th class="width50">Name</th>
+          <th class="text-center">Actions</th>
         </tr>
       </thead>
       <tbody>
         <% @children.each do |child| %>
           <tr>
             <td><%= child.name %></td>
-            <td>
+            <td class="text-center">
               <%= link_to "Edit", edit_child_path(child), remote: true, class: "btn btn-default" %>
               <%= link_to 'Delete', child_path(child), method: :delete,data: { confirm: 'Are you sure?' }, remote: true, class: "btn btn-default"  %>
             </td>
