@@ -43,6 +43,6 @@ class SheetsController < ApplicationController
   end
 
   def sheet_params
-    params.require(:sheet).permit(:title, :subject_id, :teacher_id, details_attributes: [:comment, :child_id, :grade_id])
+    params.require(:sheet).permit(:title, :subject_id, :teacher_id, :date, details_attributes: [:comment, :child_id, :grade_id])
   end
 end

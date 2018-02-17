@@ -4,8 +4,16 @@
       <h2>Mark Book </h2>
       <%= form_for @sheet, html: { style: "display:inline;" } do |f| %>
       <div class="form-group">
-        <%= f.label :title %><br />
-        <%= f.text_field :title, autofocus: true, class: 'form-control', placeholder: 'Name' %>
+        <div class="row">
+          <div class="col-md-8">
+            <%= f.label :title %><br />
+            <%= f.text_field :title, autofocus: true, class: 'form-control', placeholder: 'Name' %>
+          </div>
+          <div class="col-md-4">
+            <%= f.label :date %><br />
+            <%= f.date_field :date,  { class: 'form-control'}%>
+          </div>
+        </div>
       </div>
       <div class="form-group">
         <%= f.label :subject %><br />
