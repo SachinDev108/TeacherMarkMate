@@ -9,7 +9,7 @@
       <%= label_tag 'Grade List', nil, :class => "control-label radio-margin" %>
       <% @sheet.subject.grades.each do |grade| %>
         <div class="radio radio-margin">
-          <label><%= f.radio_button :grade_id , grade.id, "data-marks" => grade.marks, onclick: "getGrade('#{grade.id}')" %><%= full_grade(grade) %></label>
+          <label><%= f.radio_button :grade_id , grade.id, "data-marks" => grade.marks, onclick: "getGrade('#{grade.id}')" %><%= grade.name %></label>
         </div>
       <% end %>
     </div>
