@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :sheets do
     collection do
       get :fetch_children
+      get :report
     end 
     member do
       get :child_detail

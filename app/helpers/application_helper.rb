@@ -23,8 +23,17 @@ module ApplicationHelper
   def full_grade(grade)
     "#{grade.name} -#{grade.marks} -#{grade.abr}"
   end
+
   def sheets
-    @sheets.collect { |c| [c.title, c.id]}
+    if @sheets.present?
+      @sheets.collect { |c| [c.title, c.id]}
+    else
+      @sheets = []
+    end
+  end
+
+  def subjects
+    @subjects.collect { |s| [s.name, s.id]}
   end
   
 end

@@ -1,14 +1,15 @@
 <div class="sheet-index-page">
   <div class="well">
-    <%= link_to 'Add New MarkSheet', new_sheet_path %>
+    <%= link_to 'New Objective', new_sheet_path %>
   </div>
   <br>
   <div class="col-md-12 col-sm-12 reports">
     <div class="col-md-8">
       <%= form_tag sheets_path, :method => "get",:remote=> true do %>
-        <p>List of marksheets</p>
-        <%= select_tag :sheet, options_for_select(sheets),:prompt => "Select Test", class: 'form-control sheet_subject_id' %>
-      <% end %><br>
+        <b>List of Subjects</b>
+        <%= select_tag :subject, options_for_select(subjects),:prompt => "Select Subject", class: 'form-control subject_id' %><br>
+        <div class="filter-subject"><%= render "objective_list" %></div>
+       <% end %>
       <div class="form-group form-section">
         
       </div>
@@ -19,10 +20,11 @@
   </div><br>
 </div>
 <script type="text/javascript">
-  $(".sheet_subject_id").change(function(){
+  $(".subject_id").change(function(){
     $.ajax({
-      data: { 'id' : this.value },
-      url: "<%= fetch_children_sheets_path %>",
+      data: { 'subject_id' : this.value },
+      url: "<%= sheets_path %>",
+      dataType: 'script',
       //orther options ...
       success: function(data){
           //$("#floors_select").html(data);

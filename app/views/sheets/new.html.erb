@@ -29,6 +29,31 @@
       </div>
       <% end %>
     </div>
+    <div class="well">
+      <b>Objectives List</b>
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Date</th>
+            <th>Subject</th>
+            <td>Action</td>
+          </tr>
+        </thead>
+        <tbody>
+          <% @objectives.each do |objective| %>
+            <tr>
+              <td><%= objective.title %></td>
+              <td><%= objective.date.strftime('%m/%d/%Y') %></td>
+              <td><%= objective.subject.name %></td>
+              <td>
+              <%= link_to 'Delete', sheet_path(objective), :method => :delete, data: { confirm: 'Are you sure?' }, remote: true, class: "btn btn-default" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
   </div>
 </div>
 
