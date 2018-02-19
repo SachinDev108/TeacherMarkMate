@@ -1,17 +1,24 @@
 <fieldset>
   <div class="form-group">
-    <div class="col-sm-3">
+    <div class="col-sm-3 padding-none">
       <%= f.text_field :name, placeholder: "Ex: Mastery", class: 'form-control' %>
     </div>
-    <div class="col-sm-3">
+    <div class="col-sm-2 padding-none">
       <%= f.text_field :marks, placeholder: "Ex: 1", class: 'form-control' %>
     </div>
-    <div class="col-sm-3">
+    <div class="col-sm-2 padding-none">
       <%= f.text_field :abr, placeholder: "Ex: A", class: 'form-control' %>
     </div>
-    <div class="col-sm-3">
+    <div class="col-sm-3 padding-none">
+      <%= f.text_field :color, placeholder: "Color", class: 'form-control color-code' %>
+    </div>
+    <div class="col-sm-2 padding-none">
       <%= f.hidden_field :_destroy %>
-      <%= link_to 'remove', '#', class: "remove_fields btn btn-danger" %>
+      <%= link_to 'Remove', '#', class: "remove_fields btn btn-danger" %>
     </div>
   </div>
 </fieldset><br>
+
+<script>
+  $('.color-code').minicolors()
+</script>

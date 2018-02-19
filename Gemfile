@@ -38,6 +38,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'devise'
 gem 'bootstrap-sass', '~> 3.3.7'
 gem 'jquery-rails'
+gem 'jquery-minicolors-rails'
+
 
 
 group :development, :test do

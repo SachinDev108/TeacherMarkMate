@@ -114,3 +114,15 @@
 .text-center{
   text-align: center;
 }
+
+.minicolors-theme-default .minicolors-input {
+    height: 34px;
+    width: 100%;
+    display: inline-block;
+    padding-left: 26px;
+}
+
+
+.padding-none{
+  padding-left: 0px;
+}
