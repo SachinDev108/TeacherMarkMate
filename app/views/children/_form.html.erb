@@ -11,7 +11,7 @@
             <%= f.text_field :name, class: "form-control" %>
           </div>
           <div class="form-group">
-            <p>Add subjects to student</p>
+            <p>Add children to subject</p>
             <%= f.fields_for :students do |builder| %>
               <%= render 'student_fields', f: builder %>
             <% end %>
