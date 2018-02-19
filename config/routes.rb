@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     collection do
       get :fetch_children
       get :report
+      get :report_details
     end 
     member do
       get :child_detail

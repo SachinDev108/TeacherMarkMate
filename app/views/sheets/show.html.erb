@@ -1,10 +1,21 @@
-<div>
-  <% if @children.present? %>
+<div class="marginleft11">
+  <% if @details.present? %>
     <table class="table table-bordered table-striped">
+      <thead>
+      <tr>
+        <th>Student Name</th>
+        <th>Objective Title</th>
+        <th>Grades</th>
+        <th>Subject</th>
+      </tr>
+      </thead>
       <tbody>
-        <% @children.each do |child| %>
+        <% @details.each do |detail| %>
           <tr>
-            <%= child.name %>
+            <td><%= detail.child.name %></td>
+            <td><%= detail.sheet.title %></td>
+            <td><%= detail.grade.present? ? detail.try(:grade).try(:name) : 'Not assigned' %></td>
+            <td><%= detail.sheet.subject.name %></td>
           </tr>
         <% end %>
       </tbody>

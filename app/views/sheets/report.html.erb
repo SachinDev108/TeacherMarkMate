@@ -1,10 +1,10 @@
 <div class="row marginleft11">
-  <%= link_to 'Export', ''%>
-  <table class="table table-bordered table-striped">
+  <%#= link_to 'Export', ''%>
+  <!-- <table class="table table-bordered table-striped">
     <thead>
       <tr>
         <th>Title</th>
-        <th>Subject</th>
+        <th>grade</th>
       </tr>
     </thead>
     <tbody>
@@ -15,5 +15,24 @@
         </tr>
       <% end %>
     </tbody>
-  </table>
+  </table> -->
+  <div class="col-md-12">
+    <%= select_tag :subject, options_for_select(subjects),:prompt => "Select Subject", class: 'form-control subject_id ' %><br>
+  </div>
+  <div class="col-md-12 report-section">
+  </div>
 </div>
+
+<script type="text/javascript">
+  $(".subject_id").change(function(){
+    $.ajax({
+      data: { 'subject_id' : this.value, 'report' : 'true' },
+      url: "<%= report_details_sheets_path %>",
+      dataType: 'script',
+      //orther options ...
+      success: function(data){
+          //$("#floors_select").html(data);
+      }
+    });
+  })
+</script>

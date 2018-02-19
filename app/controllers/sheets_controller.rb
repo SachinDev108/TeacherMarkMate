@@ -1,9 +1,17 @@
 class SheetsController < ApplicationController
   before_action :set_sheet, only: [:show, :fetch_children, :child_detail, :update_detail, :destroy]
+  before_action :set_subject, only: [:index, :report_details]
   def index
     @subjects = current_teacher.subjects
     if params[:subject_id]
       @sheets = current_teacher.sheets.where(subject_id: params[:subject_id])
+    end
+  end
+
+  def report_details
+    if params[:subject_id]
+      @sheets = Sheet.get_details(params[:subject_id])
+      @children = @subject.children.order('name')
     end
   end
 
@@ -47,12 +55,17 @@ class SheetsController < ApplicationController
 
   def report
     @sheets = current_teacher.sheets
+    @subjects = current_teacher.subjects
   end
 
   private
 
   def set_sheet
     @sheet = Sheet.find(params[:id])
+  end
+
+  def set_subject
+    @subject = current_teacher.subjects.find_by_id(params[:subject_id])
   end
 
   def sheet_params

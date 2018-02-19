@@ -1,0 +1,23 @@
+<%headers = @sheets.map{|sheet| sheet if sheet.name == @children.first.name}.compact%>
+<div class="table-responsive">
+  <table class="table table-bordered table-striped">
+    <thead>
+      <th>Student Name</th>
+      <% headers.each do |sheet| %>
+        <th><%= sheet.title %></th>
+      <% end %>
+    </thead>
+    <tbody>
+      <%@children.each do |child|%>
+        <%list = @sheets.map{|sheet| sheet if sheet.name == child.name}.compact%>
+        <tr>
+          <td><%= list.first.name %></td>
+          <% list.each do |sheet| %>
+            <td style="text-align: center; background: <%= sheet.color%>"><%= sheet.grade_name %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+</div>
