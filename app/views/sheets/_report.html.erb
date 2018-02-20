@@ -29,7 +29,11 @@
             <%list = @sheets.map{|sheet| sheet if sheet.name == child.name}.compact%>
             <tr>
               <% list.each do |sheet| %>
-                <td width="2%" style="text-align: center; background: <%= sheet.color%>"><%= sheet.grade_name.present? ? sheet.grade_name : 'None' %></td>
+                <td width="2%" style="text-align: center; background: <%= sheet.color%>">
+                  <div data-original-title="<%= sheet.comment? ? sheet.comment : ''%>" data-toggle="tooltip">
+                    <%= sheet.grade_name.present? ? sheet.grade_name : 'None' %>
+                  </div>
+                </td>
               <% end %>
             </tr>
           <% end %>

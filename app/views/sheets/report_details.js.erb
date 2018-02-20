@@ -1,5 +1,6 @@
 <%if @sheets.present? %>
   $(".report-section").html("<%= escape_javascript(render 'report') %>")
+  $("[data-toggle='tooltip']").tooltip();
 <%else%>
   $(".report-section").html("")
 <%end%>
