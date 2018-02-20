@@ -1,23 +1,39 @@
+
 <%headers = @sheets.map{|sheet| sheet if sheet.name == @children.first.name}.compact%>
-<div class="table-responsive">
-  <table class="table table-bordered table-striped">
-    <thead>
-      <th>Student Name</th>
-      <% headers.each do |sheet| %>
-        <th><%= sheet.title %></th>
-      <% end %>
-    </thead>
-    <tbody>
-      <%@children.each do |child|%>
-        <%list = @sheets.map{|sheet| sheet if sheet.name == child.name}.compact%>
+
+  <div class="col-md-1" style="overflow:hidden; padding: 0px !important">
+    <table class="table table-bordered table-striped">
+      <tr>
+        <td width="2%" style="font-size:10px"><b>Name</b></td>
+      </tr>
+      <tbody>
+        <%@children.each do |child|%>
+          <%list = @sheets.map{|sheet| sheet if sheet.name == child.name}.compact%>
+          <tr>
+            <td width="2%"><%= list.first.name %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-md-11" style="padding: 0px !important">
+    <div class="table-responsive table-hover">
+      <table class="table table-bordered table-striped">
         <tr>
-          <td><%= list.first.name %></td>
-          <% list.each do |sheet| %>
-            <td style="text-align: center; background: <%= sheet.color%>"><%= sheet.grade_name %></td>
+          <% headers.each do |sheet| %>
+            <td width="2%" style="font-size:10px"><b><%= sheet.title %></b></td>
           <% end %>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
-
-</div>
+        <tbody>
+          <%@children.each do |child|%>
+            <%list = @sheets.map{|sheet| sheet if sheet.name == child.name}.compact%>
+            <tr>
+              <% list.each do |sheet| %>
+                <td width="2%" style="text-align: center; background: <%= sheet.color%>"><%= sheet.grade_name.present? ? sheet.grade_name : 'None' %></td>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>

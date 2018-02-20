@@ -126,3 +126,14 @@
 .padding-none{
   padding-left: 0px;
 }
+
+.table-hover{
+  overflow:hidden;
+}
+
+.table-hover:hover {
+    overflow-x:auto;
+}
+.table-hover table {
+  width: 1200px; margin:0px;
+}
