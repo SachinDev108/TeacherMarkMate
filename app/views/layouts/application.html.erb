@@ -28,10 +28,10 @@
         </li>    
       </ul>
       </div>
-      <nav class="navbar navbar-inverse marginleft13">
+      <nav class="navbar navbar-inverse">
         <div class="container-fluid">
           <ul class="nav navbar-nav navbar-left">
-            <li><span class="nav-text">Welcome <%= current_teacher.name.capitalize %></span></li>
+            <li style="padding-left: 200px"><span class="nav-text">Welcome <%= current_teacher.name.capitalize %></span></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><%= link_to "Logout", destroy_teacher_session_path, method: :delete, :class => 'navbar-link' %></li>
