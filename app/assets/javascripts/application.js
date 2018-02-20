@@ -11,8 +11,9 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery.minicolors
 //= require rails-ujs
+//= require spectrum.js
+//= require custom
 //= require bootstrap-sprockets
 //= require turbolinks
 //= require_tree .
