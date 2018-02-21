@@ -3,19 +3,43 @@
 <%# end %>
 <ul>
 <% @details.each do |detail| %>
-   <%= link_to detail.child.name.capitalize, child_detail_sheet_path(@sheet, detail: detail.id), remote: true, class: "child-name" %><br>
+   <%= link_to detail.child.name.capitalize, child_detail_sheet_path(@sheet, detail: detail.id), remote: true, class: "child-name", id: detail.child.name %><br>
 <% end if @details.present? %>
 </ul>
 
 <script type="text/javascript">
-
   $(document).ready(function(){
     $('.child-name').first().addClass('active-child');
-  });
+  })
 
   $(this).addClass('active-child');
   $('.child-name').on('click', function(){
     $(".child-name").removeClass('active-child');
     $(this).addClass('active-child');
   });
+  var names = []
+  $('.student-list').find('a').each(function() {
+    names.push("select " + this.text)
+  })
+  if (annyang) {
+    // Let's define a command.
+    var commands = {   };
+    names.forEach(function(name) {
+      commands[name] = function() {
+        $.ajax({
+          url: $("#"+name.split(' ')[1]).attr('href'),
+          //orther options ...
+          success: function(data){
+              $("#"+name.split(' ')[1]).click()
+          }
+        });
+      }
+    })
+    // Initialize annyang with our commands
+    annyang.addCommands(commands);
+    // Start listening.
+    annyang.start();
+    
+  }
+  
 </script>

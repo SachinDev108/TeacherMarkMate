@@ -38,6 +38,9 @@ gem 'jbuilder', '~> 2.5'
 gem 'devise'
 gem 'bootstrap-sass', '~> 3.3.7'
 gem 'jquery-ui-rails'
+gem 'jquery-rails'
+gem 'jquery-minicolors-rails'
+gem "annyang-rails"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

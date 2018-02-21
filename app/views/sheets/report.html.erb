@@ -1,21 +1,4 @@
 <div class="row page-single-table">
-  <%#= link_to 'Export', ''%>
-  <!-- <table class="table table-bordered table-striped">
-    <thead>
-      <tr>
-        <th>Title</th>
-        <th>grade</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @sheets.each do |report| %>
-        <tr>
-          <td><%= report.title %></td>
-          <td><%= report.subject.name %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table> -->
   <div class="col-md-12">
     <%= select_tag :subject, options_for_select(subjects),:prompt => "Select Subject", class: 'form-control subject_id ' %><br>
   </div>
