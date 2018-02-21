@@ -3,23 +3,26 @@
   <div class="">
     <%= f.text_area :comment, class: 'form-control', rows: "6"%>
   </div>
-    <%= hidden_field_tag "detail_id", @detail.id%>
-  <div class="col-sm-12 col-md-12">
-    <div class="col-sm-4">
-      <%= label_tag 'Grade List', nil, :class => "control-label radio-margin" %>
-      <% @sheet.subject.grades.each do |grade| %>
-        <div class="radio radio-margin">
-          <label><%= f.radio_button :grade_id , grade.id, "data-marks" => grade.abr, onclick: "getGrade('#{grade.id}')" %><%= grade.name %></label>
-        </div>
-      <% end %>
-    </div>
-    <div class="col-md-6 col-sm-6 grade-margin">
-      <h5>Current Grade</h5>
-      <%= text_field_tag :marks, "", class: 'form-control text-size', disabled: true, value: @detail&.grade&.abr %>
-    </div> 
-    <div class="col-md-2 col-sm-2">
-      <%= f.submit 'Print Label',class: "btn btn-primary print-label" %>
-      <button type="button" class="btn btn-primary print-label clear-label">Clear Label</button>
+  <br>
+  <%= hidden_field_tag "detail_id", @detail.id%>
+  <div class="col-sm-12 col-md-12 col-xs-12">
+    <div class="row">
+      <div class="col-md-4 col-sm-4 col-sm-2">
+        <%= label_tag 'Grade List', nil, :class => "control-label radio-margin" %>
+        <% @sheet.subject.grades.each do |grade| %>
+          <div class="radio radio-margin">
+            <label><%= f.radio_button :grade_id , grade.id, "data-marks" => grade.abr, onclick: "getGrade('#{grade.id}')" %><%= grade.name %></label>
+          </div>
+        <% end %>
+      </div>
+      <div class="col-md-4 col-sm-4 col-xs-6 grade-margin">
+        <h5><b>Current Grade</b></h5>
+        <%= text_field_tag :marks, "", class: 'form-control text-size', disabled: true, value: @detail&.grade&.abr %>
+      </div> 
+      <div class="col-md-4 col-sm-4 col-xs-2">
+        <%= f.submit 'Print Label',class: "btn btn-primary print-label" %>
+        <button type="button" class="btn btn-primary print-label clear-label">Clear Label</button>
+      </div>
     </div>
   </div>
 <% end %>
