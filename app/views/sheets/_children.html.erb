@@ -17,29 +17,5 @@
     $(".child-name").removeClass('active-child');
     $(this).addClass('active-child');
   });
-  var names = []
-  $('.student-list').find('a').each(function() {
-    names.push("select " + this.text)
-  })
-  if (annyang) {
-    // Let's define a command.
-    var commands = {   };
-    names.forEach(function(name) {
-      commands[name] = function() {
-        $.ajax({
-          url: $("#"+name.split(' ')[1]).attr('href'),
-          //orther options ...
-          success: function(data){
-              $("#"+name.split(' ')[1]).click()
-          }
-        });
-      }
-    })
-    // Initialize annyang with our commands
-    annyang.addCommands(commands);
-    // Start listening.
-    annyang.start();
-    
-  }
   
 </script>
