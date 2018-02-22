@@ -1,2 +1,3 @@
 $(".form-section").html("<%= escape_javascript(render 'form_section') %>")
-PrintDiv()
+PrintDiv('<%= @detail.comment %>')
+annyang.abort()

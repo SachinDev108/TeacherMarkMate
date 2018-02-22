@@ -1,4 +1,4 @@
-<%= form_for @detail, url: update_detail_sheet_path(@sheet), remote: true do |f| %>
+<%= form_for @detail, url: update_detail_sheet_path(@sheet), remote: true, id: 'detailForm' do |f| %>
   
   <div class="col-md-12">
     <div class="col-md-10">
@@ -43,11 +43,13 @@
   $('.clear-label').click(function(){
     $("#detail_comment").val('')
   })
-  function PrintDiv() {
+  function PrintDiv(text) {
+
     var popupWin = window.open('', '_blank', 'width=300,height=300');
     popupWin.document.open();
-    popupWin.document.write('<html><body onload="window.print()">' + '<%= @detail.comment %>' + '</html>');
+    popupWin.document.write('<html><body onload="window.print()">' + text + '</html>');
     popupWin.document.close();
+
   }
 
   if (annyang) {
@@ -69,7 +71,6 @@
           isRecording = false;          // set recording var to false
           $("span",this).text('Record');      // change btn text
           $(this).removeClass('btn-danger');    // turn off red class
-          $(this).addClass('btn-primary');    // turn on blue class
           
         // if we're not recording when the button is clicked
         } else {
@@ -100,6 +101,26 @@
           $("input[data-grade='"+ repeat +"']").click()
           $(".text-size").val($("input[data-grade='"+ repeat +"']").data("marks"))
           $(".text-size").css("background-color", $("input[data-grade='"+ repeat +"']").data("color"));
+        }else if (repeat == "clear label") {
+          $("#dictation").val('')
+        }else if (repeat == "print label") {
+          dataSet = $('.edit_detail').serializeArray().reduce( (result, input) => {
+                      result[input.name] = input.value;
+                      return result;
+                      }, {}
+                    );
+          $.ajax({
+            url: '<%= update_detail_sheet_path(@sheet) %>',
+            type: 'patch',
+            dataType: 'json',
+            data: dataSet,
+            success: function(data) {
+              annyang.abort(); 
+              $("span","#record-btn").text('Record');
+              $("#record-btn").removeClass('btn-danger');
+              PrintDiv(data.text)
+            }
+          });
         }
         else{
           $("#dictation").text(repeat)

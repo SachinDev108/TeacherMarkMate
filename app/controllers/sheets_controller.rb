@@ -51,6 +51,13 @@ class SheetsController < ApplicationController
   def update_detail
     @detail = @sheet.details.find_by_id(params[:detail_id])
     @detail.update_attributes(comment: params[:detail][:comment], grade_id: params[:detail][:grade_id])
+    respond_to do |format|
+      format.js 
+      format.json do
+        render json: { text: @detail.comment }.to_json
+      end
+    end
+    
   end
 
   def report
