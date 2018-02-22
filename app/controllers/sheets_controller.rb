@@ -40,7 +40,7 @@ class SheetsController < ApplicationController
   end
 
   def fetch_children
-    @details = @sheet.details
+    @details = @sheet.details.joins(:child).order("children.name asc")
     @detail = @details.first
   end
 

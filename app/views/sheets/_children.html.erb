@@ -1,11 +1,24 @@
 <%#= f.fields_for :students do |builder| %>
   <%#= render 'student_fields', f: builder %>
 <%# end %>
-<ul>
-<% @details.each do |detail| %>
-   <%= link_to detail.child.name.capitalize, child_detail_sheet_path(@sheet, detail: detail.id), remote: true, class: "child-name", id: detail.child.name %><br>
-<% end if @details.present? %>
-</ul>
+
+<% if @details.present? %>
+  <div class="table-responsive">
+    <table class="table table-bordered table-striped">
+      <tbody>
+        <tr>
+          <% @details.each_slice(20) do |details| %>
+            <td>
+              <% details.each do |detail| %>
+                <%= link_to detail.child.name.capitalize, child_detail_sheet_path(@sheet, detail: detail.id), remote: true, class: "child-name", id: detail.child.name %><br>
+              <% end %>
+            </td>
+          <% end %>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+<% end %>
 
 <script type="text/javascript">
   $(document).ready(function(){
