@@ -1,17 +1,5 @@
 <div class="well">
   <%= link_to 'Add subject', new_subject_path, {:remote => true, 'data-controls-modal' =>  "modal-window", 'data-backdrop' => true, 'data-keyboard' => true} %>
 </div>
+<%= render "subjects/list" %>
 <div class="clearfix"></div>
-<div class="table-responsive">
-  <table class="table table-bordered table-striped">
-    <thead>
-      <tr>
-        <th class="width50">Name</th>
-        <th class="text-center">Actions</th>
-      </tr>
-    </thead>
-    <tbody class="subject-index">
-      <%= render "subjects/list" %>
-    </tbody>
-  </table>
-</div>
