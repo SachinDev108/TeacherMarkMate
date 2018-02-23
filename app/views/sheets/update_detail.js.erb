@@ -1,3 +1,5 @@
 $(".form-section").html("<%= escape_javascript(render 'form_section') %>")
-PrintDiv('<%= @detail.comment %>')
 annyang.abort()
+$("span","#record-btn").text('Record');
+$("#record-btn").removeClass('btn-danger');
+PrintDiv('<%= @detail.comment %>')

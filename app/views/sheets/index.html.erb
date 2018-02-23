@@ -10,6 +10,7 @@
         <%= select_tag :subject, options_for_select(subjects),:prompt => "Select Subject", class: 'form-control subject_id' %><br>
         <div class="filter-subject"><%= render "objective_list" %></div>
       <% end %>
+      <button type="button" class="btn btn-sm" style="float:right; display: none;" id="record-btn"><span>Record</span></button>
       <div class="form-group form-section">
         
       </div>
@@ -31,4 +32,25 @@
       }
     });
   })
+  var isRecording = false; 
+  $("#record-btn").click(function(event){
+    event.preventDefault();
+    // if we're recording when the button is clicked
+    if(isRecording) {
+      annyang.abort();            // stop listening
+      isRecording = false;          // set recording var to false
+      $("span",this).text('Record');      // change btn text
+      $(this).removeClass('btn-danger');    // turn off red class
+      
+    // if we're not recording when the button is clicked
+    } else {
+      //annyang.abort()
+      annyang.start();            // start listening
+      isRecording = true;           // set recording var to true
+      $("span",this).text('Stop');      // change btn text
+      $(this).removeClass('btn-primary');   // turn off blue class
+      $(this).addClass('btn-danger');     // turn on red class
+    }
+  });
+
 </script>

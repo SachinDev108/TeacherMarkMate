@@ -5,9 +5,9 @@
       <%= label_tag @detail.child.name, nil, :class => "control-label" %>
       <%= f.text_area :comment, class: 'form-control', rows: "6", id: "dictation"%>
     </div>
-    <div class="col-md-2">
+    <!-- <div class="col-md-2">
       <p><button type="button" class="btn btn-sm" id="record-btn"><span>Record</span></button></p>
-    </div>
+    </div> -->
   </div>
     <%= hidden_field_tag "detail_id", @detail.id%>
   <div class="col-sm-12 col-md-12">
@@ -53,7 +53,7 @@
   }
 
   if (annyang) {
-      var isRecording = false; // create var to track recording state  
+      // var isRecording = false; // create var to track recording state  
       var names = []; //insert names for annyang commands
       var grades = [];
       $('.student-list').find('a').each(function() {
@@ -63,25 +63,25 @@
         grades.push($(this).data("grade").toLowerCase())
       });
       // record/stop button functionality
-      $("#record-btn").click(function(event){
-        event.preventDefault();
-        // if we're recording when the button is clicked
-        if(isRecording) {
-          annyang.abort();            // stop listening
-          isRecording = false;          // set recording var to false
-          $("span",this).text('Record');      // change btn text
-          $(this).removeClass('btn-danger');    // turn off red class
+      // $("#record-btn").click(function(event){
+      //   event.preventDefault();
+      //   // if we're recording when the button is clicked
+      //   if(isRecording) {
+      //     annyang.abort();            // stop listening
+      //     isRecording = false;          // set recording var to false
+      //     $("span",this).text('Record');      // change btn text
+      //     $(this).removeClass('btn-danger');    // turn off red class
           
-        // if we're not recording when the button is clicked
-        } else {
-          annyang.abort()
-          annyang.start();            // start listening
-          isRecording = true;           // set recording var to true
-          $("span",this).text('Stop');      // change btn text
-          $(this).removeClass('btn-primary');   // turn off blue class
-          $(this).addClass('btn-danger');     // turn on red class
-        }
-      });
+      //   // if we're not recording when the button is clicked
+      //   } else {
+      //     annyang.abort()
+      //     annyang.start();            // start listening
+      //     isRecording = true;           // set recording var to true
+      //     $("span",this).text('Stop');      // change btn text
+      //     $(this).removeClass('btn-primary');   // turn off blue class
+      //     $(this).addClass('btn-danger');     // turn on red class
+      //   }
+      // });
       
       // define the functions our commands will run.
       var hello = function() {
@@ -123,7 +123,7 @@
           });
         }
         else{
-          $("#dictation").text(repeat)
+          $("#dictation").text(repeat.substr(0,1).toUpperCase()+repeat.substr(1))
         }
         //$("#dictation").text(repeat);
       }
