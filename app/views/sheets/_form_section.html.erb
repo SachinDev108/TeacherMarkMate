@@ -123,7 +123,14 @@
           });
         }
         else{
-          $("#dictation").text(repeat.substr(0,1).toUpperCase()+repeat.substr(1))
+          str = $("#dictation").val()
+          if (str == ""){
+            text = repeat.substr(0,1).toUpperCase()+repeat.substr(1)+' '
+            $("#dictation").val(text)
+          } else {
+            $("#dictation").val(str + repeat)
+          }
+          
         }
         //$("#dictation").text(repeat);
       }
