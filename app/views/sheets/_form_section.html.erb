@@ -97,7 +97,7 @@
 
       var mark = function() {
         str = $("#dictation").val()
-        $("#dictation").val(str+'!')
+        $("#dictation").val(str+' !')
       };
 
       var comma = function() {
@@ -111,7 +111,7 @@
 
       var stop = function() {
         str = $("#dictation").val()
-        $("#dictation").val(str + '. ')
+        $("#dictation").val(str.slice(0,-1) + '. ')
       };
       
       var writeIt = function(repeat) {
@@ -157,7 +157,7 @@
             text = repeat.substr(0,1).toUpperCase()+repeat.substr(1)
             $("#dictation").val(str +' '+text)
           } else {
-            $("#dictation").val(str +' '+repeat)
+            $("#dictation").val(str +repeat+ ' ')
           }
           
         }
