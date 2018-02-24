@@ -84,8 +84,34 @@
       // });
       
       // define the functions our commands will run.
-      var hello = function() {
-        $("#dictation").text('hello.');
+    
+      var question = function() {
+        str = $("#dictation").val()
+        $("#dictation").val(str + '? ')
+      };
+
+      // var remove = function() {
+      //   str = $("#dictation").val()
+      //   $("#dictation").val(str.slice(0,-1))
+      // };
+
+      var mark = function() {
+        str = $("#dictation").val()
+        $("#dictation").val(str+'!')
+      };
+
+      var comma = function() {
+        str = $("#dictation").val()
+        $("#dictation").val(str + ', ')
+      };
+      var nextLine = function() {
+        str = $("#dictation").val()
+        $("#dictation").val(str + '\n ')
+      };
+
+      var stop = function() {
+        str = $("#dictation").val()
+        $("#dictation").val(str + '. ')
       };
       
       var writeIt = function(repeat) {
@@ -125,10 +151,13 @@
         else{
           str = $("#dictation").val()
           if (str == ""){
-            text = repeat.substr(0,1).toUpperCase()+repeat.substr(1)+' '
+            text = repeat.substr(0,1).toUpperCase()+repeat.substr(1)
             $("#dictation").val(text)
+          } else if (str[str.length-2]=='.'){
+            text = repeat.substr(0,1).toUpperCase()+repeat.substr(1)
+            $("#dictation").val(str +' '+text)
           } else {
-            $("#dictation").val(str + repeat)
+            $("#dictation").val(str +' '+repeat)
           }
           
         }
@@ -138,9 +167,13 @@
       // define our commands.
       // * The key is what you want your users to say say.
       // * The value is the action to do.
-      //   You can pass a function, a function name (as a string), or write your function as part of the commands object.
+      //   You can pass a function, a function name (as a string), or write your function as part of the commands object.exclamation mark
       var commands = {
-        'hello (there)':        hello,
+        'full stop (there)':        stop,
+        'exclamation mark (there)':        mark,
+        'question mark (there)':        question,
+        'next line (there)':        nextLine,
+        'comma (there)':        comma,
         '*repeat':        writeIt
       };
       names.forEach(function(name) {
