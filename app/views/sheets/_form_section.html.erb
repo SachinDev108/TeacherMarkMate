@@ -47,7 +47,7 @@
 
     var popupWin = window.open('', '_blank', 'width=300,height=300');
     popupWin.document.open();
-    popupWin.document.write('<html><body onload="window.print()">' + text + '</html>');
+    popupWin.document.write('<html><body onload="window.print()" style="padding-top: 29mm; padding-bottom: 29mm;padding-left:90mm;padding-right:90mm;">' + text + '</html>');
     popupWin.document.close();
 
   }
