@@ -15,7 +15,6 @@
 //= require spectrum.js
 //= require custom
 //= require bootstrap-sprockets
-//= require turbolinks
 //= require annyang
 //= require annyang.min
 //= require_tree .
