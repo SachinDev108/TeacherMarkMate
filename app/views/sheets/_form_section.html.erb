@@ -87,7 +87,7 @@
     
       var question = function() {
         str = $("#dictation").val()
-        $("#dictation").val(str + '? ')
+        $("#dictation").val(str + '?')
       };
 
       // var remove = function() {
@@ -111,7 +111,7 @@
 
       var stop = function() {
         str = $("#dictation").val()
-        $("#dictation").val(str.slice(0,-1) + '. ')
+        $("#dictation").val(str + '. ')
       };
       
       var writeIt = function(repeat) {
@@ -154,6 +154,12 @@
             text = repeat.substr(0,1).toUpperCase()+repeat.substr(1)
             $("#dictation").val(text)
           } else if (str[str.length-2]=='.'){
+            text = repeat.substr(0,1).toUpperCase()+repeat.substr(1)
+            $("#dictation").val(str +' '+text)
+          } else if (str[str.length-1]=='!'){
+            text = repeat.substr(0,1).toUpperCase()+repeat.substr(1)
+            $("#dictation").val(str +' '+text)
+          } else if (str[str.length-1]=='?'){
             text = repeat.substr(0,1).toUpperCase()+repeat.substr(1)
             $("#dictation").val(str +' '+text)
           } else {
