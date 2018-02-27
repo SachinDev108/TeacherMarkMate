@@ -20,18 +20,25 @@
     </div>
   </div><br>
 </div>
+
+<% if @sheet.present? %>
+  <script type="text/javascript">
+    $( document ).ready(function() { 
+      subject_id = "<%= @sheet.subject.id %>" 
+      sheet_id = "<%= @sheet.id %>"
+      sendAjaxRequest({ 'subject_id' : subject_id }, "<%= sheets_path %>", 'script', false)
+      $("#subject").val(subject_id)
+      sendAjaxRequest({ 'id' : sheet_id }, "<%= fetch_children_sheets_path %>", '', false)
+      $("#sheet").val(sheet_id)
+    });
+  </script>
+<% end %>
+
 <script type="text/javascript">
   $(".subject_id").change(function(){
-    $.ajax({
-      data: { 'subject_id' : this.value },
-      url: "<%= sheets_path %>",
-      dataType: 'script',
-      //orther options ...
-      success: function(data){
-          //$("#floors_select").html(data);
-      }
-    });
+    sendAjaxRequest({ 'subject_id' : this.value }, "<%= sheets_path %>", 'script', true)
   })
+
   var isRecording = false; 
   $("#record-btn").click(function(event){
     event.preventDefault();
@@ -53,4 +60,14 @@
     }
   });
 
+  function sendAjaxRequest(data, url, data_type, is_async) {
+    $.ajax({
+      data: data,
+      url: url,
+      dataType: data_type,
+      async: is_async,
+      success: function(data){
+      }
+    });
+  }
 </script>

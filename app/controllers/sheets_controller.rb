@@ -1,5 +1,5 @@
 class SheetsController < ApplicationController
-  before_action :set_sheet, only: [:show, :fetch_children, :child_detail, :update_detail, :destroy]
+  before_action :set_sheet, only: [:show, :fetch_children, :child_detail, :update_detail, :destroy, :index]
   before_action :set_subject, only: [:index, :report_details]
   def index
     @subjects = current_teacher.subjects
@@ -68,7 +68,9 @@ class SheetsController < ApplicationController
   private
 
   def set_sheet
-    @sheet = Sheet.find(params[:id])
+    if params[:id].present?
+      @sheet = Sheet.find(params[:id])
+    end
   end
 
   def set_subject
