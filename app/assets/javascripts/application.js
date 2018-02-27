@@ -17,4 +17,5 @@
 //= require bootstrap-sprockets
 //= require annyang
 //= require annyang.min
+//= require ckeditor-jquery
 //= require_tree .
