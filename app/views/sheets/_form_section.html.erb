@@ -41,7 +41,7 @@
     }
   }
   $('.clear-label').click(function(){
-    $("#detail_comment").val('')
+    $("#dictation").val('')
   })
   function PrintDiv(text) {
 
@@ -110,7 +110,7 @@
       };
 
       var stop = function() {
-        str = $("#dictation").val()
+        str = $("#dictation").val().replace(/\s+$/, '')
         $("#dictation").val(str + '. ')
       };
       
@@ -176,6 +176,7 @@
       //   You can pass a function, a function name (as a string), or write your function as part of the commands object.exclamation mark
       var commands = {
         'full stop (there)':        stop,
+        'fullstop (there)':        stop,
         'exclamation mark (there)':        mark,
         'question mark (there)':        question,
         'next line (there)':        nextLine,
