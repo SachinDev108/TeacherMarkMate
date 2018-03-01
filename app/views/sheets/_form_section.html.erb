@@ -3,7 +3,7 @@
   <div class="col-md-12">
     <div class="col-md-10">
       <%= label_tag @detail.child.name, nil, :class => "control-label" %>
-      <%= f.text_area :comment, class: 'form-control ckeditor', rows: "6", id: "dictation"%>
+      <%= f.text_area :comment, class: 'form-control ckeditor', rows: "3", id: "dictation"%>
     </div>
     <!-- <div class="col-md-2">
       <p><button type="button" class="btn btn-sm" id="record-btn"><span>Record</span></button></p>
@@ -34,8 +34,9 @@
 
 <script type="text/javascript">
   $('.ckeditor').ckeditor({
-  // optional config
-});
+    // optional config
+  });
+  
   function getGrade(id, color){
     if ($("#detail_grade_id_"+id).is(":checked")) {
       var data = $("#detail_grade_id_"+id).data("marks")
