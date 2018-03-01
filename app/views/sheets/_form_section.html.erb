@@ -134,23 +134,7 @@
         }else if (repeat == "clear label") {
           $("#dictation").val('')
         }else if (repeat == "print label") {
-          dataSet = $('.edit_detail').serializeArray().reduce( (result, input) => {
-                      result[input.name] = input.value;
-                      return result;
-                      }, {}
-                    );
-          $.ajax({
-            url: '<%= update_detail_sheet_path(@sheet) %>',
-            type: 'patch',
-            dataType: 'json',
-            data: dataSet,
-            success: function(data) {
-              annyang.abort(); 
-              $("span","#record-btn").text('Record');
-              $("#record-btn").removeClass('btn-danger');
-              PrintDiv(data.text)
-            }
-          });
+          PrintDiv($("#dictation").val())
         }
         else{
           str = $("#dictation").val()
