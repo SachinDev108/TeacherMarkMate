@@ -4,6 +4,7 @@
     <div class="col-md-10">
       <%= label_tag @detail.child.name, nil, :class => "control-label" %>
       <%= f.text_area :comment, class: 'form-control', rows: "6", id: "dictation"%>
+      <%= f.submit 'Save Comment', class: "btn btn-sm", style: "float:right; margin-top:12px;" %>
     </div>
     <!-- <div class="col-md-2">
       <p><button type="button" class="btn btn-sm" id="record-btn"><span>Record</span></button></p>
@@ -25,7 +26,7 @@
 
     </div> 
     <div class="col-md-2 col-sm-2">
-      <%= f.submit 'Print Label',class: "btn btn-primary print-label" %>
+      <button type="button" class="btn btn-primary print-label" id="print-label">Print Label</button>
       <button type="button" class="btn btn-primary print-label clear-label">Clear Label</button>
     </div>
   </div>
@@ -42,6 +43,9 @@
   }
   $('.clear-label').click(function(){
     $("#dictation").val('')
+  })
+  $('#print-label').click(function(){
+    PrintDiv('<%= @detail.comment %>')
   })
   function PrintDiv(text) {
 
