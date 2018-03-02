@@ -2,7 +2,7 @@ CKEDITOR.editorConfig = function (config) {
   // ... other configuration ...
 
   config.toolbar_mini = [
-    ["Bold",  "Italic",  "Underline", "Font"],
+    ["Bold",  "Italic",  "Underline", "Font", "FontSize"],
   ];
   config.toolbar = "mini";
   config.height = 100;        // 500 pixels high.
