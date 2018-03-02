@@ -3,7 +3,7 @@
   <div class="col-md-12">
     <div class="col-md-10">
       <%= label_tag @detail.child.name, nil, :class => "control-label" %>
-      <%= f.text_area :comment, class: 'form-control', rows: "3", id: "dictation"%>
+      <%= f.text_area :comment, class: 'form-control ckeditor', rows: "3", id: "dictation"%>
       <%= f.submit 'Save Comment', class: "btn btn-sm", style: "float:right; margin-top:12px;" %>
     </div>
     <!-- <div class="col-md-2">
@@ -36,7 +36,7 @@
 <script type="text/javascript">
   $('.ckeditor').ckeditor({
     // optional config
-  });
+  })
   
   function getGrade(id, color){
     if ($("#detail_grade_id_"+id).is(":checked")) {
@@ -49,10 +49,9 @@
     $("#dictation").val('')
   })
   $('#print-label').click(function(){
-    PrintDiv('<%= @detail.comment %>')
+    PrintDiv($("#dictation").val())
   })
   function PrintDiv(text) {
-
     var popupWin = window.open('', '_blank', 'width=300,height=300');
     popupWin.document.open();
     popupWin.document.write('<html><body onload="window.print()">' + text + '</html>');

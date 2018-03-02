@@ -8,7 +8,8 @@ CKEDITOR.editorConfig = function (config) {
   config.height = 100;        // 500 pixels high.
 	config.height = '5em';
 	config.removePlugins = 'elementspath';
-config.resize_enabled = false;
+	config.resize_enabled = false;
+	config.enterMode = CKEDITOR.ENTER_BR
 
   // ... rest of the original config.js  ...
 }
