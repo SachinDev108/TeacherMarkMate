@@ -1,3 +1,23 @@
-<div class="row custom-table-position">
-
+<div class="custom-table-position" style="margin-left: 380px;">
+  <div class="row" style="padding-top: 25px;">
+    <div class="col-md-6">
+      <%= link_to(image_tag("subjects.png", height: "120px"), subjects_path) %>
+    </div>
+    <div class="col-md-6">
+      <%= link_to(image_tag("Markbook.png", height: "120px"), new_sheet_path) %>
+    </div>
+  </div>
+  <div class="row" style="padding-left: 174px;padding-top: 35px;">
+    <div class="col-md-4">
+      <%= link_to(image_tag("Children.png", height: "120px"), children_path) %>
+    </div>
+  </div>
+  <div class="row" style="padding-top: 65px;">
+    <div class="col-md-6">
+      <%= link_to(image_tag("Marking.png", height: "120px"), sheets_path) %>
+    </div>
+    <div class="col-md-6">
+      <%= link_to(image_tag("Reports.png", height: "120px"), report_sheets_path) %>
+    </div>
+  </div>
 </div>

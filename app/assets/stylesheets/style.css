@@ -26,7 +26,7 @@
   color: #fff;
   position: inherit;
   padding-top: 15px;
-  padding-left: 180px;
+  padding-left: 25px;
 }
 
 .sidenav {
@@ -39,7 +39,7 @@
   background-color: #222;
   border-color: #090909;
   overflow-x: hidden;
-  padding-top: 61px;
+  padding-top: 76px;
 }
 
 .sidenav a {
