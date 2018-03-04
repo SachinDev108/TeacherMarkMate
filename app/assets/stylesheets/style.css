@@ -8,6 +8,12 @@
     margin-top: 11px !important;
 }
 
+.navbar-inverse{
+  background-color: #223;
+  border-radius: 0px;
+  border: none;
+}
+
 .error_section{
   margin-top: 5px;
   width: 97%;
@@ -20,20 +26,20 @@
   color: #fff;
   position: inherit;
   padding-top: 15px;
-  padding-left: 180px;
+  padding-left: 25px;
 }
 
 .sidenav {
   height: 100%;
   width: 175px;
   position: fixed;
-  z-index: 1;
+  z-index: 0;
   top: 0;
   left: 0;
   background-color: #222;
   border-color: #090909;
   overflow-x: hidden;
-  padding-top: 62px;
+  padding-top: 76px;
 }
 
 .sidenav a {
@@ -222,5 +228,9 @@
   display: flex;
   padding-top: 10px;
   padding-left: 10px
+}
+
+.cke_top{
+  padding: 0px 8px 0px !important;
 }
 

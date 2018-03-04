@@ -1,47 +1,202 @@
-<%= form_for @detail, url: update_detail_sheet_path(@sheet), remote: true do |f| %>
-  <%= label_tag @detail.child.name, nil, :class => "control-label" %>
-  <div class="">
-    <%= f.text_area :comment, class: 'form-control', rows: "6"%>
+<%= form_for @detail, url: update_detail_sheet_path(@sheet), remote: true, id: 'detailForm' do |f| %>
+  
+  <div class="col-md-12">
+    <div class="col-md-10">
+      <%= label_tag @detail.child.name, nil, :class => "control-label" %>
+      <%= f.text_area :comment, class: 'form-control ckeditor', rows: "3", id: "dictation"%>
+      <%= f.submit 'Save Comment', class: "btn btn-sm", style: "float:right; margin-top:12px;" %>
+    </div>
+    <!-- <div class="col-md-2">
+      <p><button type="button" class="btn btn-sm" id="record-btn"><span>Record</span></button></p>
+    </div> -->
   </div>
-  <br>
-  <%= hidden_field_tag "detail_id", @detail.id%>
-  <div class="col-sm-12 col-md-12 col-xs-12">
-    <div class="row">
-      <div class="col-md-4 col-sm-4 col-sm-2">
-        <%= label_tag 'Grade List', nil, :class => "control-label radio-margin" %>
-        <% @sheet.subject.grades.each do |grade| %>
-          <div class="radio radio-margin">
-            <label><%= f.radio_button :grade_id , grade.id, "data-marks" => grade.abr, onclick: "getGrade('#{grade.id}')" %><%= grade.name %></label>
-          </div>
-        <% end %>
-      </div>
-      <div class="col-md-4 col-sm-4 col-xs-6 grade-margin">
-        <h5><b>Current Grade</b></h5>
-        <%= text_field_tag :marks, "", class: 'form-control text-size', disabled: true, value: @detail&.grade&.abr %>
-      </div> 
-      <div class="col-md-4 col-sm-4 col-xs-2">
-        <%= f.submit 'Print Label',class: "btn btn-primary print-label" %>
-        <button type="button" class="btn btn-primary print-label clear-label">Clear Label</button>
-      </div>
+    <%= hidden_field_tag "detail_id", @detail.id%>
+  <div class="col-sm-12 col-md-12">
+    <div class="col-sm-4 grade-abr">
+      <%= label_tag 'Grade List', nil, :class => "control-label radio-margin" %>
+      <% @sheet.subject.grades.each do |grade| %>
+        <div class="radio radio-margin">
+          <label><%= f.radio_button :grade_id , grade.id, "data-marks" => grade.abr, onclick: "getGrade('#{grade.id}', '#{grade.color}')", "data-grade" => grade.name.downcase, "data-color" => grade.color %><%= grade.name %></label>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-md-6 col-sm-6 grade-margin">
+      <h5>Current Grade</h5>
+      <%= text_field_tag :marks, "", class: 'form-control text-size', style: "background-color: #{@detail&.grade&.color}", disabled: true, value: @detail&.grade&.abr %>
+
+    </div> 
+    <div class="col-md-2 col-sm-2">
+      <button type="button" class="btn btn-primary print-label" id="print-label">Print Label</button>
+      <button type="button" class="btn btn-primary print-label clear-label">Clear Label</button>
     </div>
   </div>
 <% end %>
 
 
 <script type="text/javascript">
-  function getGrade(id){
+  $('.ckeditor').ckeditor({
+    // optional config
+  })
+  
+  function getGrade(id, color){
     if ($("#detail_grade_id_"+id).is(":checked")) {
       var data = $("#detail_grade_id_"+id).data("marks")
       $(".text-size").val(data)
+      $(".text-size").css("background-color", color);
     }
   }
   $('.clear-label').click(function(){
-    $("#detail_comment").val('')
+    $("#dictation").val('')
   })
-  function PrintDiv() {
+  $('#print-label').click(function(){
+    PrintDiv($("#dictation").val())
+  })
+  function PrintDiv(text) {
     var popupWin = window.open('', '_blank', 'width=300,height=300');
     popupWin.document.open();
-    popupWin.document.write('<html><body onload="window.print()">' + '<%= @detail.comment %>' + '</html>');
+    popupWin.document.write('<html><body onload="window.print()">' + text + '</html>');
     popupWin.document.close();
+
   }
+
+  if (annyang) {
+      // var isRecording = false; // create var to track recording state  
+      var names = []; //insert names for annyang commands
+      var grades = [];
+      $('.student-list').find('a').each(function() {
+        names.push(this.text)
+      })    
+      $(':radio').each(function(){
+        grades.push($(this).data("grade").toLowerCase())
+      });
+      // record/stop button functionality
+      // $("#record-btn").click(function(event){
+      //   event.preventDefault();
+      //   // if we're recording when the button is clicked
+      //   if(isRecording) {
+      //     annyang.abort();            // stop listening
+      //     isRecording = false;          // set recording var to false
+      //     $("span",this).text('Record');      // change btn text
+      //     $(this).removeClass('btn-danger');    // turn off red class
+          
+      //   // if we're not recording when the button is clicked
+      //   } else {
+      //     annyang.abort()
+      //     annyang.start();            // start listening
+      //     isRecording = true;           // set recording var to true
+      //     $("span",this).text('Stop');      // change btn text
+      //     $(this).removeClass('btn-primary');   // turn off blue class
+      //     $(this).addClass('btn-danger');     // turn on red class
+      //   }
+      // });
+      
+      // define the functions our commands will run.
+    
+      var question = function() {
+        str = $("#dictation").val()
+        $("#dictation").val(str + '?')
+      };
+
+      // var remove = function() {
+      //   str = $("#dictation").val()
+      //   $("#dictation").val(str.slice(0,-1))
+      // };
+
+      var mark = function() {
+        str = $("#dictation").val()
+        $("#dictation").val(str+'!')
+      };
+
+      var comma = function() {
+        str = $("#dictation").val()
+        $("#dictation").val(str + ', ')
+      };
+      var nextLine = function() {
+        str = $("#dictation").val()
+        $("#dictation").val(str + '\n ')
+      };
+
+      var stop = function() {
+        str = $("#dictation").val().replace(/\s+$/, '')
+        $("#dictation").val(str + '. ')
+      };
+      
+      var writeIt = function(repeat) {
+        if (names.includes(repeat)) {
+          $.ajax({
+            url: $("#"+repeat).attr('href'),
+            //orther options ...
+            success: function(data){
+                $("#"+repeat).click()
+            }
+          });
+        }else if (grades.includes(repeat)) {
+          $("input[data-grade='"+ repeat +"']").click()
+          $(".text-size").val($("input[data-grade='"+ repeat +"']").data("marks"))
+          $(".text-size").css("background-color", $("input[data-grade='"+ repeat +"']").data("color"));
+        }else if (repeat == "clear label") {
+          $("#dictation").val('')
+        }else if (repeat == "print label") {
+          PrintDiv($("#dictation").val())
+        }
+        else{
+          str = $("#dictation").val()
+          if (str == ""){
+            text = repeat.substr(0,1).toUpperCase()+repeat.substr(1)
+            $("#dictation").val(text)
+          } else if ((str[str.length-2]=='.') || (str[str.length-1]=='.')){
+            text = repeat.substr(0,1).toUpperCase()+repeat.substr(1)
+            $("#dictation").val(str +' '+text)
+          } else if (str[str.length-1]=='!'){
+            text = repeat.substr(0,1).toUpperCase()+repeat.substr(1)
+            $("#dictation").val(str +' '+text)
+          } else if (str[str.length-1]=='?'){
+            text = repeat.substr(0,1).toUpperCase()+repeat.substr(1)
+            $("#dictation").val(str +' '+text)
+          } else {
+            $("#dictation").val(str+' '+repeat)
+          }
+          
+        }
+        //$("#dictation").text(repeat);
+      }
+
+      // define our commands.
+      // * The key is what you want your users to say say.
+      // * The value is the action to do.
+      //   You can pass a function, a function name (as a string), or write your function as part of the commands object.exclamation mark
+      var commands = {
+        'full stop (there)':        stop,
+        'fullstop (there)':        stop,
+        'exclamation mark (there)':        mark,
+        'question mark (there)':        question,
+        'next line (there)':        nextLine,
+        'comma (there)':        comma,
+        '*repeat':        writeIt
+      };
+      names.forEach(function(name) {
+        commands[name] = function() {
+          $.ajax({
+            url: $("#"+name).attr('href'),
+            //orther options ...
+            success: function(data){
+                $("#"+name).click()
+            }
+          });
+        }
+      })
+
+      grades.forEach(function(grade) {
+        commands[grade] = function() { grade }
+      })
+
+      annyang.debug();                // turn on debugging (console messages)
+
+      // Add voice commands to respond to
+      annyang.addCommands(commands);
+
+    } else {
+      $("#dictation").text('Sorry, browser not supported.');
+    }
+  
 </script>

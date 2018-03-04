@@ -1,5 +1,5 @@
 class SheetsController < ApplicationController
-  before_action :set_sheet, only: [:show, :fetch_children, :child_detail, :update_detail, :destroy]
+  before_action :set_sheet, only: [:show, :fetch_children, :child_detail, :update_detail, :destroy, :index]
   before_action :set_subject, only: [:index, :report_details]
   def index
     @subjects = current_teacher.subjects
@@ -40,7 +40,7 @@ class SheetsController < ApplicationController
   end
 
   def fetch_children
-    @details = @sheet.details
+    @details = @sheet.details.joins(:child).order("children.name asc")
     @detail = @details.first
   end
 
@@ -51,6 +51,13 @@ class SheetsController < ApplicationController
   def update_detail
     @detail = @sheet.details.find_by_id(params[:detail_id])
     @detail.update_attributes(comment: params[:detail][:comment], grade_id: params[:detail][:grade_id])
+    respond_to do |format|
+      format.js 
+      format.json do
+        render json: { text: @detail.comment }.to_json
+      end
+    end
+    
   end
 
   def report
@@ -61,7 +68,9 @@ class SheetsController < ApplicationController
   private
 
   def set_sheet
-    @sheet = Sheet.find(params[:id])
+    if params[:id].present?
+      @sheet = Sheet.find(params[:id])
+    end
   end
 
   def set_subject

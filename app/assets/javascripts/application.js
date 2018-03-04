@@ -15,7 +15,7 @@
 //= require spectrum.js
 //= require custom
 //= require bootstrap-sprockets
-//= require turbolinks
 //= require annyang
 //= require annyang.min
+//= require ckeditor-jquery
 //= require_tree .

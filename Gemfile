@@ -43,7 +43,7 @@ gem 'jquery-minicolors-rails'
 gem "annyang-rails"
 # It's a Rails engine that provides an easy-to-use interface for managing your data.
 gem 'rails_admin', '~> 1.3'
-
+gem 'ckeditor_rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
