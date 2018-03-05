@@ -37,13 +37,14 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 gem 'devise'
 gem 'bootstrap-sass', '~> 3.3.7'
-gem 'jquery-ui-rails'
+#gem 'jquery-ui-rails'
 gem 'jquery-rails'
 gem 'jquery-minicolors-rails'
 gem "annyang-rails"
 # It's a Rails engine that provides an easy-to-use interface for managing your data.
 gem 'rails_admin', '~> 1.3'
 gem 'ckeditor_rails'
+gem 'jquery-ui-rails', '~> 5.0.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
