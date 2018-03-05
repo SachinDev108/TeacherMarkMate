@@ -54,10 +54,11 @@
   function PrintDiv(text) {
     var popupWin = window.open('', '_blank', 'width=300,height=300');
     popupWin.document.open();
-    if (text.indexOf('span') == 1){
-      popupWin.document.write('<html><body>' + text + '</html>');
-    } else {
+    if (text.indexOf('span') == -1){
       popupWin.document.write('<html><body>' + '<span style="font-family:Comic Sans MS,cursive">' + text + '</span>' + '</html>');
+      
+    } else {
+      popupWin.document.write('<html><body>' + text + '</html>'); 
     }
     
     var document_focus = false;
