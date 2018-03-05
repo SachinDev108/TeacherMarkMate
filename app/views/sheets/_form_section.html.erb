@@ -54,7 +54,7 @@
   function PrintDiv(text) {
     var popupWin = window.open('', '_blank', 'width=300,height=300');
     popupWin.document.open();
-    popupWin.document.write('<html><body onload="window.print()">' + text + '</html>');
+    popupWin.document.write('<html><body onload="window.print()" onfocus="window.close()"">' + text + '</html>');
     popupWin.document.close();
 
   }
