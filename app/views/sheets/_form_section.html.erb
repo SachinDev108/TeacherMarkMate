@@ -54,8 +54,11 @@
   function PrintDiv(text) {
     var popupWin = window.open('', '_blank', 'width=300,height=300');
     popupWin.document.open();
-    popupWin.document.write('<html><body onload="window.print()" onfocus="window.close()"">' + text + '</html>');
-    popupWin.document.close();
+    popupWin.document.write('<html><body>' + text + '</html>');
+    var document_focus = false;
+    $(document).ready(function() { popupWin.window.print();document_focus = true; });
+        setInterval(function() { if (document_focus === true) { popupWin.window.close(); }  }, 300);
+    // popupWin.document.close();
 
   }
 
