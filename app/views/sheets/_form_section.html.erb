@@ -54,7 +54,12 @@
   function PrintDiv(text) {
     var popupWin = window.open('', '_blank', 'width=300,height=300');
     popupWin.document.open();
-    popupWin.document.write('<html><body>' + text + '</html>');
+    if (text.indexOf('span') == 1){
+      popupWin.document.write('<html><body>' + text + '</html>');
+    } else {
+      popupWin.document.write('<html><body>' + '<span style="font-family:Comic Sans MS,cursive">' + text + '</span>' + '</html>');
+    }
+    
     var document_focus = false;
     $(document).ready(function() { popupWin.window.print();document_focus = true; });
         setInterval(function() { if (document_focus === true) { popupWin.window.close(); }  }, 300);
