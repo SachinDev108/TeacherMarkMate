@@ -22,4 +22,5 @@ Rails.application.routes.draw do
       patch :update_detail
     end
   end
+  get '*path' => redirect('/')
 end

@@ -4,7 +4,7 @@
     <div class="col-md-10">
       <%= label_tag @detail.child.name, nil, :class => "control-label" %>
       <%= f.text_area :comment, class: 'form-control ckeditor', rows: "3", id: "dictation"%>
-      <%= f.submit 'Save Comment', class: "btn btn-sm", style: "float:right; margin-top:12px;" %>
+      <%= f.submit 'Save Comment', class: "btn btn-primary print-label", style: "float:right; margin-top:12px;" %>
     </div>
     <!-- <div class="col-md-2">
       <p><button type="button" class="btn btn-sm" id="record-btn"><span>Record</span></button></p>
@@ -54,8 +54,17 @@
   function PrintDiv(text) {
     var popupWin = window.open('', '_blank', 'width=300,height=300');
     popupWin.document.open();
-    popupWin.document.write('<html><body onload="window.print()">' + text + '</html>');
-    popupWin.document.close();
+    if (text.indexOf('span') == -1){
+      popupWin.document.write('<html><body>' + '<span style="font-family:Comic Sans MS,cursive">' + text + '</span>' + '</html>');
+      
+    } else {
+      popupWin.document.write('<html><body>' + text + '</html>'); 
+    }
+    
+    var document_focus = false;
+    $(document).ready(function() { popupWin.window.print();document_focus = true; });
+        setInterval(function() { if (document_focus === true) { popupWin.window.close(); }  }, 300);
+    // popupWin.document.close();
 
   }
 

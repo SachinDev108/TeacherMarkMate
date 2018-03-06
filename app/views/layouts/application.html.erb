@@ -28,7 +28,7 @@
             <%= link_to "Reports", '/sheets/report' %>
           </li>
           <li class="<%= active_class('/subjects') %>">
-            <%= link_to "Subjects", '/subjects' %>
+            <%= link_to "Classes", '/subjects' %>
           </li>
           <li class="<%= active_class('/children') %>">
             <%= link_to "Children", '/children' %>
@@ -51,6 +51,9 @@
             </div>
             <div class="col-md-6 col-sm-6 col-xs-6 right-zero">
               <ul class="nav navbar-nav navbar-right">
+                <li>
+                  <%= link_to 'Support', "http://www.markmate.co.uk/support.html", target: :_blank %>
+                </li>
                 <li>
                   <%= link_to "Logout", destroy_teacher_session_path, method: :delete, :class => 'navbar-link' %>
                 </li>
