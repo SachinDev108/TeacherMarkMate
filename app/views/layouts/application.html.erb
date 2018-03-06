@@ -66,8 +66,12 @@
       <nav class="navbar navbar-inverse">
         <div class="container-fluid"> 
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="/teachers/sign_up"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-            <li><a href="/teachers/sign_in"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            <%if request.url.include? "admins"%>
+              <li><a href="/admins/sign_in"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            <% else %>
+              <li><a href="/teachers/sign_up"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+              <li><a href="/teachers/sign_in"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            <% end %>
           </ul>
         </div>
       </nav>

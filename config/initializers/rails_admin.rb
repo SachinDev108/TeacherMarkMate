@@ -1,7 +1,7 @@
 RailsAdmin.config do |config|
 
   ### Popular gems integration
-  config.main_app_name = ["TeacherMarkMAte", "AdminMarkMate"]
+  config.main_app_name = [""]
 
   ## == Devise ==
   config.authenticate_with do
@@ -26,7 +26,7 @@ RailsAdmin.config do |config|
   config.included_models = ['Teacher']
 
   config.actions do
-    dashboard                     # mandatory
+    dashboard 
     index                         # mandatory
     new
     bulk_delete
@@ -43,12 +43,34 @@ RailsAdmin.config do |config|
     list do
       field :name
       field :email
+      field :created_by do
+        def value
+          if bindings[:object].is_head? && bindings[:object].admin_id?
+            text = "SuperAdmin"
+          elsif bindings[:object].is_head? && bindings[:object].blank?
+            text = "HeadTeacher"
+          else
+            text = "Self"
+          end
+          bindings[:view] = text
+        end
+      end
     end
     edit do
       field :name
       field :email
       field :password
       field :password_confirmation
+      field :admin_id, :hidden  do
+        def value
+          bindings[:view]._current_user.id
+        end
+      end
+      field :role, :hidden  do
+        def value
+          bindings[:view] = "HeadTeacher"
+        end
+      end
     end  
   end
 end
