@@ -25,7 +25,7 @@
             <%= link_to "Markbook", '/sheets' %>
           </li>
           <li class="<%= active_class('/sheets/report') %>">
-            <%= link_to "Reports", '/sheets/report' %>
+            <%= link_to "Assessment", '/sheets/report' %>
           </li>
           <li class="<%= active_class('/subjects') %>">
             <%= link_to "Classes", '/subjects' %>
@@ -45,7 +45,7 @@
                 </li>
                 <li class="side-nav-toggle">
                   <span onclick="openNav()" class="nav-sell">&#9776;</span>
-                  <span class="nav-text">Welcome <%= current_teacher.name.capitalize %></span>
+                  <span class="nav-text">Welcome <%= current_teacher.name.split.map(&:capitalize)*' ' rescue ""%></span>
                 </li>    
               </ul>
             </div>
