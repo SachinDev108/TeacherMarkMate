@@ -15,6 +15,7 @@
       <%= f.label :email %><br />
       <%= f.email_field :email, autocomplete: "email", class: 'form-control', placeholder: 'Email' %>
     </div>
+    <%= f.hidden_field :role, value: 'HeadTeacher'%>
     <div class="form-group">
       <%= f.label :password %>
       <% if @minimum_password_length %>
