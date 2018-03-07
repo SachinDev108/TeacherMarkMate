@@ -1,0 +1,27 @@
+<div class="teacher-list">
+  <% if @teachers.present? %>
+    <div class="table-responsive">
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th class="text-center">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @teachers.each do |teacher| %>
+            <tr>
+              <td><%= teacher.name %></td>
+              <td><%= teacher.email %></td>
+              <td class="text-center">
+                <%= link_to "Edit", edit_teacher_path(teacher), remote: true, class: "btn btn-default" %>
+                <%= link_to 'Delete', teacher_path(teacher), :method => :delete, data: { confirm: 'Are you sure?' }, remote: true, class: "btn btn-default" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+</div>

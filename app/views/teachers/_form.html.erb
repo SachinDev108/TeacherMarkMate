@@ -1,0 +1,37 @@
+<div id="teacher-modal" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="error_section">
+      </div>
+      <%= form_for @teacher, url: teacher_redirect_url, remote: true, html: { style: "display:inline;"} do |f| %>
+        <div class="modal-body">
+          <ul class="errors"></ul>
+          <div class="form-group">
+            <%= f.label :name %><br />
+            <%= f.text_field :name, autofocus: true, class: 'form-control', placeholder: 'Name' %>
+          </div>
+          <div class="form-group">
+            <%= f.label :email %><br />
+            <%= f.email_field :email, autocomplete: "email", class: 'form-control', placeholder: 'Email' %>
+          </div>
+          <div class="form-group">
+            <%= f.label :password %>
+            <% if @minimum_password_length %>
+            <em>(<%= @minimum_password_length %> characters minimum)</em>
+            <% end %><br />
+            <%= f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: 'Password' %>
+          </div>
+          <div class="form-group">
+            <%= f.label :password_confirmation %><br />
+            <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control' %>
+          </div>
+          <%= f.hidden_field :role, value: 'SubTeacher'%>
+        </div>
+        <div class="modal-footer">
+          <%= f.submit class: "btn btn-primary" %>
+          <%= link_to "Cancel", "#", class: "btn btn-default", data: {dismiss: "modal"} %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

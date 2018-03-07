@@ -5,9 +5,10 @@ class Teacher < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   
   attr_accessor :created_by
-  has_many :subjects
-  has_many :children
-  has_many :sheets
+  has_many :subjects, :dependent => :destroy
+  has_many :children, :dependent => :destroy
+  has_many :sheets, :dependent => :destroy
+  has_many :sub_teachers, :class_name => 'Teacher', :foreign_key => :parent_id
   #after_create :send_reset_password_link
   ROLES = { headTeacher: 'HeadTeacher', subTeacher: 'SubTeacher' }
 

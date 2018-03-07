@@ -11,6 +11,12 @@ Rails.application.routes.draw do
     end 
   end
   resources :children
+  resources :teachers do
+    collection do
+      post  :create_teacher
+      get :teacher_subscription
+    end
+  end
   resources :sheets do
     collection do
       get :fetch_children

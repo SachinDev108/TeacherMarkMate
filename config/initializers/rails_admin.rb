@@ -47,7 +47,7 @@ RailsAdmin.config do |config|
         def value
           if bindings[:object].is_head? && bindings[:object].admin_id?
             text = "SuperAdmin"
-          elsif bindings[:object].is_head? && bindings[:object].admin_id.blank?
+          elsif ((bindings[:object].is_head? && bindings[:object].admin_id.blank?) || bindings[:object].parent_id?)
             text = "HeadTeacher"
           else
             text = "Self"

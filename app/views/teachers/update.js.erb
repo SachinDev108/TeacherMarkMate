@@ -1,0 +1,4 @@
+$('.error_section').html("<%= escape_javascript( render :partial => '/layouts/message_flash') %>")
+<% unless @errors.present? %>
+  $(".teacher-list").html("<%= escape_javascript(render 'teacher') %>")
+<% end %>

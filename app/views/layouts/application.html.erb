@@ -18,6 +18,11 @@
           <li class="<%= active_class('/') %>">
             <%= link_to "Dashboard", '/' %>
           </li>
+          <% if current_teacher.is_head? %>
+            <li class="<%= active_class('/teachers/teacher_subscription') %>">
+              <%= link_to "Subscription", '/teachers/teacher_subscription' %>
+            </li>
+          <% end %>
           <li class="<%= active_class('/sheets/new') %>">
             <%= link_to "New Objective", '/sheets/new' %>
           </li>
@@ -32,7 +37,12 @@
           </li>
           <li class="<%= active_class('/children') %>">
             <%= link_to "Children", '/children' %>
-          </li>    
+          </li>
+          <% if current_teacher.role == "HeadTeacher" %>
+            <li class="<%= active_class('/teachers') %>">
+              <%= link_to "Teacher", '/teachers' %>
+            </li>
+          <% end %>    
         </ul>
       </div>
       <nav class="navbar navbar-inverse">
