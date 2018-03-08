@@ -45,6 +45,7 @@ gem "annyang-rails"
 gem 'rails_admin', '~> 1.3'
 gem 'ckeditor_rails'
 gem 'jquery-ui-rails', '~> 5.0.0'
+gem 'cancancan', '~> 2.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

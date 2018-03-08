@@ -1,13 +1,11 @@
 class TeachersController < ApplicationController
-  before_action :fetch_teacher, only: [:edit, :update, :destroy]
+  load_and_authorize_resource
 
   def index
     flash[:notice] = "This is your trial period for this app"
-    fetch_sub_teacher
   end
 
   def new
-    @teacher = Teacher.new
   end
 
   def create_teacher
@@ -17,7 +15,6 @@ class TeachersController < ApplicationController
     else
       @errors = @teacher.errors.full_messages
     end
-    fetch_sub_teacher
   end
 
   def edit
@@ -44,10 +41,6 @@ class TeachersController < ApplicationController
 
   def teacher_params
     params.require(:teacher).permit(:name, :email, :password, :password_confirmation, :role)
-  end
-
-  def fetch_teacher
-    @teacher = Teacher.find(params[:id])
   end
 
   def fetch_sub_teacher
