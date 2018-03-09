@@ -1,1 +1,5 @@
 $(".form-section").html("<%= escape_javascript(render 'form_section') %>")
+$('.multiple-child').prop( "checked", false );
+detailID = "<%= @detail.id %>"
+$('#detail-id-'+detailID).prop( "checked", true );
+$('.multiselect-child-ids').append("<input type='hidden' name='detail_ids[]'" + "value='" + detailID + "' >")

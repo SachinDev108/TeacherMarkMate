@@ -1,5 +1,5 @@
 <%= form_for @detail, url: update_detail_sheet_path(@sheet), remote: true, id: 'detailForm' do |f| %>
-  
+  <div class="multiselect-child-ids"></div>
   <div class="col-md-12">
     <div class="col-md-10">
       <%= label_tag @detail.child.name, nil, :class => "control-label" %>
