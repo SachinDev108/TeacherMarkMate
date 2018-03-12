@@ -28,5 +28,12 @@ Rails.application.routes.draw do
       patch :update_detail
     end
   end
+
+  resources :subscriptions do
+    collection do
+      post :checkout
+      get :thankyou
+    end
+  end
   get '*path' => redirect('/')
 end

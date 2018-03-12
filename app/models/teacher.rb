@@ -9,6 +9,7 @@ class Teacher < ApplicationRecord
   has_many :children, :dependent => :destroy
   has_many :sheets, :dependent => :destroy
   has_many :sub_teachers, :class_name => 'Teacher', :foreign_key => :parent_id
+  has_many :subscriptions, :dependent => :destroy
   #after_create :send_reset_password_link
   ROLES = { headTeacher: 'HeadTeacher', subTeacher: 'SubTeacher' }
 

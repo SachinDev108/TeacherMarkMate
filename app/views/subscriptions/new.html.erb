@@ -1,0 +1,41 @@
+<!-- <div class="well">
+	<%= form_tag(checkout_subscriptions_path, :method => 'post', :multipart => true) do %>
+	  <%= label_tag "Please Pay the amount" %>
+	  <%= hidden_field_tag :amount, @subscription_type.price %>
+	  <%= hidden_field_tag :subscription_id, @subscription_type.id %>
+	  <%= submit_tag "pay" %> 
+	<%end %>
+</div> -->
+
+<div class="row">
+  <div class="col-md-4 col-md-offset-4">
+    <div class="well">
+      <div style="text-align:center;" ><%= image_tag(get_image, style: "height:200px; width:234px;") %></div>
+      <%= form_for(@subscription, url: checkout_subscriptions_path) do |f| %>
+      	<div class="form-group">
+		      <%= f.label :full_name %>
+		      <%= f.text_field :full_name, class: 'form-control', placeholder: 'Name', value: current_teacher.name %>
+		    </div>
+		    <div class="form-group">
+		      <%= f.label :email %>
+		      <%= f.email_field :email, :class=>"form-control", :required=>"", value: current_teacher.email  %>
+		    </div>
+		    <div class="form-group">
+		      <%= f.label :address %>
+		      <%= f.text_area :address, class: 'form-control', placeholder: 'Address' %>
+		    </div>
+		    <div class="form-group">
+		      <%= f.label 'Printers required' %>
+		      <%#= f.text_area :address, class: 'form-control', placeholder: 'Address' %>
+		      <%= f.select :no_of_printer,  printer_options %>
+		    </div>
+		    <%= hidden_field_tag :subscription_id, @subscription_type.id %>
+		    <div class = "col-md-offset-8">
+		      <div class="actions">
+		        <%= f.submit  "Pay", class: 'btn btn-primary btn-sm' %>
+		      </div>
+		    </div>
+      <% end %>
+    </div>
+  </div>
+</div>

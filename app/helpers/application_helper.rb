@@ -43,4 +43,20 @@ module ApplicationHelper
   def teacher_redirect_url
     @teacher.persisted? ? teacher_path(@teacher) : create_teacher_teachers_path
   end
+
+  def printer_options
+    (@subscription_type.id == 1) ? options_for_select(%w{ 1 }) : options_for_select(%w{ 1 2 3 4 5 })
+  end
+
+  def get_image
+    if @subscription_type.id == 1
+      "individual.png"
+    elsif @subscription_type.id == 2
+      "5users.png"
+    elsif @subscription_type.id == 3
+      "10users.png"
+    else
+      "20users.png"
+    end
+  end
 end
