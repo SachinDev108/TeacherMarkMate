@@ -1,60 +1,90 @@
-<!-- <div class="custom-table-position" style="margin-left: 380px;">
-  <div class="row" style="padding-top: 25px;">
-    <div class="col-md-6">
-      <div><%= link_to(image_tag("Marking.png", height: "120px"), new_sheet_path) %></div>
-      <div style="padding-left:24px; padding-top: 14px;">New Objective</div>
-    </div>
-    <div class="col-md-6">
-      <%= link_to(image_tag("Markbook.png", height: "120px"), sheets_path) %>
-      <div style="padding-left:24px; padding-top: 14px;">Markbook</div>
-    </div>
-  </div>
-  <div class="row" style="padding-left: 174px;padding-top: 35px;">
-    <div class="col-md-4">
-      <%= link_to(image_tag("Children.png", height: "120px"), children_path) %>
-    </div>
-  </div>
-  <div class="row" style="padding-top: 65px;">
-    <div class="col-md-6">
-      <%= link_to(image_tag("subjects.png", height: "120px"), subjects_path) %>
-    </div>
-    <div class="col-md-6">
-      <%= link_to(image_tag("Reports.png", height: "120px"), report_sheets_path) %>
-    </div>
-  </div>
-</div> -->
 <div class="custom-table-position" style="margin-left: 200px;">
-  <div class="">
-    <div class="row col-md-12 col-sm-12">
-      <div class="col-md-4">
-        <%= link_to(image_tag("Marking.png", height: "120px"), new_sheet_path) %>
-        <div style="padding-left:24px; padding-top: 14px;"><b>New Objective</b></div>
-      </div>
-      <div class="col-md-4" style="text-align: center;">
-        <%= link_to(image_tag("Markbook.png", height: "120px"), sheets_path) %>
-        <div style="padding-left:24px; padding-top: 14px;"><b>Markbook</b></div>
-      </div>
-      <div class="col-md-4" style="text-align: right;">
-        <%= link_to(image_tag("Reports.png", height: "120px"), report_sheets_path) %>
-        <div style="padding-left:28px; padding-top: 14px;"><b>Assessment</b></div>
+  <div class="row">
+    <div class="col-md-4 well" style="width: 30%">
+      <div class="text-center">Objectives</div>
+      <div class="row">
+        <div class="col-md-6 text-center">
+          <div class="">Total</div>
+          <div class=""><%= @sheets.count %></div>            
+        </div>
+        <div class="col-md-6 text-center">
+          <div class="">Last Month</div>
+          <div class=""><%= @last_month_sheet_count %></div>            
+        </div>
       </div>
     </div>
-    <div class="row col-md-12 col-sm-12" style="margin-top: 40px;">
-      <div class="col-md-2">
+    <div class="col-md-4 well" style="width: 30%;margin-left: 16px">
+      <div class="text-center">Subjects</div>
+      <div class="row">
+        <div class="col-md-6 text-center">
+          <div class="">Total</div>
+          <div class=""><%= @subjects.count %></div>            
+        </div>
+        <div class="col-md-6 text-center">
+          <div class="">Last Month</div>
+          <div class=""><%= @last_month_subject_count %></div>            
+        </div>
       </div>
-      <div class="col-md-3" style="text-align: center;">
-        <%= link_to(image_tag("Children.png", height: "120px"), children_path) %>
-        <div style="padding-left:24px; padding-top: 14px;"><b>Children</b></div>
+    </div>
+    <div class="col-md-4 well" style="width: 30%;margin-left: 16px">
+      <div class="text-center">Children</div>            
+      <div class="row">
+        <div class="col-md-6 text-center">
+          <div class="">Total</div>
+          <div class=""><%= @children.count %></div>      
+        </div>
+        <div class="col-md-6 text-center">
+          <div class="">Last Month</div>
+          <div class=""><%= @last_month_child_count %></div>            
+        </div>
       </div>
-      <div class="col-md-2" style="text-align: right;">
-        
+    </div>    
+  </div>
+  <div class="row">
+    <div class="col-md-6 well" style="width: 45%">
+      <div class="text-center">Recent Objectives</div>
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th class="text-center">Title</th>
+              <th class="text-center">Created at</th>
+              <th class="text-center">Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @recent_sheets.each do |sheet| %>
+              <tr class="text-center">
+                <td><%= sheet.title %></td>
+                <td><%= sheet.created_at.strftime('%d/%m/%Y') %></td>
+                <td><%= sheet.date.strftime('%d/%m/%Y') %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
       </div>
-      <div class="col-md-3">
-        <%= link_to(image_tag("subjects.png", height: "120px"), subjects_path) %>
-        <div style="padding-left:44px; padding-top: 14px;"><b>Classes</b></div>
-      </div>
-      <div class="col-md-2" style="text-align: right;">
-        
+    </div>
+    <div class="col-md-6 well" style="width: 45%;margin-left: 33px;">
+      <div class="text-center">Recently Updated Markbook</div>
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th class="text-center">Title</th>
+              <th class="text-center">Child</th>
+              <th class="text-center">Updated at</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @recent_details.each do |detail| %>
+              <tr class="text-center">
+                <td><%= detail.sheet.title %></td>
+                <td><%= detail.child.name %></td>
+                <td><%= detail.sheet.updated_at.strftime('%d/%m/%Y') %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>

@@ -7,4 +7,7 @@ class Subject < ApplicationRecord
   accepts_nested_attributes_for :grades, allow_destroy: true
 
   validates :name, :teacher_id, :grades, presence: true
+
+  #scope
+  scope :created_in_between, -> (start_at, end_at) { where(created_at: (start_at)..(end_at)) }
 end

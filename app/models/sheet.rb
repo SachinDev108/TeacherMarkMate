@@ -7,6 +7,9 @@ class Sheet < ApplicationRecord
 
   validates :title, :subject_id, :teacher_id, :date, presence: true
 
+  #scope
+  scope :created_in_between, -> (start_at, end_at) { where(created_at: (start_at)..(end_at)) }
+
 
   def self.get_details(id)
     find_by_sql("select children.name, sheets.title, grades.abr as grade_name, grades.color, details.comment from subjects INNER JOIN students ON subjects.id = students.subject_id and subjects.id = #{id} INNER JOIN children ON children.id = students.child_id INNER JOIN details ON details.child_id = children.id INNER JOIN sheets ON sheets.id = details.sheet_id FULL JOIN grades ON grades.id = details.grade_id where sheets.subject_id = #{id} order by children.name,sheets.title, grade_name, details.comment")
