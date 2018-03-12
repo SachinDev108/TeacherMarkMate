@@ -30,7 +30,7 @@
             <tr>
               <% list.each do |sheet| %>
                 <td width="2%" style="text-align: center; background: <%= sheet.color%>">
-                  <div data-original-title="<%= sheet.comment? ? sheet.comment : ''%>" data-toggle="tooltip">
+                  <div data-original-title="<%= sheet.sanitize_comment %>" data-toggle="tooltip">
                     <%= sheet.grade_name.present? ? sheet.grade_name : 'None' %>
                   </div>
                 </td>
