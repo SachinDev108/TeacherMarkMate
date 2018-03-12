@@ -1,16 +1,13 @@
 class SubjectsController < ApplicationController
-  before_action :set_subject, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   def index
-    @subjects = current_teacher.subjects
   end
 
   def new
-    @subject = Subject.new
   end
 
   def create
-    @subject = current_teacher.subjects.new(subject_params)
     if @subject.save
       @success = ["Subject was successfully created."]
     else
@@ -45,10 +42,6 @@ class SubjectsController < ApplicationController
   end
 
   private
-
-  def set_subject
-    @subject = Subject.find(params[:id])
-  end
 
   def subject_params
     params.require(:subject).permit(:name, :teacher_id, grades_attributes: [:id, :name, :marks, :abr, :_destroy, :color])

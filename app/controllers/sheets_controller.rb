@@ -1,6 +1,8 @@
 class SheetsController < ApplicationController
-  before_action :set_sheet, only: [:show, :fetch_children, :child_detail, :update_detail, :destroy, :index]
+  before_action :set_sheet, only: [:index]
   before_action :set_subject, only: [:index, :report_details]
+  load_and_authorize_resource
+
   def index
     @subjects = current_teacher.subjects
     if params[:subject_id]
@@ -16,12 +18,10 @@ class SheetsController < ApplicationController
   end
 
   def new
-    @sheet = Sheet.new
     @objectives = current_teacher.sheets
   end
 
   def create
-    @sheet = current_teacher.sheets.new(sheet_params)
     if @sheet.save
       flash[:notice] = "Saved successfully"
       redirect_to :action => 'new'
@@ -69,7 +69,7 @@ class SheetsController < ApplicationController
 
   def set_sheet
     if params[:id].present?
-      @sheet = Sheet.find(params[:id])
+      @sheet = current_teacher.sheets.find_by_id(params[:id])
     end
   end
 

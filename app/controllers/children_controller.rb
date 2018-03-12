@@ -1,19 +1,16 @@
 class ChildrenController < ApplicationController
-  before_action :set_student, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   def index
-    @children = current_teacher.children
   end
 
   def new
-    @child = Child.new
     current_teacher.subjects.each do |subject|
       @child.students.build(subject_id: subject.id)
     end
   end
 
   def create
-    @child = current_teacher.children.new(child_params)
     if @child.save
       @success = ["Child was successfully created."]
     else
@@ -46,10 +43,6 @@ class ChildrenController < ApplicationController
   end
 
   private
-
-  def set_student
-    @child = Child.find(params[:id])
-  end
 
   def child_params
     params.require(:child).permit(:name, :teacher_id, students_attributes: [ :subject_id, :_destroy] )

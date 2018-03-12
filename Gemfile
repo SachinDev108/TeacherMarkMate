@@ -44,11 +44,8 @@ gem "annyang-rails"
 gem 'rails_admin', '~> 1.3'
 gem 'ckeditor_rails'
 gem 'jquery-ui-rails', '~> 5.0.0'
-# gem 'activemerchant'
-# gem 'ianfleeton-paypal-express', github: 'ianfleeton/paypal-express', require: 'paypal/express'
-# gem 'paypal-sdk-core', :git => "https://github.com/paypal/sdk-core-ruby.git"
-# gem 'paypal-sdk-rest'
-# gem 'paypal-sdk-merchant'
+
+gem 'cancancan', '~> 2.0'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
