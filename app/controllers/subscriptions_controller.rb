@@ -1,5 +1,5 @@
 class SubscriptionsController < ApplicationController
-  before_action :authenticate_teacher!
+  before_action :authenticate_teacher!, except: [:thankyou, :create] 
   before_action :set_subscription, only: [:new, :checkout]
   protect_from_forgery except: [:create]
 

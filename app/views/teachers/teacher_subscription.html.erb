@@ -1,10 +1,6 @@
 
 <div class="custom-table-position" style="margin-left: 200px;">
-  <% if current_teacher.subscriptions.is_active.first.present?%>
-    <div class="well">
-      <h1>Your current plan is: <%= current_teacher.subscriptions.is_active.first.try(:subscription_type).try(:name) %></h1>
-    </div>
-  <% else %>
+  
     <div class="">
       <div class="row col-md-12 col-sm-12">
         <div class="col-md-6">
@@ -28,5 +24,4 @@
         </div>
       </div>
     </div>
-  <% end %>
 </div>

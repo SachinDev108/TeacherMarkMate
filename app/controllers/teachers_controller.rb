@@ -1,5 +1,5 @@
 class TeachersController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource :except => [:show]
 
   def index
     flash[:notice] = "This is your trial period for this app"
