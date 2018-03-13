@@ -24,34 +24,38 @@
   </div>
 </div> -->
 <div class="custom-table-position" style="margin-left: 200px;">
+  <div class="text-center welcome-text">Welcome back <span class="color-red"><%= current_teacher.name %></span></div>
+  <% if @details_count > 0 %>
+    <div class="text-center congratulation-text">In the last 30 days you have marked <span class="color-red"><%= @details_count %></span> pieces of children's work. Congratulations!</div>
+  <% end %>
   <div class="">
-    <div class="row col-md-12 col-sm-12">
-      <div class="col-md-4">
+    <div class="row col-md-12 col-sm-12 text-center" style="margin-top: 19px;">
+      <div class="col-md-3 dashboard-img-box text-center">
         <%= link_to(image_tag("Marking.png", height: "120px"), new_sheet_path) %>
-        <div style="padding-left:24px; padding-top: 14px;"><b>New Objective</b></div>
+        <div class="dashboard-image-text"><b>New Objective</b></div>
       </div>
-      <div class="col-md-4" style="text-align: center;">
+      <div class="col-md-3 dashboard-img-box text-center align-dashboard-image">
         <%= link_to(image_tag("Markbook.png", height: "120px"), sheets_path) %>
-        <div style="padding-left:24px; padding-top: 14px;"><b>Markbook</b></div>
+        <div class="dashboard-image-text"><b>Markbook</b></div>
       </div>
-      <div class="col-md-4" style="text-align: right;">
+      <div class="col-md-3 dashboard-img-box text-center align-dashboard-image">
         <%= link_to(image_tag("Reports.png", height: "120px"), report_sheets_path) %>
-        <div style="padding-left:28px; padding-top: 14px;"><b>Assessment</b></div>
+        <div class="dashboard-image-text"><b>Assessment</b></div>
       </div>
     </div>
-    <div class="row col-md-12 col-sm-12" style="margin-top: 40px;">
+    <div class="row col-md-12 col-sm-12">
       <div class="col-md-2">
       </div>
-      <div class="col-md-3" style="text-align: center;">
-        <%= link_to(image_tag("Children.png", height: "120px"), children_path) %>
-        <div style="padding-left:24px; padding-top: 14px;"><b>Children</b></div>
+      <div class="col-md-3 dashboard-img-box text-center" style="margin-left: 29px;">
+        <%= link_to(image_tag("Children.png", height: "120px", width: "100%"), children_path) %>
+        <div class="dashboard-image-text"><b>Children</b></div>
       </div>
       <div class="col-md-2" style="text-align: right;">
         
       </div>
-      <div class="col-md-3">
+      <div class="col-md-3 dashboard-img-box text-center" style="margin-left: 32px;">
         <%= link_to(image_tag("subjects.png", height: "120px"), subjects_path) %>
-        <div style="padding-left:44px; padding-top: 14px;"><b>Classes</b></div>
+        <div class="dashboard-image-text"><b>Classes</b></div>
       </div>
       <div class="col-md-2" style="text-align: right;">
         

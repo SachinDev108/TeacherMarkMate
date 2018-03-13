@@ -234,3 +234,35 @@
   padding: 0px 8px 0px !important;
 }
 
+.align-dashboard-image{
+  margin-left: 182px;
+}
+
+.dashboard-image-text{
+  padding-top: 28px;
+  font-size: 16px;
+}
+
+.dashboard-img-box{
+  width: 182px;
+  min-height: 220px;
+  border: 2px solid blue;
+  box-sizing: border-box;
+  border-radius: 30px;
+  padding-top: 25px;
+  margin-bottom: 20px;
+}
+
+.welcome-text{
+  font-weight: 600;
+  font-size: 23px;
+}
+
+.congratulation-text{
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.color-red{
+  color: red;
+}
