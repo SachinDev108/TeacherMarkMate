@@ -47,7 +47,7 @@ class RegistrationsController < Devise::RegistrationsController
       @subscription_type = SubscriptionType.find_by_id('4')
     end
     unless @subscription_type
-      flash[:flash] = "Something went wrong"
+      flash[:notice] = "Something went wrong"
       redirect_to new_teacher_registration_path
     end
   end
@@ -56,7 +56,7 @@ class RegistrationsController < Devise::RegistrationsController
     @total_price = '%.2f' % (params[:users].to_i*@subscription_type.yearly_price)
     @total_calculation = '%.2f' % ((params[:users].to_i*@subscription_type.yearly_price) + (params[:no_of_printer].to_i*@subscription_type.printer_price))
     unless ((@total_price == params[:total_price]) && (@total_calculation == params[:total_calculation]))
-      flash[:flash] = "Calculation is incorrect"
+      flash[:notice] = "Calculation is incorrect"
       redirect_to new_teacher_registration_path
     end
   end

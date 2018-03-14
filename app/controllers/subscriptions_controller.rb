@@ -51,7 +51,7 @@ class SubscriptionsController < ApplicationController
   def set_subscription
     @subscription_type = SubscriptionType.find_by_id(params[:subscription_id])
     unless @subscription_type
-      flash[:flash] = "Something went wrong"
+      flash[:notice] = "Something went wrong"
       redirect_to teacher_subscription_teachers_path
     end
   end

@@ -6,7 +6,7 @@ class SessionsController < Devise::SessionsController
   def check_subcription
     teacher = Teacher.find_by_email(params[:teacher][:email])
     unless teacher && teacher.plan
-      flash[:flash] = "Please sign up first"
+      flash[:notice] = "Please sign up first"
       redirect_to new_teacher_registration_path
     end
   end
