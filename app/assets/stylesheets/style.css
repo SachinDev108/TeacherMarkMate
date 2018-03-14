@@ -234,3 +234,6 @@
   padding: 0px 8px 0px !important;
 }
 
+input[type=number]::-webkit-inner-spin-button {
+  opacity: 1;
+}

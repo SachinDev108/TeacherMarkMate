@@ -18,11 +18,6 @@
           <li class="<%= active_class('/') %>">
             <%= link_to "Dashboard", '/' %>
           </li>
-          <% if current_teacher.is_head? %>
-            <li class="<%= active_class('/teachers/teacher_subscription') %>">
-              <%= link_to "Subscription", '/teachers/teacher_subscription' %>
-            </li>
-          <% end %>
           <li class="<%= active_class('/sheets/new') %>">
             <%= link_to "New Objective", '/sheets/new' %>
           </li>
@@ -79,7 +74,7 @@
             <%if request.url.include? "admins"%>
               <li><a href="/admins/sign_in"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
             <% else %>
-              <li><a href="/subscription_plan"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+              <li><a href="/teachers/sign_up"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
               <li><a href="/teachers/sign_in"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
             <% end %>
           </ul>
