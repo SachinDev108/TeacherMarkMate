@@ -24,7 +24,7 @@ class SubscriptionsController < ApplicationController
     @subscription = Subscription.find_by_id(params[:custom])
     if params[:payment_status] == "Completed" 
       @subscription.update_attributes(payment_status: params[:payment_status], payer_id: params[:payer_id], txn_id: params[:txn_id], payment_date: params[:payment_date], status: true, payment_type: 'Paypal')
-      redirect_to thankyou_subscriptions_path
+      redirect_to root_path
     else
       @subscription.update_attributes(payment_status: params[:payment_status], payer_id: params[:payer_id], txn_id: params[:txn_id], payment_date: params[:payment_date], payment_type: 'Paypal')
       redirect_to root_path
