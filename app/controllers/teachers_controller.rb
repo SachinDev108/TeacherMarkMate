@@ -1,8 +1,9 @@
 class TeachersController < ApplicationController
   load_and_authorize_resource :except => [:show]
+  before_action :check_plan, only: [:new, :create_teacher, :update]
 
   def index
-    flash[:notice] = "This is your trial period for this app"
+    
   end
 
   def new
@@ -45,5 +46,15 @@ class TeachersController < ApplicationController
 
   def fetch_sub_teacher
     @teachers = current_teacher.sub_teachers
+  end
+
+  def check_plan
+    if current_teacher.plan.is_individual?
+      flash[:notice] = "You are not eligible for create teachers because your current plan is individual"
+      render :js => "window.location = '/'"
+    elsif current_teacher.plan.no_of_users == current_teacher.sub_teachers.count
+      flash[:notice] = "Your no of users limit is over"
+      render :js => "window.location = '/'"
+    end
   end
 end

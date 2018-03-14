@@ -22,6 +22,10 @@ class Teacher < ApplicationRecord
     role == ROLES[:subTeacher]
   end
 
+  def plan
+    subscriptions.is_active.first
+  end
+
   private
   def send_reset_password_link
     send_reset_password_instructions

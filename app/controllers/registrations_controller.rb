@@ -13,7 +13,6 @@ class RegistrationsController < Devise::RegistrationsController
   		resource = build_resource(teacher_params)
   		resource.save
   	end
-    
     if resource.try(:id)
 	    subscription = @subscription_type.subscriptions.find_by({teacher_id: resource.id, payment_status: "Completed"})
 	    if subscription.present?

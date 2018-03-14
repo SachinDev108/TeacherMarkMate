@@ -21,6 +21,6 @@ class ApplicationController < ActionController::Base
   end
   
   def after_sign_in_path_for(resource)
-    resource.is_a?(Admin) ? rails_admin.index_path(Teacher) : resource.is_head? ? teacher_subscription_teachers_path : super
+    resource.is_a?(Admin) ? rails_admin.index_path(Teacher) : root_path
   end
 end
