@@ -35,7 +35,7 @@ class Teacher < ApplicationRecord
   end 
 
   def save_subscription
-    if admin_id?
+    if users.present? && admin_id?
       subscriptionType = SubscriptionType.find(5)
       subscription = subscriptionType.subscriptions.find_or_create_by({teacher_id: id})
       subscription.update_attributes(period: period, no_of_users: users, payment_status: 'Completed', payment_date: Time.now, status: true, payment_type: 'Cash')

@@ -60,6 +60,7 @@ RailsAdmin.config do |config|
       field :name
       field :email
       field :users  do
+        required true
         render do
           bindings[:view].render :partial => 'new_partial', :locals => {:field => self, :form => bindings[:form]}
         end
