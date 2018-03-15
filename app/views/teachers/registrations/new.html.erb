@@ -60,7 +60,9 @@
         </div>
         <hr>
         <div class="form-group">
-          <div class="col-xs-8"><b>Numbers of printers required</b></div>
+          <div class="col-xs-8"><b>Numbers of printers required</b><br>
+            <small>Brother QL-500 label printers are offered at a reduced price for new customers at time of registration</small>
+          </div>
           <div class="col-xs-4">
             <%#= select_tag :no_of_printer,  options_for_select(%w{ 1 2 3 4}) %>
             <%= number_field_tag :no_of_printer, '1', style: "width: 50%;", min: "0", max: '1' %><span style="padding-left: 2px; color:red;">X</span><span style="padding-left: 2px;">£</span><span id="printer_money" >39.99</span>
