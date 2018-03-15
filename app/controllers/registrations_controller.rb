@@ -52,8 +52,9 @@ class RegistrationsController < Devise::RegistrationsController
     end
   end
 
-  def check_amount_validation    
-    @total_price = '%.2f' % (params[:users].to_i*@subscription_type.yearly_price)
+  def check_amount_validation
+    price = (@subscription_type.name == "Individual Plan") && (params[:period] == "monthly") ? @subscription_type.price : @subscription_type.yearly_price
+    @total_price = '%.2f' % (params[:users].to_i*price)
     @total_calculation = '%.2f' % ((params[:users].to_i*@subscription_type.yearly_price) + (params[:no_of_printer].to_i*@subscription_type.printer_price))
     unless ((@total_price == params[:total_price]) && (@total_calculation == params[:total_calculation]))
       flash[:notice] = "Calculation is incorrect"
