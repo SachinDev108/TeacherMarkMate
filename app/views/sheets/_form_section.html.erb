@@ -4,16 +4,17 @@
     <div class="col-md-10">
       <%= label_tag @detail.child.name, nil, :class => "control-label" %>
       <%= f.text_area :comment, class: 'form-control ckeditor', rows: "5", id: "dictation"%>
-      <%= f.submit 'Save Comment', class: "btn btn-primary print-label", style: "float:right; margin-top:12px;" %>
     </div>
-    <!-- <div class="col-md-2">
-      <p><button type="button" class="btn btn-sm" id="record-btn"><span>Record</span></button></p>
-    </div> -->
+    <div class="col-md-2 col-sm-2">
+      <%= f.submit 'Print Label', class: "btn btn-primary print-label", id: "print-label" %>
+      <button type="button" class="btn btn-primary print-label clear-label">Clear Label</button>
+
+      <%= f.submit 'Save Label', class: "btn btn-primary print-label"%>
+    </div>
   </div>
     <%= hidden_field_tag "detail_id", @detail.id%>
   <div class="col-sm-12 col-md-12">
     <div class="col-sm-4 grade-abr">
-      <%= label_tag 'Grade List', nil, :class => "control-label radio-margin" %>
       <% @sheet.subject.grades.each do |grade| %>
         <div class="radio radio-margin">
           <label><%= f.radio_button :grade_id , grade.id, "data-marks" => grade.abr, onclick: "getGrade('#{grade.id}', '#{grade.color}')", "data-grade" => grade.name.downcase, "data-color" => grade.color %><%= grade.name %></label>
@@ -25,10 +26,10 @@
       <%= text_field_tag :marks, "", class: 'form-control text-size', style: "background-color: #{@detail&.grade&.color}", disabled: true, value: @detail&.grade&.abr %>
 
     </div> 
-    <div class="col-md-2 col-sm-2">
+    <!-- <div class="col-md-2 col-sm-2">
       <%= f.submit 'Print Label', class: "btn btn-primary print-label", id: "print-label" %>
       <button type="button" class="btn btn-primary print-label clear-label">Clear Label</button>
-    </div>
+    </div> -->
   </div>
 <% end %>
 
