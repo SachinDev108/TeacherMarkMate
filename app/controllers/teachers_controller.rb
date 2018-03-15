@@ -3,7 +3,7 @@ class TeachersController < ApplicationController
   before_action :check_plan, only: [:new, :create_teacher, :update]
 
   def index
-    
+    @teacher = current_teacher
   end
 
   def new
@@ -16,6 +16,7 @@ class TeachersController < ApplicationController
     else
       @errors = @teacher.errors.full_messages
     end
+    fetch_sub_teacher
   end
 
   def edit

@@ -2,4 +2,5 @@ $('.error_section').html("<%= escape_javascript( render :partial => '/layouts/me
 <% unless @errors.present? %>
   $(".teacher-list").html("<%= escape_javascript(render 'teacher') %>")
   $("#teacher_name, #teacher_email, #teacher_password, #teacher_password_confirmation").val('')
+  $("#sub-teacher-stats").html("<%= @teachers.count %>")
 <% end %>

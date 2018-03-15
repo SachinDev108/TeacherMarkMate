@@ -6,7 +6,7 @@ CKEDITOR.editorConfig = function (config) {
   ];
   config.toolbar = "mini";
   config.height = 100;        // 500 pixels high.
-	config.height = '5em';
+	config.height = '10em';
 	config.removePlugins = 'elementspath';
 	config.resize_enabled = false;
 	config.enterMode = CKEDITOR.ENTER_BR
