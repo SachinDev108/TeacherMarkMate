@@ -41,34 +41,34 @@
         <hr>
         <div style="color: red">Teachers accounts required</div>
         <div class="form-group" style="padding-top: 2px;">
-          <div class="col-xs-9" style="padding-left: 0px;">
-            <div for="nameField" class="col-xs-12">Individual £19.99/Month
-            <div class="btn-group" data-toggle="buttons-radio">
+          <div class="col-xs-8" style="padding-left: 0px;">
+            <div for="nameField" class="col-xs-12"><b>Individual £19.99/Month</b>
+            <div class="btn-group col-xs-12" data-toggle="buttons-radio">
               <%= radio_button_tag :period, "monthly" %>
-              <label for="first" class="">Montly</label>
+              <label for="first" class="">Monthly</label>
               <%= radio_button_tag :period, "yearly", checked: true %>
               <label for="second" class="">Yearly</label>
             </div></div>
-            <div for="nameField" class="col-xs-12">2-5 Teachers £189/Year</div>
-            <div for="nameField" class="col-xs-12">6-10 Teachers £159/Year</div>
-            <div for="nameField" class="col-xs-12">11-20 Teachers £139/Year</div>
+            <div for="nameField" class="col-xs-12"><b>2-5 &nbsp;&nbsp;&nbsp;&nbsp;Teachers £189/Year</b></div>
+            <div for="nameField" class="col-xs-12"><b>6-10 &nbsp;&nbsp;Teachers £159/Year</b></div>
+            <div for="nameField" class="col-xs-12"><b>11-20 Teachers £139/Year</b></div>
           </div>
-          <div class="col-xs-3">
+          <div class="col-xs-4">
             <%#= select_tag :no_of_printer,  options_for_select(%w{ 1 2 3 4}) %>
-            <%= number_field_tag :users, '1', style: "width: 35%;", min: "1", opacity: 1; %><span style="padding-left: 2px; color:red;">X</span><span style="padding-left: 2px;">£</span><span id="money">199</span>
+            <%= number_field_tag :users, '1', style: "width: 50%;", min: "1", opacity: 1; %><span style="padding-left: 2px; color:red;">X</span><span style="padding-left: 2px;">£</span><span id="money">199</span>
           </div> 
         </div>
         <hr>
         <div class="form-group">
-          <div class="col-xs-9">Numbers of printers required</div>
-          <div class="col-xs-3">
+          <div class="col-xs-8"><b>Numbers of printers required</b></div>
+          <div class="col-xs-4">
             <%#= select_tag :no_of_printer,  options_for_select(%w{ 1 2 3 4}) %>
-            <%= number_field_tag :no_of_printer, '1', style: "width: 35%;", min: "0", max: '1' %><span style="padding-left: 2px; color:red;">X</span><span style="padding-left: 2px;">£</span><span id="printer_money" >39.99</span>
+            <%= number_field_tag :no_of_printer, '1', style: "width: 50%;", min: "0", max: '1' %><span style="padding-left: 2px; color:red;">X</span><span style="padding-left: 2px;">£</span><span id="printer_money" >39.99</span>
           </div> 
         </div>
         <hr>
         <div class="form-group">
-          <div class="col-xs-9">Total</div>
+          <div class="col-xs-9"><b>Total</b></div>
           <div class="col-xs-3">
             £<span id="total">39.99</span>/<span id="convert">Year</span>
             <%= hidden_field_tag "total_price", '', id: 'total_price' %>
@@ -76,7 +76,7 @@
         </div>
         <hr>
         <div class="form-group">
-          <div class="col-xs-9">Total due today</div>
+          <div class="col-xs-9"><b>Total due today</b></div>
           <div class="col-xs-3">
             £<span id="total_calculation">39.99</span>
             <%= hidden_field_tag "total_calculation", '', id: 'total_amount' %>
