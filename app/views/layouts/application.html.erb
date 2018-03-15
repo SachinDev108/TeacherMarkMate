@@ -35,7 +35,7 @@
           </li>
           <% if current_teacher.role == "HeadTeacher" && current_teacher.subscriptions.is_active.first.try(:subscription_type).try(:name) != "Individual Plan" %>
             <li class="<%= active_class('/teachers') %>">
-              <%= link_to "Teacher", '/teachers' %>
+              <%= link_to "Manage Teachers", '/teachers' %>
             </li>
           <% end %>    
         </ul>
