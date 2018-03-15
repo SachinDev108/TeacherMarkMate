@@ -1,0 +1,1 @@
+<%= form.select :period, [['Monthly','monthly'],['Yearly','yearly']], :selected => @object.plan.present? ? @object.plan.period : 'yearly' , disabled: @object.is_teacher? ? true : false %>

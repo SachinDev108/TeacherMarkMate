@@ -31,7 +31,6 @@ RailsAdmin.config do |config|
     new
     bulk_delete
     show
-    edit
     delete
 
     ## With an audit adapter, you can add:
@@ -59,6 +58,16 @@ RailsAdmin.config do |config|
     edit do
       field :name
       field :email
+      field :users  do
+        render do
+          bindings[:view].render :partial => 'new_partial', :locals => {:field => self, :form => bindings[:form]}
+        end
+      end  
+      field :period  do
+        render do
+          bindings[:view].render :partial => 'period_partial', :locals => {:field => self, :form => bindings[:form]}
+        end
+      end
       field :password
       field :password_confirmation
       field :admin_id, :hidden  do

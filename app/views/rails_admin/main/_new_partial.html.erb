@@ -1,0 +1,6 @@
+<%= form.number_field :users, style: "width: 10%;", min: "1", value: @object.plan.try(:no_of_users), disabled: @object.is_teacher? ? true : false%>
+<style>
+	input[type=number]::-webkit-inner-spin-button {
+	  opacity: 1;
+	}
+</style>
