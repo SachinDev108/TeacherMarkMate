@@ -1,1 +1,2 @@
-<%= form.select :period, [['Monthly','monthly'],['Yearly','yearly']], :selected => @object.plan.present? ? @object.plan.period : 'yearly' , disabled: @object.is_teacher? ? true : false %>
+<%= form.select :period, [['Monthly','monthly'],['Yearly','yearly']], :selected => @object.plan.present? ? @object.plan.period : 'yearly', disabled: !@object.persisted? || @object.admin_id.present? ? false : true %>
+

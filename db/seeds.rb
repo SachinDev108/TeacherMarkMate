@@ -16,3 +16,4 @@ SubscriptionType.create(name: "5 Users Plan", description: '', price: '69.99', y
 SubscriptionType.create(name: "10 Users Plan", description: '', price: '129.99', yearly_price: '159', printer_price: '39.99', sort_order: '3')
 
 SubscriptionType.create(name: "20 Users Plan", description: '', price: '249.99', yearly_price: '139', printer_price: '39.99', sort_order: '4')
+SubscriptionType.create(name: "20 Users Plan", description: '', price: '249.99', yearly_price: '139', printer_price: '39.99', sort_order: '4')

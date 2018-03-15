@@ -36,16 +36,9 @@ class Teacher < ApplicationRecord
 
   def save_subscription
     if admin_id?
-      if ['1'].include? users
-        subscription_type = SubscriptionType.find_by_id('1')
-      elsif ['2','3','4','5'].include? users
-        subscription_type = SubscriptionType.find_by_id('2')
-      elsif ['6','7','8','9','10'].include? users
-        subscription_type = SubscriptionType.find_by_id('3')
-      else
-        subscription_type = SubscriptionType.find_by_id('4')
-      end
-      subscription_type.subscriptions.create(teacher_id: id, period: period, no_of_users: users, payment_status: 'Completed', payment_date: Time.now, status: true, payment_type: 'Cash',)
+      subscriptionType = SubscriptionType.find(5)
+      subscription = subscriptionType.subscriptions.find_or_create_by({teacher_id: id})
+      subscription.update_attributes(period: period, no_of_users: users, payment_status: 'Completed', payment_date: Time.now, status: true, payment_type: 'Cash')
     end
   end 
 end

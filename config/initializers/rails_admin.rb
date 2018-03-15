@@ -29,6 +29,7 @@ RailsAdmin.config do |config|
     dashboard 
     index                         # mandatory
     new
+    edit
     bulk_delete
     show
     delete
@@ -46,10 +47,10 @@ RailsAdmin.config do |config|
         def value
           if bindings[:object].is_head? && bindings[:object].admin_id?
             text = "SuperAdmin"
-          elsif ((bindings[:object].is_head? && bindings[:object].admin_id.blank?) || bindings[:object].parent_id?)
-            text = "HeadTeacher"
-          else
+          elsif ((bindings[:object].is_head? && bindings[:object].admin_id.blank?))
             text = "Self"
+          else
+            text = "HeadTeacher"
           end
           bindings[:view] = text
         end
@@ -72,14 +73,20 @@ RailsAdmin.config do |config|
       field :password_confirmation
       field :admin_id, :hidden  do
         def value
-          bindings[:view]._current_user.id
+          if bindings[:object].admin_id.present? || !bindings[:object].persisted?
+            bindings[:view]._current_user.id
+          end
         end
       end
       field :role, :hidden  do
         def value
-          bindings[:view] = "HeadTeacher"
+          if bindings[:object].persisted?
+            bindings[:view] = bindings[:object].role
+          else
+            bindings[:view] = "HeadTeacher"
+          end
         end
       end
-    end  
+    end
   end
 end
