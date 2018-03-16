@@ -18,7 +18,7 @@ class SheetsController < ApplicationController
   end
 
   def new
-    @objectives = current_teacher.sheets
+    @objectives = current_teacher.sheets.order('created_at DESC')
   end
 
   def create
@@ -32,7 +32,7 @@ class SheetsController < ApplicationController
 
   def destroy
     @sheet.destroy
-    redirect_to :action => 'new'
+    @objectives = current_teacher.sheets.order('created_at DESC')
   end
 
   def show
