@@ -10,6 +10,7 @@ class Teacher < ApplicationRecord
   has_many :sheets, :dependent => :destroy
   has_many :sub_teachers, :class_name => 'Teacher', :foreign_key => :parent_id
   has_many :subscriptions, :dependent => :destroy
+  belongs_to :parent_teacher, :class_name => 'Teacher', :foreign_key => :parent_id
 
   after_save :save_subscription
   #after_create :send_reset_password_link
@@ -26,6 +27,17 @@ class Teacher < ApplicationRecord
 
   def plan
     subscriptions.is_active.first
+  end
+
+  def is_plan_active?
+    teacher_plan = is_teacher? ? parent_teacher.plan : plan
+    if teacher_plan.present?
+      if teacher_plan.period == "yearly"
+        (Time.zone.now < teacher_plan.payment_date + 1.year)
+      elsif teacher_plan.period == "monthly"
+        (Time.zone.now < teacher_plan.payment_date + 1.month)
+      end
+    end 
   end
 
   private

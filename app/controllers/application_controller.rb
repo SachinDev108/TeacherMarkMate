@@ -5,8 +5,18 @@ class ApplicationController < ActionController::Base
   rescue_from ActionController::UnknownFormat, with: :raise_not_found
   alias_method :current_user, :current_teacher
 
-   rescue_from CanCan::AccessDenied do |exception|
-    redirect_to main_app.root_path, alert: exception.message
+  rescue_from CanCan::AccessDenied do |exception|
+    if current_teacher.is_plan_active?
+      respond_to do |format|
+        format.html { redirect_to main_app.root_path, alert: exception.message }
+        format.js   { render flash[:notice] = exception.message, js: "window.location='#{ main_app.root_path }'" }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to main_app.root_path, alert: "Your current subscription plan is over please renew it" }
+        format.js   { render flash[:notice] = "Your current subscription plan is over please renew it", js: "window.location='#{ main_app.root_path }'" }
+      end
+    end
   end
 
   protected
