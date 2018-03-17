@@ -4,7 +4,7 @@ class Teacher < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   
-  attr_accessor :created_by, :users, :period
+  attr_accessor :created_by, :users, :period, :subscription_plan
   has_many :subjects, :dependent => :destroy
   has_many :children, :dependent => :destroy
   has_many :sheets, :dependent => :destroy
@@ -37,9 +37,9 @@ class Teacher < ApplicationRecord
     teacher_plan = is_teacher? ? parent_teacher.plan : plan
     if teacher_plan.present?
       if teacher_plan.period == "yearly"
-        (Time.zone.now < teacher_plan.payment_date + 1.year)
+        teacher_plan.status && (Time.zone.now < teacher_plan.payment_date + 1.year)
       elsif teacher_plan.period == "monthly"
-        (Time.zone.now < teacher_plan.payment_date + 1.month)
+        teacher_plan.status && (Time.zone.now < teacher_plan.payment_date + 1.month)
       end
     end 
   end
@@ -54,7 +54,9 @@ class Teacher < ApplicationRecord
     if users.present? && admin_id?
       subscriptionType = SubscriptionType.find(5)
       subscription = subscriptionType.subscriptions.find_or_create_by({teacher_id: id})
-      subscription.update_attributes(period: period, no_of_users: users, payment_status: 'Completed', payment_date: Time.now, status: true, payment_type: 'Cash')
+      subscription.update_attributes(period: period, no_of_users: users, payment_status: 'Completed', payment_date: Time.now, status: subscription_plan, payment_type: 'Cash')
+    elsif plan.present? && subscription_plan
+      plan.update_column(:status, subscription_plan)
     end
-  end 
+  end
 end

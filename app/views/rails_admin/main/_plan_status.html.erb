@@ -1,0 +1,1 @@
+<%= form.select :subscription_plan, [['Enable',true],['Disable',false]], :selected => @object.plan.try(:status), class: 'form-control' %>

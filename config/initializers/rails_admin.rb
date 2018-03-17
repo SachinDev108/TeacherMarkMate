@@ -43,6 +43,8 @@ RailsAdmin.config do |config|
     list do
       field :name
       field :email
+      field :sign_in_count
+      field :last_sign_in_at
       field :created_by do
         def value
           if bindings[:object].is_head? && bindings[:object].admin_id?
@@ -64,7 +66,12 @@ RailsAdmin.config do |config|
         render do
           bindings[:view].render :partial => 'new_partial', :locals => {:field => self, :form => bindings[:form]}
         end
-      end  
+      end 
+      field :subscription_plan do
+        render do
+          bindings[:view].render :partial => 'plan_status', :locals => {:field => self, :form => bindings[:form]}
+        end
+      end
       field :period  do
         render do
           bindings[:view].render :partial => 'period_partial', :locals => {:field => self, :form => bindings[:form]}
