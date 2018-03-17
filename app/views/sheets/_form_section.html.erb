@@ -27,7 +27,7 @@
 
     </div> 
     <!-- <div class="col-md-2 col-sm-2">
-      <%= f.submit 'Print Label', class: "btn btn-primary print-label", id: "print-label" %>
+      <%#= f.submit 'Print Label', class: "btn btn-primary print-label", id: "print-label" %>
       <button type="button" class="btn btn-primary print-label clear-label">Clear Label</button>
     </div> -->
   </div>
@@ -50,7 +50,14 @@
     $("#dictation").val('')
   })
   $('#print-label').click(function(){
-    PrintDiv($("#dictation").val())
+    if ($('.multiple-child:checkbox:checked').size() > 0) {
+      $('.multiple-child:checkbox:checked').each(function () {
+        console.log('1')
+        PrintDiv($("#dictation").val())
+      })
+    } else {
+      PrintDiv($("#dictation").val())
+    }
   })
   function PrintDiv(text) {
     var popupWin = window.open('', '_blank', 'width=300,height=300');
