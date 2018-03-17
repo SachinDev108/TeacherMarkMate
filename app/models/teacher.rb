@@ -10,7 +10,7 @@ class Teacher < ApplicationRecord
   has_many :sheets, :dependent => :destroy
   has_many :sub_teachers, :class_name => 'Teacher', :foreign_key => :parent_id
   has_many :subscriptions, :dependent => :destroy
-  belongs_to :parent_teacher, :class_name => 'Teacher', :foreign_key => :parent_id
+  #belongs_to :parent_teacher, :class_name => 'Teacher', :foreign_key => :parent_id
 
   after_save :save_subscription
   #after_create :send_reset_password_link
@@ -23,6 +23,10 @@ class Teacher < ApplicationRecord
 
   def is_teacher?
     role == ROLES[:subTeacher]
+  end
+
+  def parent_teacher
+    Teacher.find_by_id(parent_id)
   end
 
   def plan
