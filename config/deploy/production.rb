@@ -1,6 +1,6 @@
 set :stage, :production
 
-server "54.149.172.65", user: 'ubuntu', roles: %w{web app db}
+server "54.68.247.45", user: 'ubuntu', roles: %w{web app db}
 # server-based syntax
 # ======================
 # Defines a single server with a list of roles and multiple properties.

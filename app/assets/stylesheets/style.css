@@ -94,8 +94,10 @@
 }
 
 .text-size{
-  width: 23%;
+  width: 28%;
   margin-left: 4%;
+  font-size: 20px;
+  text-align: center;
 }
 
 .reports {

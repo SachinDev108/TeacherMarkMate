@@ -23,7 +23,7 @@
     </div>
     <div class="col-md-6 col-sm-6 grade-margin">
       <h5>Current Grade</h5>
-      <%= text_field_tag :marks, "", class: 'form-control text-size', style: "background-color: #{@detail&.grade&.color}", disabled: true, value: @detail&.grade&.abr %>
+      <b><%= text_field_tag :marks, "", class: 'form-control text-size', style: "background-color: #{@detail&.grade&.color}", disabled: true, value: @detail&.grade&.abr %></b>
 
     </div> 
     <!-- <div class="col-md-2 col-sm-2">
