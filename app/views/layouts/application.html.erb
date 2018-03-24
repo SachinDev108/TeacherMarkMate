@@ -56,12 +56,18 @@
               </ul>
             </div>
             <div class="col-md-6 col-sm-6 col-xs-6 right-zero">
+             
               <ul class="nav navbar-nav navbar-right">
                 <li>
                   <%= link_to 'Support', "http://www.markmate.co.uk/support.html", target: :_blank %>
                 </li>
-                <li>
-                  <%= link_to "Logout", destroy_teacher_session_path, method: :delete, :class => 'navbar-link' %>
+                <li class="dropdown">
+                  <a class="dropdown-toggle" data-toggle="dropdown" style="cursor: pointer;">Account
+                  <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><%= link_to 'Profile', edit_teacher_registration_path %></li>
+                    <li><%= link_to "Logout", destroy_teacher_session_path, method: :delete %></li>
+                  </ul>
                 </li>
               </ul>
             </div>  

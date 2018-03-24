@@ -31,7 +31,19 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def update
-    super
+    if params[:teacher][:password].blank? && params[:teacher][:password_confirmation].blank?
+      params[:teacher].delete(:password)
+      params[:teacher].delete(:password_confirmation)
+    end
+    respond_to do |format|
+      if current_teacher.update_attributes(teacher_params)
+        flash[:notice] = "Successfully updated"
+        format.html { redirect_to edit_teacher_registration_path}
+        format.json { head :no_content }
+      else
+        format.html { render action: 'edit' }
+      end
+    end
   end
 
   private

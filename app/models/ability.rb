@@ -3,6 +3,7 @@ class Ability
 
   def initialize(user)
     if user.present?
+      can :edit, Teacher, id: user.id
       if user.is_plan_active?
         if user.is_head?
           can :manage, Teacher, parent_id: user.id
