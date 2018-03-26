@@ -13,12 +13,14 @@ class RegistrationsController < Devise::RegistrationsController
   		resource = build_resource(teacher_params)
   		resource.save
   	end
+    
     if resource.try(:id)
 	    subscription = @subscription_type.subscriptions.find_by({teacher_id: resource.id, payment_status: "Completed"})
 	    if subscription.present?
 	    	flash[:notice] = "You have already a subscription plan, If we you want to change please contact to support"
 	    	redirect_to new_teacher_session_path
 	    else
+
 	    	subscription = @subscription_type.subscriptions.create({teacher_id: resource.id, no_of_printer: params[:no_of_printer], amount: @total_price, total_amount: @total_calculation, period: params[:period], no_of_users: params[:users]})
 		    if subscription.present?
 		      redirect_to "#{Rails.application.secrets.paypal_url}/cgi-bin/webscr?" + @subscription_type.paypal_link(subscriptions_url, new_teacher_registration_url, subscription)
@@ -67,7 +69,7 @@ class RegistrationsController < Devise::RegistrationsController
   def check_amount_validation
     price = (@subscription_type.name == "Individual Plan") && (params[:period] == "monthly") ? @subscription_type.price : @subscription_type.yearly_price
     @total_price = '%.2f' % (params[:users].to_i*price)
-    @total_calculation = '%.2f' % ((params[:users].to_i*@subscription_type.yearly_price) + (params[:no_of_printer].to_i*@subscription_type.printer_price))
+    @total_calculation = '%.2f' % ((params[:users].to_i*price) + (params[:no_of_printer].to_i*@subscription_type.printer_price))
     unless ((@total_price == params[:total_price]) && (@total_calculation == params[:total_calculation]))
       flash[:notice] = "Calculation is incorrect"
       redirect_to new_teacher_registration_path

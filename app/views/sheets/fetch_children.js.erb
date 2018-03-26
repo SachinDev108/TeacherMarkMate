@@ -2,6 +2,6 @@ $(".student-list").html("<%= escape_javascript(render 'children') %>")
 $(".form-section").html("<%= escape_javascript(render 'form_section') %>")
 annyang.abort()
 //$("#record-btn").show()
-$('.multiple-child').first().prop( "checked", true );
+//$('.multiple-child').first().prop( "checked", true );
 detailID = $('.multiple-child').first().val()
 $('.multiselect-child-ids').append("<input type='hidden' name='detail_ids[]'" + "value='" + detailID + "' >")

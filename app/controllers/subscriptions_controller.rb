@@ -25,6 +25,10 @@ class SubscriptionsController < ApplicationController
     if params[:payment_status] == "Completed" 
       @subscription.update_attributes(payment_status: params[:payment_status], payer_id: params[:payer_id], txn_id: params[:txn_id], payment_date: params[:payment_date], status: true, payment_type: 'Paypal')
       redirect_to root_path
+    elsif params[:txn_type] == "subscr_signup"
+      @subscription.update_attributes(payment_status: "Completed", payer_id: params[:payer_id], payment_date: params[:subscr_date], status: true, payment_type: 'Individual Subcription Payment via Paypal')
+      @subscription.recurrings.create(subscr_id: params[:subscr_id], txn_type: [:txn_type], subscr_date: params[:subscr_date], period3: params[:period3])
+      redirect_to root_path
     else
       @subscription.update_attributes(payment_status: params[:payment_status], payer_id: params[:payer_id], txn_id: params[:txn_id], payment_date: params[:payment_date], payment_type: 'Paypal')
       redirect_to root_path

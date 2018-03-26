@@ -39,7 +39,7 @@ class Teacher < ApplicationRecord
       if teacher_plan.period == "yearly"
         teacher_plan.status && (Time.zone.now < teacher_plan.payment_date + 1.year)
       elsif teacher_plan.period == "monthly"
-        teacher_plan.status && (Time.zone.now < teacher_plan.payment_date + 1.month)
+        teacher_plan.status# && (Time.zone.now < teacher_plan.payment_date + 1.month)
       end
     end 
   end
