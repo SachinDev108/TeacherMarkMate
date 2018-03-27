@@ -7,7 +7,7 @@ class SubscriptionType < ApplicationRecord
       {
         :business => Rails.application.secrets.paypal_email,
         :cmd => "_s-xclick",
-        :hosted_button_id => "PAMV3FSL6Q5EY",
+        :hosted_button_id => Rails.env == "development" ? "PAMV3FSL6Q5EY" : "RNKQY93AC7MCL" ,
         :upload => 1,
         :return => return_url,
         :rm => 2,
