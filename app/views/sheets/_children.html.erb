@@ -35,6 +35,7 @@
   function selectMultipleChild(detailID){
     if ($("#detail-id-"+detailID).is(":checked")){
       $('.multiselect-child-ids').append("<input type='hidden' name='detail_ids[]'" + "value='" + detailID + "' >")
+      $(".child-name").removeClass('active-child');
     }
     else{
       $('input[type="hidden"][value="'+detailID+'"][name="detail_ids[]"]').remove()

@@ -1,0 +1,38 @@
+<div class="row custom-table-position">
+  <div class="well col-md-12 col-sm-12 col-xs-12 reports">
+    <div class="col-md-8 col-sm-8 col-xs-8">
+      <h3>Blank Label</h3>
+      <div class="form-group form-section">
+        <%= text_area_tag :comment,'', class: 'form-control ckeditor1', rows: "5", id: "dictation1"%>
+        <button type="button" class="btn btn-primary print-label clear-label">Print Label</button>
+      </div>
+    </div>
+  </div><br>
+</div>
+
+<script type="text/javascript">
+  $('.print-label').click(function(){
+    PrintDiv($("#dictation1").val())
+  })
+
+  $('.ckeditor1').ckeditor({
+    // optional config
+  })
+
+  function PrintDiv(text) {
+    var popupWin = window.open('', '_blank', 'width=300,height=300');
+    popupWin.document.open();
+    if (text.indexOf('span') == -1){
+      popupWin.document.write('<html><body>' + '<span style="font-family:Comic Sans MS,cursive">' + text + '</span>' + '</html>');
+      
+    } else {
+      popupWin.document.write('<html><body>' + text + '</html>'); 
+    }
+    
+    var document_focus = false;
+    $(document).ready(function() { popupWin.window.print();document_focus = true; });
+        setInterval(function() { if (document_focus === true) { popupWin.window.close(); }  }, 300);
+    // popupWin.document.close();
+
+  }
+</script>

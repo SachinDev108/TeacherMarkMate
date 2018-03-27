@@ -10,6 +10,7 @@ class Teacher < ApplicationRecord
   has_many :sheets, :dependent => :destroy
   has_many :sub_teachers, :class_name => 'Teacher', :foreign_key => :parent_id
   has_many :subscriptions, :dependent => :destroy
+  has_many :details, through: :sheets
   #belongs_to :parent_teacher, :class_name => 'Teacher', :foreign_key => :parent_id
 
   after_save :save_subscription
