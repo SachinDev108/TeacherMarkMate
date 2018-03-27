@@ -1,0 +1,11 @@
+<% @objectives.each do |objective| %>
+  <tr>
+    <td><%= objective.title %></td>
+    <td><%= objective.date.strftime('%d/%m/%Y') %></td>
+    <td><%= objective.subject.name %></td>
+    <td>
+      <%= link_to 'Delete', sheet_path(objective), :method => :delete, data: { confirm: 'Are you sure?' }, remote: true, class: "btn btn-default" %>
+      <%= link_to 'Mark', sheets_path(id: objective.id), class: "btn btn-default" %>
+    </td>
+  </tr>
+<% end %>

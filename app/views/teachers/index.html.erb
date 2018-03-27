@@ -1,6 +1,11 @@
 <div class="row custom-table-position">
   <div class="well">
     <%= link_to 'Add Teacher', new_teacher_path, remote: true %>
+    <span style="float: right;">
+    	<!-- <span style="color: #337ab7">Total:</span><span><%= @teacher.plan.no_of_users %></span>&nbsp;&nbsp;
+    	<span style="color: #337ab7">Remaining:</span><span id="sub-teacher-stats"><%= @teachers.count %></span> -->
+    	You have <%= @teachers.count %>/<%= @teacher.plan.no_of_users %> accounts remaining
+    </span>
   </div>
   <div id="teacher-form"></div>
   <%= render "teacher" %>

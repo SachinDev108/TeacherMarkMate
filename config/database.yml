@@ -15,6 +15,6 @@ development:
 #   <<: *default
 #   database: teacher_test
 
-# production:
-#   <<: *default
-#   database: teacher_production
+production:
+  <<: *default
+  database: teacher_production

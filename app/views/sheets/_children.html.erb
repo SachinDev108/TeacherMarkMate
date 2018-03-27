@@ -10,6 +10,7 @@
           <% @details.each_slice(20) do |details| %>
             <td>
               <% details.each do |detail| %>
+                <input type="checkbox" id="detail-id-<%= detail.id %>" class="multiple-child" onclick="selectMultipleChild(<%= detail.id %>)" value="<%= detail.id %>">
                 <%= link_to detail.child.name.capitalize, child_detail_sheet_path(@sheet, detail: detail.id), remote: true, class: "child-name", id: detail.child.name %><br>
               <% end %>
             </td>
@@ -30,5 +31,14 @@
     $(".child-name").removeClass('active-child');
     $(this).addClass('active-child');
   });
+
+  function selectMultipleChild(detailID){
+    if ($("#detail-id-"+detailID).is(":checked")){
+      $('.multiselect-child-ids').append("<input type='hidden' name='detail_ids[]'" + "value='" + detailID + "' >")
+    }
+    else{
+      $('input[type="hidden"][value="'+detailID+'"][name="detail_ids[]"]').remove()
+    }
+  }
   
 </script>

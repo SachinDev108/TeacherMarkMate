@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>MarkMate</title>
+    <%= favicon_link_tag 'favicon-32x32.png' %>
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application'%>
     <%= javascript_include_tag "application" %>
@@ -18,11 +19,6 @@
           <li class="<%= active_class('/') %>">
             <%= link_to "Dashboard", '/' %>
           </li>
-          <% if current_teacher.is_head? %>
-            <li class="<%= active_class('/teachers/teacher_subscription') %>">
-              <%= link_to "Subscription", '/teachers/teacher_subscription' %>
-            </li>
-          <% end %>
           <li class="<%= active_class('/sheets/new') %>">
             <%= link_to "New Objective", '/sheets/new' %>
           </li>
@@ -38,9 +34,9 @@
           <li class="<%= active_class('/children') %>">
             <%= link_to "Children", '/children' %>
           </li>
-          <% if current_teacher.role == "HeadTeacher" %>
+          <% if current_teacher.role == "HeadTeacher" && current_teacher.subscriptions.is_active.first.try(:subscription_type).try(:name) != "Individual Plan" && current_teacher.plan.try(:no_of_users) > 1%>
             <li class="<%= active_class('/teachers') %>">
-              <%= link_to "Teacher", '/teachers' %>
+              <%= link_to "Manage Teachers", '/teachers' %>
             </li>
           <% end %>    
         </ul>
@@ -60,12 +56,18 @@
               </ul>
             </div>
             <div class="col-md-6 col-sm-6 col-xs-6 right-zero">
+             
               <ul class="nav navbar-nav navbar-right">
                 <li>
                   <%= link_to 'Support', "http://www.markmate.co.uk/support.html", target: :_blank %>
                 </li>
-                <li>
-                  <%= link_to "Logout", destroy_teacher_session_path, method: :delete, :class => 'navbar-link' %>
+                <li class="dropdown">
+                  <a class="dropdown-toggle" data-toggle="dropdown" style="cursor: pointer;">Account
+                  <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><%= link_to 'Profile', edit_teacher_registration_path %></li>
+                    <li><%= link_to "Logout", destroy_teacher_session_path, method: :delete %></li>
+                  </ul>
                 </li>
               </ul>
             </div>  
@@ -79,7 +81,7 @@
             <%if request.url.include? "admins"%>
               <li><a href="/admins/sign_in"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
             <% else %>
-              <li><a href="/subscription_plan"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+              <li><a href="/teachers/sign_up"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
               <li><a href="/teachers/sign_in"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
             <% end %>
           </ul>

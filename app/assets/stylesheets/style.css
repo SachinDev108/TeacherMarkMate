@@ -94,8 +94,10 @@
 }
 
 .text-size{
-  width: 23%;
+  width: 28%;
   margin-left: 4%;
+  font-size: 20px;
+  text-align: center;
 }
 
 .reports {
@@ -234,6 +236,7 @@
   padding: 0px 8px 0px !important;
 }
 
+
 .align-dashboard-image{
   margin-left: 182px;
 }
@@ -265,4 +268,11 @@
 
 .color-red{
   color: red;
+}
+
+input[type=number]::-webkit-inner-spin-button {
+  opacity: 1;
+}
+hr{
+  border-top: 1px solid green;
 }

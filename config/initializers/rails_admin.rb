@@ -29,9 +29,9 @@ RailsAdmin.config do |config|
     dashboard 
     index                         # mandatory
     new
+    edit
     bulk_delete
     show
-    edit
     delete
 
     ## With an audit adapter, you can add:
@@ -43,14 +43,16 @@ RailsAdmin.config do |config|
     list do
       field :name
       field :email
+      field :sign_in_count
+      field :last_sign_in_at
       field :created_by do
         def value
           if bindings[:object].is_head? && bindings[:object].admin_id?
             text = "SuperAdmin"
-          elsif ((bindings[:object].is_head? && bindings[:object].admin_id.blank?) || bindings[:object].parent_id?)
-            text = "HeadTeacher"
-          else
+          elsif ((bindings[:object].is_head? && bindings[:object].admin_id.blank?))
             text = "Self"
+          else
+            text = "HeadTeacher"
           end
           bindings[:view] = text
         end
@@ -59,18 +61,40 @@ RailsAdmin.config do |config|
     edit do
       field :name
       field :email
+      field :users  do
+        required true
+        render do
+          bindings[:view].render :partial => 'new_partial', :locals => {:field => self, :form => bindings[:form]}
+        end
+      end 
+      field :subscription_plan do
+        render do
+          bindings[:view].render :partial => 'plan_status', :locals => {:field => self, :form => bindings[:form]}
+        end
+      end
+      field :period  do
+        render do
+          bindings[:view].render :partial => 'period_partial', :locals => {:field => self, :form => bindings[:form]}
+        end
+      end
       field :password
       field :password_confirmation
       field :admin_id, :hidden  do
         def value
-          bindings[:view]._current_user.id
+          if bindings[:object].admin_id.present? || !bindings[:object].persisted?
+            bindings[:view]._current_user.id
+          end
         end
       end
       field :role, :hidden  do
         def value
-          bindings[:view] = "HeadTeacher"
+          if bindings[:object].persisted?
+            bindings[:view] = bindings[:object].role
+          else
+            bindings[:view] = "HeadTeacher"
+          end
         end
       end
-    end  
+    end
   end
 end

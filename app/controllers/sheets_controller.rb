@@ -18,7 +18,7 @@ class SheetsController < ApplicationController
   end
 
   def new
-    @objectives = current_teacher.sheets
+    @objectives = current_teacher.sheets.order('created_at DESC')
   end
 
   def create
@@ -32,7 +32,7 @@ class SheetsController < ApplicationController
 
   def destroy
     @sheet.destroy
-    redirect_to :action => 'new'
+    @objectives = current_teacher.sheets.order('created_at DESC')
   end
 
   def show
@@ -51,6 +51,7 @@ class SheetsController < ApplicationController
   def update_detail
     @detail = @sheet.details.find_by_id(params[:detail_id])
     @detail.update_attributes(comment: params[:detail][:comment], grade_id: params[:detail][:grade_id])
+    @sheet.details.where(id: params[:detail_ids]).update_all(comment: params[:detail][:comment], grade_id: params[:detail][:grade_id])
     respond_to do |format|
       format.js 
       format.json do
