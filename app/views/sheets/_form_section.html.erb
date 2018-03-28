@@ -135,11 +135,13 @@
 
       var stop = function() {
         str = $("#dictation").val().replace(/\s+$/, '')
+        str = str.replace("&nbsp;","")
         $("#dictation").val(str + '. ')
       };
 
       var stopped = function() {
         str = $("#dictation").val().replace(/\s+$/, '')
+        str = str.replace("&nbsp;","")
         $("#dictation").val(str + '. ')
       };
       
