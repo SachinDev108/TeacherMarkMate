@@ -135,13 +135,11 @@
 
       var stop = function() {
         str = $("#dictation").val().replace(/\s+$/, '')
-        str = str.replace("&nbsp;","")
         $("#dictation").val(str + '. ')
       };
 
       var stopped = function() {
         str = $("#dictation").val().replace(/\s+$/, '')
-        str = str.replace("&nbsp;","")
         $("#dictation").val(str + '. ')
       };
       
@@ -177,6 +175,8 @@
           } else if (str[str.length-1]=='?'){
             text = repeat.substr(0,1).toUpperCase()+repeat.substr(1)
             $("#dictation").val(str +' '+text)
+          } else if (repeat=='.'){
+            $("#dictation").val(str +repeat +' ')
           } else {
             $("#dictation").val(str+' '+repeat)
           }
