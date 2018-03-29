@@ -1,35 +1,36 @@
 
 <%headers = @sheets.map{|sheet| sheet if sheet.name == @children.first.name}.compact%>
-
   <div class="col-md-2 col-sm-6 col-xs-6" style="overflow:hidden; padding: 0px !important">
-    <table class="table table-bordered table-striped">
-      <tr>
-        <td width="2%" style="font-size:10px"><b>Name</b></td>
-      </tr>
+    <table class="table table-bordered table-striped firsttable">
+      <thead>
+        <div>
+          <th style="font-size:10px"><b>Name</b></th>
+        </div>
+      </thead>
       <tbody>
         <%@children.each do |child|%>
           <%list = @sheets.map{|sheet| sheet if sheet.name == child.name}.compact%>
           <tr>
-            <td width="2%"><%= list.first.name %></td>
+            <td><%= list.first.name.truncate(27) rescue nil%></td>
           </tr>
         <% end %>
       </tbody>
     </table>
   </div>
   <div class="col-md-10 col-sm-6 col-xs-6" style="padding: 0px !important">
-    <div class="table-responsive table-hover">
-      <table class="table table-bordered table-striped objective-report-table">
-        <tr>
+    <div class="table-responsive table-hover ">
+      <table class="table table-bordered table-striped objective-report-table secondtable">
+       <thead>
           <% headers.each do |sheet| %>
-            <td width="2%" style="font-size:10px; text-align: center;"><b><%= sheet.title %></b></td>
+            <th style="font-size:10px; text-align: center;"><b><%= sheet.title.truncate(67) %></b></th>
           <% end %>
-        </tr>
+        </thead>
         <tbody>
           <%@children.each do |child|%>
             <%list = @sheets.map{|sheet| sheet if sheet.name == child.name}.compact%>
             <tr>
               <% list.each do |sheet| %>
-                <td width="2%" style="text-align: center; background: <%= sheet.color%>">
+                <td style="text-align: center; background: <%= sheet.color%>">
                   <div data-original-title="<%= sheet.sanitize_comment %>" data-toggle="tooltip">
                     <%= sheet.grade_name.present? ? sheet.grade_name : 'None' %>
                   </div>
