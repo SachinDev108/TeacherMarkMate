@@ -276,31 +276,3 @@ hr{
   color: red;
 }
 
-table.secondtable{
-    table-layout: fixed;
-    width: 200px;  
-  }
-  table.firsttable{
-    table-layout: fixed;
-    width: 158px;  
-  }
-.secondtable,th {
-      overflow: hidden;
-      width: 100px;
-      height:100px; 
-      
-
-  }  
-  .firsttable,th {
-      overflow: hidden;
-      width: 100px;
-      height:100px; 
-
-  }  
-
-  .secondtable, td {
-      overflow: hidden;
-      width: 200px;
-      padding: 0 5px 1px !important;
-      font-size: 12px;
-  }   
