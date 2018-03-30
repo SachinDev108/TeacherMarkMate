@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
-  before_action :authenticate_teacher! , :except => [:subscription]
+
+  before_action :authenticate_teacher! , :except => [:subscription, :dummy]
   def index
     @subjects = current_teacher.subjects
     @children = current_teacher.children
@@ -10,6 +11,9 @@ class HomeController < ApplicationController
   end
 
   def blank_label
+  end
+
+  def dummy
   end
 
 end

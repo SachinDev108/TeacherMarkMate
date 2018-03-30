@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   root 'home#index'
   get 'subscription_plan', :to => 'home#subscription'
   get 'blank_label', to: 'home#blank_label'
+  get 'dummy', to: 'home#dummy'
 
   resources :subjects do
     collection do

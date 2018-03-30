@@ -40,7 +40,7 @@
         <%@children.each do |child|%>
           <%list = @sheets.map{|sheet| sheet if sheet.name == child.name}.compact%>
           <tr>
-            <td><%= list.first.name.truncate(27) rescue nil%></td>
+            <td><%= list.first.name.truncate(23) rescue nil%></td>
           </tr>
         <% end %>
       </tbody>

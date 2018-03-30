@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+
+  layout :resolve_layout
   protect_from_forgery with: :exception  
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_teacher!
@@ -32,5 +34,14 @@ class ApplicationController < ActionController::Base
   
   def after_sign_in_path_for(resource)
     resource.is_a?(Admin) ? rails_admin.index_path(Teacher) : root_path
+  end
+
+  def resolve_layout
+    case action_name
+    when "dummy"
+      "home"
+    else
+      "application"
+    end
   end
 end
