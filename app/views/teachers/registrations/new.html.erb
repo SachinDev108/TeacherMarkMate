@@ -6,7 +6,7 @@
       <div class="well">
         <div class="form-group" style="text-align: center;">
           <%= image_tag("sign_in_logo_MarkMatelogo.png", style: "") %>
-          <p>Create account to see it in action.</p>
+          <p>Register now to gain instant access to Mark Mate</p>
         </div>
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name), :html => {class: 'form-horizontal'}) do |f| %>
         <%= devise_error_messages! %>
@@ -39,7 +39,7 @@
           </div>
         </div>
         <hr>
-        <div style="color: red">Teachers accounts required</div>
+        <div style="color: red">Number of teacher accounts required.</div>
         <div class="form-group" style="padding-top: 2px;">
           <div class="col-xs-8" style="padding-left: 0px;">
             <div for="nameField" class="col-xs-12"><b>Individual £19.99/Month</b>
@@ -91,8 +91,8 @@
             <%= link_to 'Please Contact Us', "http://www.markmate.co.uk/invoice.html", target: :_blank %></p>
             <img border="0" src="https://www.paypalobjects.com/en_US/i/logo/pp_secure_213wx37h.gif" alt="Payments by PayPal">
           </div>
+          
           <div class="col-xs-3">
-
             <%= f.submit  "Pay Now", class: 'btn btn-primary btn-sm' %>
           </div> 
         </div>

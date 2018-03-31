@@ -15,7 +15,7 @@
     <%= hidden_field_tag "detail_id", @detail.id%>
   <div class="col-sm-12 col-md-12">
     <div class="col-sm-4 grade-abr">
-      <% @sheet.subject.grades.each do |grade| %>
+      <% @sheet.subject.grades.order('marks').each do |grade| %>
         <div class="radio radio-margin">
           <label><%= f.radio_button :grade_id , grade.id, "data-marks" => grade.abr, onclick: "getGrade('#{grade.id}', '#{grade.color}')", "data-grade" => grade.name.downcase, "data-color" => grade.color %><%= grade.name %></label>
         </div>
