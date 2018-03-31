@@ -38,7 +38,7 @@ class ApplicationController < ActionController::Base
 
   def resolve_layout
     case action_name
-    when "dummy"
+    when "trial"
       "home"
     else
       "application"

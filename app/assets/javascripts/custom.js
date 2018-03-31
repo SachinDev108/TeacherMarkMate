@@ -19,7 +19,7 @@ function add_subject_color() {
   });
 }
 
-function PrintDiv(text) {
+function PrintDivTest(text) {
   var popupWin = window.open('', '_blank', 'width=300,height=300');
   popupWin.document.open();
   if (text.indexOf('span') == -1){
@@ -28,12 +28,6 @@ function PrintDiv(text) {
   } else {
     popupWin.document.write('<html><body>' + text + '</html>'); 
   }
-  
-  var document_focus = false;
-  $(document).ready(function() { popupWin.window.print();document_focus = true; });
-      setInterval(function() { if (document_focus === true) { popupWin.window.close(); }  }, 300);
-  // popupWin.document.close();
-
 }
 
 function initilize_data() {
@@ -42,11 +36,11 @@ function initilize_data() {
   })
   $(".dummy_subject_id").change(function(){
     if (this.value == 'ENGLISH') {
-      $("#sheet").empty().append("<option>ENGLISH TEST 1</option><option>ENGLISH TEST 2</option>");
+      $("#sheet").empty().append("<option>I can use fronted adverbials.</option><option>I can use an embedded clause.</option>");
     }else if (this.value == 'MATHS') {
-      $("#sheet").empty().append("<option>MATHS TEST 1</option><option>MATHS TEST 2</option>");
+      $("#sheet").empty().append("<option>I can multiply 3 digit numbers.</option><option>I can divide using a range of methods.</option>");
     }else {
-      $("#sheet").empty().append("<option>ENGLISH TEST 1</option><option>ENGLISH TEST 2</option><option>MATHS TEST 1</option><option>MATHS TEST 2</option>");
+      $("#sheet").empty().append("<option>I can use fronted adverbials.</option><option>I can use an embedded clause.</option><option>I can multiply 3 digit numbers.</option><option>I can divide using a range of methods.</option>");
     }
   })
 
@@ -57,6 +51,7 @@ function initilize_data() {
     $(".child-name").removeClass('active-child');
     $(".label-name").text($(this).text())
     $(this).addClass('active-child');
+    $("#dictation_test").val('')
     $('.multiple-child').prop( "checked", false );
   });
 
@@ -70,10 +65,10 @@ function initilize_data() {
     if ($('.multiple-child:checkbox:checked').size() > 0) {
       $('.multiple-child:checkbox:checked').each(function () {
         console.log('1')
-        PrintDiv($("#dictation_test").val())
+        PrintDivTest($("#dictation_test").val())
       })
     } else {
-      PrintDiv($("#dictation_test").val())
+      PrintDivTest($("#dictation_test").val())
     }
   })
   
@@ -104,7 +99,7 @@ function initilize_data() {
       var grades = [];
       $('.student-list').find('a').each(function() {
         names.push(this.text)
-      })    
+      })
       $(':radio').each(function(){
         grades.push($(this).val().toLowerCase())
       });
@@ -121,7 +116,7 @@ function initilize_data() {
       //   $("#dictation").val(str.slice(0,-1))
       // };
 
-      var mark = function() {
+      var marked = function() {
         str = $("#dictation_test").val()
         $("#dictation_test").val(str+'!')
       };
@@ -146,8 +141,10 @@ function initilize_data() {
       };
       
       var writeIt = function(repeat) {
+
         if (names.includes(repeat)) {
           $("#"+repeat).click()
+          $("#dictation_test").val('')
           
         }else if (grades.includes(repeat)) {
           $("input[data-grade='"+ repeat +"']").click()
@@ -156,7 +153,7 @@ function initilize_data() {
         }else if (repeat == "clear label") {
           $("#dictation_test").val('')
         }else if (repeat == "print label") {
-          PrintDiv($("#dictation_test").val())
+          PrintDivTest($("#dictation_test").val())
         }
         else{
           str = $("#dictation_test").val()
@@ -189,7 +186,7 @@ function initilize_data() {
       var commands = {
         'full stop (there)':        stop,
         'fullstop (there)':        stopped,
-        'exclamation mark (there)':        mark,
+        'exclamation mark (there)':        marked,
         'question mark (there)':        question,
         'next line (there)':        nextLine,
         'comma (there)':        comma,

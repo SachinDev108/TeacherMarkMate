@@ -6,7 +6,7 @@
         <%= select_tag :subject, options_for_select(['ENGLISH', 'MATHS'], 'ENGLISH'),:prompt => "Select Subject", class: 'form-control dummy_subject_id' %><br>
         <div class="filter-subject">
           <b>Previous Objectives</b>
-          <%= select_tag :sheet, options_for_select(['ENGLISH TEST1', 'ENGLISH TEST2']),:prompt => "Select Objective", class: 'form-control sheet_subject_id' %><br>
+          <%= select_tag :sheet, options_for_select(['I can use fronted adverbials.', 'I can use an embedded clause.']),:prompt => "Select Objective", class: 'form-control sheet_subject_id' %><br>
         </div>
       <% end %>
       <button type="button" class="btn btn-sm" style="float:right;" id="record-btn"><span>Start Speech</span></button>
@@ -14,7 +14,7 @@
         <form>
           <div class="col-md-12">
             <div class="col-md-10">
-              <%= label_tag 'Denial', nil, :class => "control-label label-name" %>
+              <%= label_tag 'Edward', nil, :class => "control-label label-name" %>
               <%= text_area_tag :comment, '', class: 'form-control ckeditor2', rows: "5", id: "dictation_test"%>
             </div>
             <div class="col-md-2 col-sm-2">
@@ -25,9 +25,9 @@
           </div>
           <div class="col-sm-12 col-md-12">
             <div class="col-sm-4 grade-abr">
-              <% [['Mastery','A', 'green'], ['Good','AB', 'blue'], ['Excellent', 'A+', 'orange'], ['Poor', 'C', 'yellow']].each do |grade| %>
+              <% [['Grade 1','1', 'skyblue'], ['Grade 2','2', 'green'], ['Grade 3', '3', 'orange'], ['Grade 4', '4', 'red']].each do |grade| %>
                 <div class="radio radio-margin">
-                  <label><%= radio_button_tag :grade_id , grade[0],false, "data-marks" => grade[1], onclick: "getGrade('#{grade[0]}', '#{grade[1]}', '#{grade[2]}')","data-grade" => grade[0].downcase, "data-color" => grade[2] %><%= grade[0] %></label>
+                  <label><%= radio_button_tag :grade_id , grade[0],false, "data-marks" => grade[1], id: 'grade_id_'+grade[1], onclick: "getGrade('#{grade[0]}', '#{grade[1]}', '#{grade[2]}')","data-grade" => grade[0].downcase, "data-color" => grade[2] %><%= grade[0] %></label>
                 </div>
               <% end %>
             </div>
@@ -46,7 +46,7 @@
         <table class="table table-bordered table-striped">
           <tbody>
             <tr>
-              <% ['Denial', 'Dean', 'Michael', 'Thomas', 'Sachin', 'Hemant', 'Merry', 'Jacop' 'Weslay','Deepak', 'William', 'Smithson', 'Jessica'].each_slice(10) do |details| %>
+              <% ['Edward', 'William', 'Denial', 'Thomas', 'Lucy', 'Claire', 'Jessica', 'Michael', 'Laura'].each_slice(8) do |details| %>
                 <td>
                   <% details.each do |detail| %>
                     <input type="checkbox" id="detail-id-<%= detail %>" class="multiple-child" onclick="selectMultipleChild('<%= detail %>')" value="<%= detail %>">
@@ -62,7 +62,34 @@
   </div><br>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="memberModal" tabindex="-1" role="dialog" aria-labelledby="memberModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+              </button>
+               <h4 class="modal-title" id="memberModalLabel">Thank you for trying Mark Mate.</h4>
+
+          </div>
+          <div class="modal-body">
+              <p>Full version features 
+                <BR>- Customisable Grades.
+                  <BR>- Unlimited Classes and Objectives.</p>
+              <p>You will now be shown the trial site.</p>
+              <p><a href="#" class="tooltip-test" title="Example">WATCH AN EXAMPLE</a></p>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+          </div>
+      </div>
+  </div>
+</div>
+
 <script type="text/javascript">
+  $(document).ready(function () {
+    $('#memberModal').modal('show');
+  });
   function selectMultipleChild(detailID){
     if ($("#detail-id-"+detailID).is(":checked")){
       $(".child-name").removeClass('active-child');
@@ -71,7 +98,7 @@
 
   function getGrade(name, abr, color){
 
-    if ($("#grade_id_"+name).is(":checked")) {
+    if ($("#grade_id_"+abr).is(":checked")) {
       $(".text-size").val(abr)
       $(".text-size").css("background-color", color);
     }
