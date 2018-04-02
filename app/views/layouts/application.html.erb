@@ -61,6 +61,11 @@
             <div class="col-md-6 col-sm-6 col-xs-6 right-zero">
              
               <ul class="nav navbar-nav navbar-right">
+                <% if params[:controller] == "teachers" && params[:action] == "index" && (current_teacher.plan.try(:no_of_users).to_i > 1) %>
+                  <li>
+                    <a>You have used <%= current_teacher.sub_teachers.count %>/<%= current_teacher.plan.no_of_users %> of your teacher accounts.</a>
+                  </li>
+                <% end %>
                 <li>
                   <%= link_to 'Support', "http://www.markmate.co.uk/support.html", target: :_blank %>
                 </li>
