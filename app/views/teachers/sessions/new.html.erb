@@ -4,7 +4,7 @@
     <div class="form-group" style="text-align: center;">
       <%= image_tag("sign_in_logo_MarkMatelogo.png", style: "") %>
     </div>
-    <div class="test" style="display: none; color: red;">You are not currently using Google Chrome. You will not be able to use voice recognition in your current browser.</div>
+    <div class="test" style="display: none; color: red;">Your current browser is not supported. Please use Google Chrome to activate voice recognition.</div>
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="form-group">
       <%= f.label :email %><br />

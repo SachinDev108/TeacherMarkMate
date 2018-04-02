@@ -46,7 +46,7 @@
         <table class="table table-bordered table-striped">
           <tbody>
             <tr>
-              <% ['Edward', 'William', 'Denial', 'Thomas', 'Lucy', 'Claire', 'Jessica', 'Michael', 'Laura'].each_slice(9) do |details| %>
+              <% ['Edward', 'William', 'Daniel', 'Thomas', 'Lucy', 'Claire', 'Jessica', 'Michael', 'Laura'].each_slice(9) do |details| %>
                 <td>
                   <% details.each do |detail| %>
                     <input type="checkbox" id="detail-id-<%= detail %>" class="multiple-child" onclick="selectMultipleChild('<%= detail %>')" value="<%= detail %>">
