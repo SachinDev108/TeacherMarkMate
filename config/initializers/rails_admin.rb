@@ -45,6 +45,11 @@ RailsAdmin.config do |config|
       field :email
       field :sign_in_count
       field :last_sign_in_at
+      field :marked do
+        def value
+          bindings[:view] = bindings[:object].details.updated_in_between((Time.zone.now - 30.days), Time.zone.now).count
+        end
+      end
       field :created_by do
         def value
           if bindings[:object].is_head? && bindings[:object].admin_id?

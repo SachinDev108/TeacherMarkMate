@@ -4,7 +4,7 @@ class Teacher < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   
-  attr_accessor :created_by, :users, :period, :subscription_plan
+  attr_accessor :created_by, :users, :period, :subscription_plan, :marked
   has_many :subjects, :dependent => :destroy
   has_many :children, :dependent => :destroy
   has_many :sheets, :dependent => :destroy
