@@ -1,6 +1,8 @@
 <div class="row custom-table-position">
   <div class="well col-md-12 col-sm-12 col-xs-12 reports">
+
     <div class="col-md-7 col-sm-7 col-xs-7">
+      <div class="test" style="display: none; color: red;">Your current browser is not supported. Please use Google Chrome to activate voice recognition.</div>
       <%= form_tag sheets_path, :method => "get",:remote=> true do %>
         <b>List of Subjects</b>
         <%= select_tag :subject, options_for_select(['ENGLISH', 'MATHS'], 'ENGLISH'),:prompt => "Select Subject", class: 'form-control dummy_subject_id' %><br>
@@ -93,6 +95,11 @@
 <script type="text/javascript">
   $(document).ready(function () {
     $('#memberModal').modal('show');
+    if (!annyang) {  
+      $('.test').show();
+    }else {
+      $('.test').hide();
+    }
   });
   function selectMultipleChild(detailID){
     if ($("#detail-id-"+detailID).is(":checked")){
