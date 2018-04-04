@@ -18,11 +18,6 @@
   $('.ckeditor1').ckeditor({
     // optional config
   })
-  $(document).ready(function() {
-    if ($("#dictation1").val() == "") {
-      $("#dictation1").val("<span style='<%= current_teacher.font_name%>'><span style='<%= current_teacher.font_size %>'> Add comments</span></span>")
-    }
-  })
 
   function PrintDiv(text) {
     var popupWin = window.open('', '_blank', 'width=300,height=300');

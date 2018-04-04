@@ -14,6 +14,9 @@ CKEDITOR.editorConfig = function (config) {
   // ... rest of the original config.js  ...
 }
 
+CKEDITOR.config.font_defaultLabel = 'Comic Sans MS';
+CKEDITOR.config.fontSize_defaultLabel = '10'; 
+
 CKEDITOR.config.autoParagraph = false;
 
 CKEDITOR.config.nomargin_style = {

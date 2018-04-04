@@ -39,14 +39,6 @@ class TeachersController < ApplicationController
   def teacher_subscription
   end
 
-  def label
-  end
-
-  def set_label
-    current_teacher.update_attributes(font_name: params[:font_name], font_size: params[:font_size])
-    redirect_to label_teachers_path
-  end
-
   private
 
   def teacher_params
