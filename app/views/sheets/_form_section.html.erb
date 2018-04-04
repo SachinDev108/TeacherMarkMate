@@ -38,6 +38,12 @@
   $('.ckeditor').ckeditor({
     // optional config
   })
+  $(document).ready(function() {
+    if ($("#dictation").val() == "") {
+      $("#dictation").val("<span style='<%= current_teacher.font_name%>'><span style='<%= current_teacher.font_size %>'> Add comments</span></span>")
+    }
+  })
+
   $("#record-btn").show()
   function getGrade(id, color){
     if ($("#detail_grade_id_"+id).is(":checked")) {

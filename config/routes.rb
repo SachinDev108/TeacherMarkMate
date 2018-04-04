@@ -19,6 +19,8 @@ Rails.application.routes.draw do
     collection do
       post  :create_teacher
       get :teacher_subscription
+      get :label
+      post :set_label
     end
   end
   resources :sheets do

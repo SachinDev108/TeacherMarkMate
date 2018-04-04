@@ -1,0 +1,17 @@
+<div class="row custom-table-position">
+  <div class="col-md-12 well">
+
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <h3>You can set default font and size for label</h3>
+      <%= form_tag set_label_teachers_path do %>
+        <label>Font Name</label>
+        <%= select_tag :font_name, options_for_select([["Default",""],["Comic Sans Ms (font-family:Comic Sans MS, cursive)", "font-family:Comic Sans MS, cursive;"],["Arial (font-family:Arial,Helvetica,sans-serif)","font-family:Arial,Helvetica,sans-serif;"],["Courier New (font-family:Courier New,Courier,monospace)", "font-family:Courier New,Courier,monospace;"],["Georgia (font-family:Georgia,serif)","font-family:Georgia,serif;"],["Lucida Sans Unicode(font-family:Lucida Sans Unicode,Lucida Grande,sans-serif)","font-family:Lucida Sans Unicode,Lucida Grande,sans-serif;"],["Tahoma (font-family:Tahoma,Geneva,sans-serif)","font-family:Tahoma,Geneva,sans-serif;"],["Times New Roman (font-family:Times New Roman,Times,serif;)","font-family:Times New Roman,Times,serif"],["Trebuchet MS (font-family:Trebuchet MS,Helvetica,sans-serif)","font-family:Trebuchet MS,Helvetica,sans-serif;"],["Verdana (font-family:Verdana,Geneva,sans-serif)","font-family:Verdana,Geneva,sans-serif;"]], current_teacher.font_name ),class: 'form-control' %><br>
+        <label>Font Size</label>
+        <%= select_tag :font_size, options_for_select([["Default",""],["8","font-size:8px;"],["10","font-size:10px;"],["12","font-size:12px;"],["14","font-size:14px;"],["16","font-size:16px;"],["18","font-size:18px;"],["20","font-size:20px;"],["22","font-size:22px;"],["24","font-size:24px;"],["26","font-size:26px;"],["28","font-size:28px;"],["30","font-size:30px;"],["32","font-size:32px;"],["34","font-size:34px;"],["36","font-size:36px;"]], current_teacher.font_size),class: 'form-control', style: "width:20%;" %><br>
+        <%= submit_tag 'Save Label', class: "btn btn-primary print-label pull-right"%>
+      <% end %>
+    </div>
+  </div>
+</div>
+
