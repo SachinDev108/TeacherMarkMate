@@ -8,7 +8,7 @@
       <tbody>
         <tr>
           Select All <input type="checkbox" id="ckbCheckAll" />
-          <% @details.each_slice(10) do |details| %>
+          <% @details.each_slice(20) do |details| %>
             <td>
               <% details.each do |detail| %>
                 <input type="checkbox" id="detail-id-<%= detail.id %>" class="multiple-child" onclick="selectMultipleChild(<%= detail.id %>)" value="<%= detail.id %>">
