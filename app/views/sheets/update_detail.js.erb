@@ -3,6 +3,15 @@ annyang.abort()
 $("span","#record-btn").text('Start Speech');
 $("#record-btn").removeClass('btn-danger');
 $('.multiple-child').prop( "checked", false );
- detailID = "<%= @detail.id %>"
+//detailID = "<%= @detail.id %>"
+$('.multiselect-child-ids').html()
+<%if params[:detail_ids].present? %>
+	<% params[:detail_ids].each do |id| %>
+		$(".color-<%= id %>").css("color", "green");
+	<% end %>
+<% else %>
+	$(".color-<%= @detail.id %>").css("color", "green");
+<% end %>
+$("#ckbCheckAll").prop("checked", false)
 // $('#detail-id-'+detailID).prop( "checked", true );
-$('.multiselect-child-ids').append("<input type='hidden' name='detail_ids[]'" + "value='" + detailID + "' >")
+//$('.multiselect-child-ids').append("<input type='hidden' name='detail_ids[]'" + "value='" + detailID + "' >")
