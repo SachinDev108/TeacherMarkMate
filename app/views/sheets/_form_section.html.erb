@@ -186,10 +186,15 @@
               $("#record-btn").removeClass('btn-danger');
               $('.multiple-child').prop( "checked", false );
               $("#ckbCheckAll").prop("checked", false)
-              data.ids.forEach(function(id) {
-                $(".color-"+id).css("color", "green");
+              if (data.ids == null) {
                 PrintDiv(data.text)
-              })
+              }else {
+                data.ids.forEach(function(id) {
+                  $(".color-"+id).css("color", "green");
+                  PrintDiv(data.text)
+                })
+              }
+              
             }
           });
         }
