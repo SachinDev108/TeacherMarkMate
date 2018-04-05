@@ -22,7 +22,7 @@ class SheetsController < ApplicationController
   end
 
   def create
-    if @sheet.save
+    if @sheet.details.present? && @sheet.save
       flash[:notice] = "Saved successfully"
       redirect_to :action => 'new'
     else
