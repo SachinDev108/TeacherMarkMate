@@ -53,7 +53,6 @@
   $('#print-label').click(function(){
     if ($('.multiple-child:checkbox:checked').size() > 0) {
       $('.multiple-child:checkbox:checked').each(function () {
-        console.log('1')
         PrintDiv($("#dictation").val())
       })
     } else {
@@ -87,26 +86,7 @@
       $(':radio').each(function(){
         grades.push($(this).data("grade").toLowerCase())
       });
-      // record/stop button functionality
-      // $("#record-btn").click(function(event){
-      //   event.preventDefault();
-      //   // if we're recording when the button is clicked
-      //   if(isRecording) {
-      //     annyang.abort();            // stop listening
-      //     isRecording = false;          // set recording var to false
-      //     $("span",this).text('Record');      // change btn text
-      //     $(this).removeClass('btn-danger');    // turn off red class
-          
-      //   // if we're not recording when the button is clicked
-      //   } else {
-      //     annyang.abort()
-      //     annyang.start();            // start listening
-      //     isRecording = true;           // set recording var to true
-      //     $("span",this).text('Stop');      // change btn text
-      //     $(this).removeClass('btn-primary');   // turn off blue class
-      //     $(this).addClass('btn-danger');     // turn on red class
-      //   }
-      // });
+      
       
       // define the functions our commands will run.
     
@@ -179,11 +159,6 @@
             dataType: 'json',
             data: dataSet,
             success: function(data) {
-              annyang.abort(); 
-              $("span","#record-btn").text('Record');
-              $("#record-btn").removeClass('btn-danger');
-              $("span","#record-btn").text('Start Speech');
-              $("#record-btn").removeClass('btn-danger');
               $('.multiple-child').prop( "checked", false );
               $("#ckbCheckAll").prop("checked", false)
               if (data.ids == null) {
@@ -195,6 +170,30 @@
                 })
               }
               
+            }
+          });
+        }else if (repeat == "save label") {
+          var test = []
+          dataSet = $('.edit_detail').serializeArray().reduce( (result, input) => {
+                    if (input.name == 'detail_ids[]'){
+                      test.push(input.value)
+                      result[input.name] = test
+                    }else {
+                      result[input.name] = input.value;
+                    }
+                    return result;
+                    }, {}
+                  );
+
+          $.ajax({
+            url: '<%= update_detail_sheet_path(@sheet) %>',
+            type: 'patch',
+            dataType: 'json',
+            data: dataSet,
+            success: function(data) {
+              $('.multiple-child').prop( "checked", false );
+              $("#ckbCheckAll").prop("checked", false)
+              alert("save comments successfully")
             }
           });
         }
