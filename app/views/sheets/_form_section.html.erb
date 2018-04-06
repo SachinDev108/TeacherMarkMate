@@ -13,6 +13,7 @@
     </div>
   </div>
     <%= hidden_field_tag "detail_id", @detail.id%>
+    <%= hidden_field_tag "sheet_id", @sheet.id %>
   <div class="col-sm-12 col-md-12">
     <div class="col-sm-4 grade-abr">
       <% @sheet.subject.grades.order(marks: :desc).each do |grade| %>
@@ -77,186 +78,196 @@
   }
 
   if (annyang) {
-      // var isRecording = false; // create var to track recording state  
-      var names = []; //insert names for annyang commands
-      var grades = [];
-      $('.student-list').find('a').each(function() {
-        names.push(this.text)
-      })    
-      $(':radio').each(function(){
-        grades.push($(this).data("grade").toLowerCase())
-      });
-      
-      
-      // define the functions our commands will run.
+    // var isRecording = false; // create var to track recording state  
+    var names = []; //insert names for annyang commands
+    var grades = [];
+    $('.student-list').find('a').each(function() {
+      names.push(this.text)
+    })    
+    $(':radio').each(function(){
+      grades.push($(this).data("grade").toLowerCase())
+    });
     
-      var question = function() {
-        str = $("#dictation").val()
-        $("#dictation").val(str + '?')
-      };
+    
+    // define the functions our commands will run.
+  
+    var question = function() {
+      str = $("#dictation").val()
+      $("#dictation").val(str + '?')
+    };
 
-      // var remove = function() {
-      //   str = $("#dictation").val()
-      //   $("#dictation").val(str.slice(0,-1))
-      // };
+    // var remove = function() {
+    //   str = $("#dictation").val()
+    //   $("#dictation").val(str.slice(0,-1))
+    // };
 
-      var mark = function() {
-        str = $("#dictation").val()
-        $("#dictation").val(str+'!')
-      };
+    var mark = function() {
+      str = $("#dictation").val()
+      $("#dictation").val(str+'!')
+    };
 
-      var comma = function() {
-        str = $("#dictation").val()
-        $("#dictation").val(str + ', ')
-      };
-      var nextLine = function() {
-        str = $("#dictation").val()
-        $("#dictation").val(str + '\n ')
-      };
+    var comma = function() {
+      str = $("#dictation").val()
+      $("#dictation").val(str + ', ')
+    };
+    var nextLine = function() {
+      str = $("#dictation").val()
+      $("#dictation").val(str + '\n ')
+    };
 
-      var stop = function() {
-        str = $("#dictation").val().replace(/\s+$/, '')
-        $("#dictation").val(str + '. ')
-      };
+    var stop = function() {
+      str = $("#dictation").val().replace(/\s+$/, '')
+      $("#dictation").val(str + '. ')
+    };
 
-      var stopped = function() {
-        str = $("#dictation").val().replace(/\s+$/, '')
-        $("#dictation").val(str + '. ')
-      };
+    var stopped = function() {
+      str = $("#dictation").val().replace(/\s+$/, '')
+      $("#dictation").val(str + '. ')
+    };
 
-      
-      var writeIt = function(repeat) {
-        if (names.includes(repeat)) {
-          $.ajax({
-            url: $("#"+repeat).attr('href'),
-            //orther options ...
-            success: function(data){
-                $("#"+repeat).click()
-            }
-          });
-        }else if (grades.includes(repeat)) {
-          $("input[data-grade='"+ repeat +"']").click()
-          $(".text-size").val($("input[data-grade='"+ repeat +"']").data("marks"))
-          $(".text-size").css("background-color", $("input[data-grade='"+ repeat +"']").data("color"));
-        }else if (repeat == "clear label") {
-          $("#dictation").val('')
-        }else if (repeat == "print label") {
-          var test = []
-          dataSet = $('.edit_detail').serializeArray().reduce( (result, input) => {
-                    if (input.name == 'detail_ids[]'){
-                      test.push(input.value)
-                      result[input.name] = test
-                    }else {
-                      result[input.name] = input.value;
-                    }
-                    return result;
-                    }, {}
-                  );
-
-          $.ajax({
-            url: '<%= update_detail_sheet_path(@sheet) %>',
-            type: 'patch',
-            dataType: 'json',
-            data: dataSet,
-            success: function(data) {
-              $('.multiple-child').prop( "checked", false );
-              $("#ckbCheckAll").prop("checked", false)
-              if (data.ids == null) {
+    
+    var writeIt = function(repeat) {
+      if (names.includes(repeat)) {
+        $.ajax({
+          url: $("#"+repeat).attr('href'),
+          //orther options ...
+          success: function(data){
+              $("#"+repeat).click()
+          }
+        });
+      }else if (grades.includes(repeat)) {
+        $("input[data-grade='"+ repeat +"']").click()
+        $(".text-size").val($("input[data-grade='"+ repeat +"']").data("marks"))
+        $(".text-size").css("background-color", $("input[data-grade='"+ repeat +"']").data("color"));
+      }else if (repeat == "clear label") {
+        $("#dictation").val('')
+      }else if (repeat == "print label") {
+        var test = []
+        dataSet = $('.edit_detail').serializeArray().reduce( (result, input) => {
+                  if (input.name == 'detail_ids[]'){
+                    test.push(input.value)
+                    result[input.name] = test
+                  }else {
+                    result[input.name] = input.value;
+                  }
+                  return result;
+                  }, {}
+                );
+        $.ajax({
+          url: '<%= update_detail_sheet_path(@sheet) %>',
+          type: 'patch',
+          dataType: 'json',
+          data: dataSet,
+          success: function(data) {
+            $('.multiple-child').prop( "checked", false );
+            $("#ckbCheckAll").prop("checked", false)
+            if (data.ids == null) {
+              PrintDiv(data.text)
+              $(".color-"+data.id).css("color", "green");
+            }else {
+              data.ids.forEach(function(id) {
+                $(".color-"+id).css("color", "green");
                 PrintDiv(data.text)
-              }else {
-                data.ids.forEach(function(id) {
-                  $(".color-"+id).css("color", "green");
-                  PrintDiv(data.text)
-                })
-              }
-              
+              })
             }
-          });
-        }else if (repeat == "save label") {
-          var test = []
-          dataSet = $('.edit_detail').serializeArray().reduce( (result, input) => {
-                    if (input.name == 'detail_ids[]'){
-                      test.push(input.value)
-                      result[input.name] = test
-                    }else {
-                      result[input.name] = input.value;
-                    }
-                    return result;
-                    }, {}
-                  );
+            
+          }
+        });
+      }else if (repeat == "save label") {
+        var test = []
+        dataSet = $('.edit_detail').serializeArray().reduce( (result, input) => {
+                  if (input.name == 'detail_ids[]'){
+                    test.push(input.value)
+                    result[input.name] = test
+                  }else {
+                    result[input.name] = input.value;
+                  }
+                  return result;
+                  }, {}
+                );
 
-          $.ajax({
-            url: '<%= update_detail_sheet_path(@sheet) %>',
-            type: 'patch',
-            dataType: 'json',
-            data: dataSet,
-            success: function(data) {
-              $('.multiple-child').prop( "checked", false );
-              $("#ckbCheckAll").prop("checked", false)
+        $.ajax({
+          url: '<%= update_detail_sheet_path(@sheet) %>',
+          type: 'patch',
+          dataType: 'json',
+          data: dataSet,
+          success: function(data) {
+            $('.multiple-child').prop( "checked", false );
+            $("#ckbCheckAll").prop("checked", false)
+            if (data.ids == null) {
+              $(".color-"+data.id).css("color", "green");
+              alert("save comment successfully")
+            }else {
+              data.ids.forEach(function(id) {
+                $(".color-"+id).css("color", "green");
+              })
               alert("save comments successfully")
             }
-          });
-        }
-        else{
-          str = $("#dictation").val()
-          if (str == ""){
-            text = repeat.substr(0,1).toUpperCase()+repeat.substr(1)
-            $("#dictation").val(text)
-          } else if ((str[str.length-2]=='.') || (str[str.length-1]=='.')){
-            text = repeat.substr(0,1).toUpperCase()+repeat.substr(1)
-            $("#dictation").val(str +' '+text)
-          } else if (str[str.length-1]=='!'){
-            text = repeat.substr(0,1).toUpperCase()+repeat.substr(1)
-            $("#dictation").val(str +' '+text)
-          } else if (str[str.length-1]=='?'){
-            text = repeat.substr(0,1).toUpperCase()+repeat.substr(1)
-            $("#dictation").val(str +' '+text)
-          } else if (repeat=='.'){
-            $("#dictation").val(str +repeat +' ')
-          } else {
-            $("#dictation").val(str+' '+repeat)
           }
-          
-        }
-        //$("#dictation").text(repeat);
+        });
       }
-
-      // define our commands.
-      // * The key is what you want your users to say say.
-      // * The value is the action to do.
-      //   You can pass a function, a function name (as a string), or write your function as part of the commands object.exclamation mark
-      var commands = {
-        'full stop (there)':        stop,
-        'fullstop (there)':        stopped,
-        'exclamation mark (there)':        mark,
-        'question mark (there)':        question,
-        'next line (there)':        nextLine,
-        'comma (there)':        comma,
-        '*repeat':        writeIt
-      };
-      names.forEach(function(name) {
-        commands[name] = function() {
-          $.ajax({
-            url: $("#"+name).attr('href'),
-            //orther options ...
-            success: function(data){
-                $("#"+name).click()
-            }
-          });
+      else{
+        str = $("#dictation").val()
+        if (str == ""){
+          text = repeat.substr(0,1).toUpperCase()+repeat.substr(1)
+          $("#dictation").val(text)
+        } else if ((str[str.length-2]=='.') || (str[str.length-1]=='.')){
+          text = repeat.substr(0,1).toUpperCase()+repeat.substr(1)
+          $("#dictation").val(str +' '+text)
+        } else if (str[str.length-1]=='!'){
+          text = repeat.substr(0,1).toUpperCase()+repeat.substr(1)
+          $("#dictation").val(str +' '+text)
+        } else if (str[str.length-1]=='?'){
+          text = repeat.substr(0,1).toUpperCase()+repeat.substr(1)
+          $("#dictation").val(str +' '+text)
+        } else if (repeat=='.'){
+          $("#dictation").val(str +repeat +' ')
+        } else {
+          $("#dictation").val(str+' '+repeat)
         }
-      })
-
-      grades.forEach(function(grade) {
-        commands[grade] = function() { grade }
-      })
-
-      annyang.debug();                // turn on debugging (console messages)
-
-      // Add voice commands to respond to
-      annyang.addCommands(commands);
-
-    } else {
-      $("#dictation").text('Sorry, browser not supported.');
+        
+      }
+      //$("#dictation").text(repeat);
     }
+
+    // define our commands.
+    // * The key is what you want your users to say say.
+    // * The value is the action to do.
+    //   You can pass a function, a function name (as a string), or write your function as part of the commands object.exclamation mark
+    var commands = {
+      'full stop (there)':        stop,
+      'fullstop (there)':        stopped,
+      'exclamation mark (there)':        mark,
+      'question mark (there)':        question,
+      'next line (there)':        nextLine,
+      'comma (there)':        comma,
+      '*repeat':        writeIt
+    };
+    names.forEach(function(name) {
+      commands[name] = function() {
+        $.ajax({
+          url: $("#"+name).attr('href'),
+          //orther options ...
+          success: function(data){
+              $("#"+name).click()
+          }
+        });
+      }
+    })
+
+    grades.forEach(function(grade) {
+      commands[grade] = function() { grade }
+    })
+
+    annyang.debug();                // turn on debugging (console messages)
+
+    // Add voice commands to respond to
+    annyang.addCommands(commands);
+
+  } else {
+    $("#dictation").text('Sorry, browser not supported.');
+  }
+
+  
   
 </script>

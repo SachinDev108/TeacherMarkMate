@@ -49,13 +49,14 @@ class SheetsController < ApplicationController
   end
 
   def update_detail
+    @sheet = Sheet.find(params[:sheet_id])
     @detail = @sheet.details.find_by_id(params[:detail_id])
     @detail.update_attributes(comment: params[:detail][:comment], grade_id: params[:detail][:grade_id]) if params[:detail_ids].blank?
     @sheet.details.where(id: params[:detail_ids]).update_all(comment: params[:detail][:comment], grade_id: params[:detail][:grade_id])
     respond_to do |format|
       format.js 
       format.json do
-        render json: { text: params[:detail][:comment], ids: params[:detail_ids] }.to_json
+        render json: { text: params[:detail][:comment], ids: params[:detail_ids], id: @detail.try(:id) }.to_json
       end
     end
     
