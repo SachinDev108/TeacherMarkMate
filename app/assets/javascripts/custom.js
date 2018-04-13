@@ -3,6 +3,7 @@ function add_subject_color() {
     showInput: true,
     showPalette: true,
     togglePaletteOnly: true,
+    preferredFormat: "rgb",
     togglePaletteMoreText: 'more',
     togglePaletteLessText: 'less',
 
