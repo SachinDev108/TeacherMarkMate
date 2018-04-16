@@ -110,6 +110,22 @@
       str = $("#dictation").val()
       $("#dictation").val(str + ', ')
     };
+
+    var colon = function() {
+       str = $("#dictation").val().replace(/\s+$/, '')
+      $("#dictation").val(str + ':')
+    };
+
+    var semicolon = function() {
+       str = $("#dictation").val().replace(/\s+$/, '')
+      $("#dictation").val(str + '; ')
+    };
+
+    var hyphen = function() {
+       str = $("#dictation").val().replace(/\s+$/, '')
+      $("#dictation").val(str + '-')
+    };
+
     var nextLine = function() {
       str = $("#dictation").val()
       $("#dictation").val(str + '\n ')
@@ -222,6 +238,8 @@
           $("#dictation").val(str +' '+text)
         } else if (repeat=='.'){
           $("#dictation").val(str +repeat +' ')
+        } else if (str[str.length-1]=='-'){
+          $("#dictation").val(str +repeat +' ')
         } else {
           $("#dictation").val(str+' '+repeat)
         }
@@ -241,6 +259,9 @@
       'question mark (there)':        question,
       'next line (there)':        nextLine,
       'comma (there)':        comma,
+      'hyphen (there)':       hyphen,
+      'semicolon (there)':    semicolon,
+      'colon (there)':        colon,
       '*repeat':        writeIt
     };
     names.forEach(function(name) {

@@ -131,6 +131,21 @@ function initilize_data() {
         $("#dictation_test").val(str + '\n ')
       };
 
+      var colon = function() {
+       str = $("#dictation_test").val().replace(/\s+$/, '')
+        $("#dictation_test").val(str + ':')
+      };
+
+      var semicolon = function() {
+         str = $("#dictation_test").val().replace(/\s+$/, '')
+        $("#dictation_test").val(str + '; ')
+      };
+
+      var hyphen = function() {
+         str = $("#dictation_test").val().replace(/\s+$/, '')
+        $("#dictation_test").val(str + '-')
+      };
+
       var stop = function() {
         str = $("#dictation_test").val().replace(/\s+$/, '')
         $("#dictation_test").val(str + '. ')
@@ -191,6 +206,9 @@ function initilize_data() {
         'question mark (there)':        question,
         'next line (there)':        nextLine,
         'comma (there)':        comma,
+        'hyphen (there)':       hyphen,
+        'semicolon (there)':    semicolon,
+        'colon (there)':        colon,
         '*repeat':        writeIt
       };
       names.forEach(function(name) {
