@@ -33,7 +33,7 @@
   height: 100%;
   width: 175px;
   position: fixed;
-  z-index: 0;
+  z-index: 1;
   top: 0;
   left: 0;
   background-color: #222;
@@ -107,7 +107,7 @@
 .active-child, .active-child:hover, .active-child:focus {
   font-weight: bold;
   color: #333333;
-  text-decoration: none;  
+  text-decoration: none;
 }
 
 .subject-show-page{
@@ -191,9 +191,18 @@
   .text-size{
     width: 43px;
   }
-  
+
   .grade-margin{
     margin-top: 15px;
+  }
+
+  #cke_dictation{
+    width: 183%;
+    margin-left: -28px;
+  }
+
+  .control-label{
+    margin-left: -25px;
   }
 }
 
@@ -221,7 +230,7 @@
 
 .sidenav .closebtn {
   position: absolute;
-  top: 0px;  
+  top: 0px;
   right: 7px;
   font-size: 36px;
 }
