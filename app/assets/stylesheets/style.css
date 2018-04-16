@@ -33,7 +33,7 @@
   height: 100%;
   width: 175px;
   position: fixed;
-  z-index: 1;
+  z-index: 0;
   top: 0;
   left: 0;
   background-color: #222;
@@ -203,6 +203,10 @@
 
   .control-label{
     margin-left: -25px;
+  }
+
+  .sidenav {
+    z-index: 1;
   }
 }
 
