@@ -7,6 +7,7 @@
         <div class="form-group" style="text-align: center;">
           <%= image_tag("sign_in_logo_MarkMatelogo.png", style: "") %>
           <p>Register now to gain instant access to Mark Mate</p>
+          <b>30 Day money back guarantee</b>
         </div>
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name), :html => {class: 'form-horizontal'}) do |f| %>
         <%= devise_error_messages! %>
@@ -56,7 +57,7 @@
           <div class="col-xs-4">
             <%#= select_tag :no_of_printer,  options_for_select(%w{ 1 2 3 4}) %>
             <%= number_field_tag :users, '1', style: "width: 50%;", min: "1", opacity: 1; %><span style="padding-left: 2px; color:red;">X</span><span style="padding-left: 2px;">£</span><span id="money">199</span>
-          </div> 
+          </div>
         </div>
         <hr>
         <div class="form-group">
@@ -66,7 +67,7 @@
           <div class="col-xs-4">
             <%#= select_tag :no_of_printer,  options_for_select(%w{ 1 2 3 4}) %>
             <%= number_field_tag :no_of_printer, '', style: "width: 50%;", min: "0", max: '1' %><span style="padding-left: 2px; color:red;">X</span><span style="padding-left: 2px;">£</span><span id="printer_money" >39.99</span>
-          </div> 
+          </div>
         </div>
         <hr>
         <div class="form-group">
@@ -74,7 +75,7 @@
           <div class="col-xs-3">
             £<span id="total">39.99</span>/<span id="convert">Year</span>
             <%= hidden_field_tag "total_price", '', id: 'total_price' %>
-          </div> 
+          </div>
         </div>
         <hr>
         <div class="form-group">
@@ -82,7 +83,7 @@
           <div class="col-xs-3">
             £<span id="total_calculation">39.99</span>
             <%= hidden_field_tag "total_calculation", '', id: 'total_amount' %>
-          </div> 
+          </div>
         </div>
         <hr>
         <div class="form-group">
@@ -91,10 +92,10 @@
             <%= link_to 'Please Contact Us', "http://www.markmate.co.uk/invoice.html", target: :_blank %></p>
             <img border="0" src="https://www.paypalobjects.com/en_US/i/logo/pp_secure_213wx37h.gif" alt="Payments by PayPal">
           </div>
-          
+
           <div class="col-xs-3">
             <%= f.submit  "Pay Now", class: 'btn btn-primary btn-sm' %>
-          </div> 
+          </div>
         </div>
         <% end %>
       </div>
@@ -103,10 +104,10 @@
 </div>
 
 <script type="text/javascript">
-  
+
   calculation();
   total_calculation();
-  $("#no_of_printer").on("input",function(e){ 
+  $("#no_of_printer").on("input",function(e){
     total_calculation();
   })
   $("#users").on("input",function(e){

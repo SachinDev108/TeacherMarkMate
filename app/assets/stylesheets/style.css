@@ -208,6 +208,19 @@
   .sidenav {
     z-index: 1;
   }
+
+  .trial-form {
+    width: 120%;
+    padding-top: 16px;
+  }
+
+  #cke_dictation_test {
+    margin-left: -28px;
+  }
+
+  #cke_1_top{
+    width: 89%;
+  }
 }
 
 @media (min-width: 768px) and (max-width: 1000px){
@@ -289,3 +302,10 @@ hr{
   color: red;
 }
 
+.trial-sign-up-button {
+  margin-right: 25px;
+}
+
+.pull-left{
+  float: left;
+}
