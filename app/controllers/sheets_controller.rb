@@ -13,7 +13,7 @@ class SheetsController < ApplicationController
   def report_details
     if params[:subject_id]
       @sheets = Sheet.get_details(params[:subject_id])
-      @children = @subject.children.order('name')
+      @children = @subject.children.order('name').ids
     end
   end
 
@@ -59,7 +59,6 @@ class SheetsController < ApplicationController
         render json: { text: params[:detail][:comment], ids: params[:detail_ids], id: @detail.try(:id) }.to_json
       end
     end
-    
   end
 
   def report
