@@ -166,6 +166,11 @@
   margin-left: 160px;
 }
 
+.sign-up-trial-btn{
+  padding-left: 32px;
+  padding-top: 10px;
+}
+
 @media (min-width: 300px) and (max-width: 767px){
   .nav-sell, #sidenav-closebtn {
     display: block;
@@ -220,6 +225,11 @@
 
   #cke_1_top{
     width: 89%;
+  }
+
+  .sign-up-trial-btn{
+    padding-left: 0px;
+    padding-top: 10px;
   }
 }
 
@@ -303,7 +313,7 @@ hr{
 }
 
 .trial-sign-up-button {
-  margin-right: 25px;
+  margin-right: 53px;
 }
 
 .pull-left{

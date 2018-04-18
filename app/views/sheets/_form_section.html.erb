@@ -26,7 +26,7 @@
       <h5>Current Grade</h5>
       <b><%= text_field_tag :marks, "", class: 'form-control text-size', style: "background-color: #{@detail&.grade&.color}", disabled: true, value: @detail&.grade&.abr %></b>
 
-    </div> 
+    </div>
     <!-- <div class="col-md-2 col-sm-2">
       <%#= f.submit 'Print Label', class: "btn btn-primary print-label", id: "print-label" %>
       <button type="button" class="btn btn-primary print-label clear-label">Clear Label</button>
@@ -65,11 +65,11 @@
     popupWin.document.open();
     if (text.indexOf('span') == -1){
       popupWin.document.write('<html><body>' + '<span style="font-family:Comic Sans MS,cursive">' + text + '</span>' + '</html>');
-      
+
     } else {
-      popupWin.document.write('<html><body>' + text + '</html>'); 
+      popupWin.document.write('<html><body>' + text + '</html>');
     }
-    
+
     var document_focus = false;
     $(document).ready(function() { popupWin.window.print();document_focus = true; });
         setInterval(function() { if (document_focus === true) { popupWin.window.close(); }  }, 300);
@@ -78,19 +78,24 @@
   }
 
   if (annyang) {
-    // var isRecording = false; // create var to track recording state  
+    // var isRecording = false; // create var to track recording state
     var names = []; //insert names for annyang commands
     var grades = [];
+    var numberGrades = [];
     $('.student-list').find('a').each(function() {
       names.push(this.text)
-    })    
+    })
     $(':radio').each(function(){
-      grades.push($(this).data("grade").toLowerCase())
+      if (Number.isInteger($(this).data("grade"))) {
+        numberGrades.push($(this).data("grade").toString())
+      }
+      else {
+        grades.push($(this).data("grade").toLowerCase())
+      }
     });
-    
-    
+
     // define the functions our commands will run.
-  
+
     var question = function() {
       str = $("#dictation").val()
       $("#dictation").val(str + '?')
@@ -141,7 +146,7 @@
       $("#dictation").val(str + '. ')
     };
 
-    
+
     var writeIt = function(repeat) {
       if (names.includes(repeat)) {
         $.ajax({
@@ -151,7 +156,7 @@
               $("#"+repeat).click()
           }
         });
-      }else if (grades.includes(repeat)) {
+      }else if ((grades.includes(repeat)) || (numberGrades.includes(repeat))) {
         $("input[data-grade='"+ repeat +"']").click()
         $(".text-size").val($("input[data-grade='"+ repeat +"']").data("marks"))
         $(".text-size").css("background-color", $("input[data-grade='"+ repeat +"']").data("color"));
@@ -186,7 +191,7 @@
                 PrintDiv(data.text)
               })
             }
-            
+
           }
         });
       }else if (repeat == "save label") {
@@ -243,7 +248,7 @@
         } else {
           $("#dictation").val(str+' '+repeat)
         }
-        
+
       }
       //$("#dictation").text(repeat);
     }
@@ -289,6 +294,4 @@
     $("#dictation").text('Sorry, browser not supported.');
   }
 
-  
-  
 </script>
