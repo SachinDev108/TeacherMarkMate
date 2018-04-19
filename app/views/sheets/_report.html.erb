@@ -49,6 +49,7 @@
   <div class="col-md-10 col-sm-6 col-xs-6" style="padding: 0px !important">
     <div class="table-responsive table-hover ">
       <table class="table table-bordered table-striped objective-report-table secondtable">
+      <% @title_count = headers.count %>
        <thead>
           <% headers.each do |sheet| %>
             <th style="font-size:10px; text-align: center;"><b><%= sheet.title.truncate(67) %></b></th>
@@ -56,15 +57,25 @@
         </thead>
         <tbody>
           <%@children.each do |child|%>
-
             <%list = @sheets.map{|sheet| sheet if sheet.children_id == child}.compact%>
+            <% @child_count = list.count %>
+            <% @data = list.first.name.truncate(23) rescue nil %>
+            <% j =  @title_count - @child_count %>
+            <% i = 0 %>
             <tr>
               <% list.each do |sheet| %>
                 <td style="text-align: center; background: <%= sheet.color%>">
                   <div data-original-title="<%= sheet.sanitize_comment %>" data-toggle="tooltip">
                     <%= sheet.grade_name.present? ? sheet.grade_name : 'None' %>
                   </div>
-                </td>
+                </td> 
+              <% end %>
+              <% if (j != 0) %>
+                <% for i in i...j %>
+                  <td style="text-align: center;">
+                      <%= 'Absent' %> 
+                  </td>
+                <% end %> 
               <% end %>
             </tr>
           <% end %>
