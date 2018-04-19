@@ -177,17 +177,18 @@
       if ($(this).val() == 'monthly') {
         $("#convert").text('Month')
         $("#money").text("19.99")
-        $("#users").val('0')
+        $("#users").val('1')
         $("#no_of_printer").val('')
         $("#no_of_printer").attr("disabled", true);
+        $("#total_calculation").text("0.00")
+        $("#total").text("19.99")
       } else {
         $("#convert").text('Year')
         $("#money").text("199")
-        $("#users").val('1')
         $("#no_of_printer").attr("disabled", false);
+        calculation();
+        total_calculation();
       }
-      calculation();
-      total_calculation();
     //}
   });
 </script>
