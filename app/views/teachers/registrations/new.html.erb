@@ -7,7 +7,8 @@
         <div class="form-group" style="text-align: center;">
           <%= image_tag("sign_in_logo_MarkMatelogo.png", style: "") %>
           <p>Register now to gain instant access to Mark Mate</p>
-          <b>30 Day Money Back Guarantee</b>
+          <b>30 Day Free Trial For Individual Accounts</b><br>
+          <b><%= link_to 'For a school free trial of up to 5 users, Please Contact Us', "http://www.markmate.co.uk/contact", target: :_blank, style: "color: #333333" %></b>
         </div>
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name), :html => {class: 'form-horizontal'}) do |f| %>
         <%= devise_error_messages! %>
@@ -40,10 +41,14 @@
           </div>
         </div>
         <hr>
+        <b>Your information will be used to create a login account for Mark Mate and will never be sold to any third parties.</b>
+        <hr>
         <div style="color: red">Number of teacher accounts required.</div>
         <div class="form-group" style="padding-top: 2px;">
           <div class="col-xs-8" style="padding-left: 0px;">
-            <div for="nameField" class="col-xs-12"><b>Individual £19.99/Month</b>
+            <div for="nameField" class="col-xs-12">
+              <b>Individual £19.99/Month - 30 Days free, label printer included.</b><br>
+              <b>Individual £199/Year</b>
             <div class="btn-group col-xs-12" data-toggle="buttons-radio">
               <%= radio_button_tag :period, "monthly" %>
               <label for="first" class="">Monthly</label>
@@ -56,7 +61,7 @@
           </div>
           <div class="col-xs-4">
             <%#= select_tag :no_of_printer,  options_for_select(%w{ 1 2 3 4}) %>
-            <%= number_field_tag :users, '1', style: "width: 50%;", min: "1", opacity: 1; %><span style="padding-left: 2px; color:red;">X</span><span style="padding-left: 2px;">£</span><span id="money">199</span>
+            <%= number_field_tag :users, '1', style: "width: 50%;", min: "0", opacity: 1; %><span style="padding-left: 2px; color:red;">X</span><span style="padding-left: 2px;">£</span><span id="money">199</span>
           </div>
         </div>
         <hr>
@@ -172,12 +177,13 @@
       if ($(this).val() == 'monthly') {
         $("#convert").text('Month')
         $("#money").text("19.99")
-        $("#users").val('1')
+        $("#users").val('0')
         $("#no_of_printer").val('')
         $("#no_of_printer").attr("disabled", true);
       } else {
         $("#convert").text('Year')
         $("#money").text("199")
+        $("#users").val('1')
         $("#no_of_printer").attr("disabled", false);
       }
       calculation();
