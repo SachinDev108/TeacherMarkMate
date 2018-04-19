@@ -9,6 +9,15 @@
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application'%>
     <%= javascript_include_tag "application" %>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-117400657-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-117400657-2');
+    </script>
   </head>
 
   <body>
@@ -36,10 +45,10 @@
         <li class="">
           <a>Children</a>
         </li>
-        
+
         <li class="">
           <a>Manage Teachers</a>
-        </li> 
+        </li>
       </ul>
     </div>
     <nav class="navbar navbar-inverse">
@@ -53,11 +62,11 @@
               <li class="side-nav-toggle">
                 <span onclick="openNav()" class="nav-sell">&#9776;</span>
                 <span class="nav-text">Welcome Mr Smith</span>
-              </li>    
+              </li>
             </ul>
           </div>
           <div class="col-md-6 col-sm-6 col-xs-6 right-zero">
-           
+
             <ul class="nav navbar-nav navbar-right">
               <li>
                 <%= link_to 'Support', "http://www.markmate.co.uk/support.html", target: :_blank %>
@@ -72,7 +81,7 @@
                 </ul>
               </li>
             </ul>
-          </div>  
+          </div>
         </div>
       </div>
     </nav>
@@ -82,3 +91,13 @@
   </body>
 
 </html>
+
+<script type="text/javascript">
+  function openNav() {
+    document.getElementById("my-sidenav").style.display = "block";
+  }
+
+  function closeNav() {
+    document.getElementById("my-sidenav").style.display = "none";
+  }
+</script>
