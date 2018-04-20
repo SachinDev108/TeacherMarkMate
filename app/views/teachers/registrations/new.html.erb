@@ -2,7 +2,7 @@
   <div class="col-xs-12">
     <div class="col-xs-3">
     </div>
-    <div class="col-xs-6">
+    <div class="col-md-6 col-sm-6 col-xs-12">
       <div class="well">
         <div class="form-group" style="text-align: center;">
           <%= image_tag("sign_in_logo_MarkMatelogo.png", style: "") %>
@@ -50,10 +50,12 @@
               <b>Individual £19.99/Month - 30 Days free, label printer included.</b><br>
               <b>Individual £199/Year</b>
             <div class="btn-group col-xs-12" data-toggle="buttons-radio">
-              <%= radio_button_tag :period, "monthly" %>
-              <label for="first" class="">Monthly</label>
-              <%= radio_button_tag :period, "yearly", checked: true %>
-              <label for="second" class="">Yearly</label>
+              <div class="row">
+                <%= radio_button_tag :period, "monthly" %>
+                <label for="first" class="">Monthly</label>
+                <%= radio_button_tag :period, "yearly", checked: true %>
+                <label for="second" class="">Yearly</label>
+              </div>
             </div></div>
             <div for="nameField" class="col-xs-12"><b>2-5 &nbsp;&nbsp;&nbsp;&nbsp;Teachers £189/Year</b></div>
             <div for="nameField" class="col-xs-12"><b>6-10 &nbsp;&nbsp;Teachers £159/Year</b></div>
@@ -71,13 +73,13 @@
           </div>
           <div class="col-xs-4">
             <%#= select_tag :no_of_printer,  options_for_select(%w{ 1 2 3 4}) %>
-            <%= number_field_tag :no_of_printer, '', style: "width: 50%;", min: "0", max: '1' %><span style="padding-left: 2px; color:red;">X</span><span style="padding-left: 2px;">£</span><span id="printer_money" >39.99</span>
+            <%= number_field_tag :no_of_printer, '', style: "width: 50%;", min: "0", max: '1' %><span style="color:red;">X</span><span style="">£</span><span id="printer_money" >39.99</span>
           </div>
         </div>
         <hr>
         <div class="form-group">
-          <div class="col-xs-9"><b>Total</b></div>
-          <div class="col-xs-3">
+          <div class="col-xs-8"><b>Total</b></div>
+          <div class="col-xs-4">
             £<span id="total">39.99</span>/<span id="convert">Year</span>
             <%= hidden_field_tag "total_price", '', id: 'total_price' %>
           </div>
@@ -98,7 +100,7 @@
             <img border="0" src="https://www.paypalobjects.com/en_US/i/logo/pp_secure_213wx37h.gif" alt="Payments by PayPal">
           </div>
 
-          <div class="col-xs-3">
+          <div class="col-xs-3 pay-now">
             <%= f.submit  "Pay Now", class: 'btn btn-primary btn-sm' %>
           </div>
         </div>

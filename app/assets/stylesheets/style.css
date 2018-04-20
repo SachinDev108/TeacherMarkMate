@@ -231,6 +231,18 @@
     padding-left: 0px;
     padding-top: 10px;
   }
+
+  .pay-now{
+    padding-left: 0px;
+  }
+
+  #users{
+    width: 37% !important;
+  }
+
+  #no_of_printer {
+    width: 27% !important;
+  }
 }
 
 @media (min-width: 768px) and (max-width: 1000px){
