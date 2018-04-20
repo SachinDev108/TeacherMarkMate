@@ -52,7 +52,17 @@
       <% @title_count = headers.count %>
        <thead>
           <% headers.each do |sheet| %>
-            <th style="font-size:10px; text-align: center;"><b><%= sheet.title.truncate(67) %></b></th>
+          
+            <th style="font-size:10px; text-align: center;">
+              <% @divdata = find_grades_persents(sheet) %>
+              <% if @divdata != nil %>
+                <% @div =  "#{@divdata}".gsub('"', '') %>
+                <% @divchangeData =  "#{@div}".gsub(']', '') %>
+                <div data-original-title="<%= "#{@divchangeData}".gsub('[', '') %>" data-toggle="tooltip">
+                  <b><%= sheet.title.truncate(67) %></b>
+                </div>
+              <% end %>     
+            </th>
           <% end %>
         </thead>
         <tbody>

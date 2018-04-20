@@ -59,4 +59,29 @@ module ApplicationHelper
       "20users.png"
     end
   end
+
+  def find_grades_persents(sheet)
+    @arraydata = []
+    @tooltripData = []
+    @data = sheet.details
+    @countdata = 0
+    @countdata = @data.count
+    @data.each do |id|
+      @data2 = Grade.find_by_id("#{id.grade_id}")
+      @arraydata << @data2.name rescue nil
+      if @arraydata != nil
+        @hashdata = @arraydata.group_by(&:itself).map { |k,v| [k, "#{v.count*100/@countdata}%"] }.to_h 
+      end
+    end
+    if @hashdata != nil
+      @hashdata.each do |k, v|
+        @tooltripData  << "#{k} = #{v}"
+      end
+      if  @tooltripData != nil
+        return @tooltripData 
+      else
+        return nil   
+      end
+    end 
+  end
 end
