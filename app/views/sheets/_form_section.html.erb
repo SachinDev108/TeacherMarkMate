@@ -228,31 +228,41 @@
         });
       }
       else{
+        CKEDITOR.instances.dictation.focus();
+        var range = CKEDITOR.instances.dictation.createRange();
+        range.moveToPosition(range.root, CKEDITOR.POSITION_BEFORE_END);
+        CKEDITOR.instances.dictation.getSelection().selectRanges([range]);
         str = $("#dictation").val()
         if (str == ""){
           text = repeat.substr(0,1).toUpperCase()+repeat.substr(1)
-          $("#dictation").val(text)
+          //$("#dictation").val(text)
+          CKEDITOR.instances.dictation.insertText(text);
         } else if ((str[str.length-2]=='.') || (str[str.length-1]=='.')){
           text = repeat.substr(0,1).toUpperCase()+repeat.substr(1)
-          $("#dictation").val(str +' '+text)
+          //$("#dictation").val(str +' '+text)
+          CKEDITOR.instances.dictation.insertText(' '+text);
         } else if (str[str.length-1]=='!'){
           text = repeat.substr(0,1).toUpperCase()+repeat.substr(1)
-          $("#dictation").val(str +' '+text)
+          //$("#dictation").val(str +' '+text)
+          CKEDITOR.instances.dictation.insertText(' '+text);
         } else if (str[str.length-1]=='?'){
           text = repeat.substr(0,1).toUpperCase()+repeat.substr(1)
-          $("#dictation").val(str +' '+text)
+          //$("#dictation").val(str +' '+text)
+          CKEDITOR.instances.dictation.insertText(' '+text);
         } else if (repeat=='.'){
-          $("#dictation").val(str +repeat +' ')
+          //$("#dictation").val(str +repeat +' ')
+          CKEDITOR.instances.dictation.insertText(repeat +' ');
         } else if (str[str.length-1]=='-'){
-          $("#dictation").val(str +repeat +' ')
+          //$("#dictation").val(str +repeat +' ')
+          CKEDITOR.instances.dictation.insertText(repeat +' ');
         } else {
-          $("#dictation").val(str+' '+repeat)
+          //$("#dictation").val(str+' '+repeat)
+          CKEDITOR.instances.dictation.insertText(' '+repeat);
         }
 
       }
       //$("#dictation").text(repeat);
     }
-
     // define our commands.
     // * The key is what you want your users to say say.
     // * The value is the action to do.
