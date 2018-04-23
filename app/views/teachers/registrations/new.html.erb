@@ -51,9 +51,9 @@
               <b>Individual £199/Year</b>
             <div class="btn-group col-xs-12" data-toggle="buttons-radio">
               <div class="row">
-                <%= radio_button_tag :period, "monthly" %>
+                <%= radio_button_tag :period, "monthly", checked: true %>
                 <label for="first" class="">Monthly</label>
-                <%= radio_button_tag :period, "yearly", checked: true %>
+                <%= radio_button_tag :period, "yearly" %>
                 <label for="second" class="">Yearly</label>
               </div>
             </div></div>
@@ -63,7 +63,7 @@
           </div>
           <div class="col-xs-4">
             <%#= select_tag :no_of_printer,  options_for_select(%w{ 1 2 3 4}) %>
-            <%= number_field_tag :users, '1', style: "width: 50%;", min: "0", opacity: 1; %><span style="padding-left: 2px; color:red;">X</span><span style="padding-left: 2px;">£</span><span id="money">199</span>
+            <%= number_field_tag :users, '1', style: "width: 50%;", min: "0", opacity: 1; %><span style="padding-left: 2px; color:red;">X</span><span style="padding-left: 2px;">£</span><span id="money">19.99</span>
           </div>
         </div>
         <hr>
@@ -80,7 +80,7 @@
         <div class="form-group">
           <div class="col-xs-8"><b>Total</b></div>
           <div class="col-xs-4">
-            £<span id="total">39.99</span>/<span id="convert">Year</span>
+            £<span id="total">19.99</span>/<span id="convert">Year</span>
             <%= hidden_field_tag "total_price", '', id: 'total_price' %>
           </div>
         </div>
@@ -88,7 +88,7 @@
         <div class="form-group">
           <div class="col-xs-9"><b>Total due today</b></div>
           <div class="col-xs-3">
-            £<span id="total_calculation">39.99</span>
+            £<span id="total_calculation">0.00</span>
             <%= hidden_field_tag "total_calculation", '', id: 'total_amount' %>
           </div>
         </div>
@@ -171,7 +171,12 @@
 
   function total_calculation() {
     total = ($("#users").val() * $("#money").text()) + ($("#no_of_printer").val() * $("#printer_money").text())
-    $("#total_calculation").text(total.toFixed(2))
+    if ($("#period_monthly").prop( "checked")){
+      $("#total_calculation").text("0.00")
+      $("#no_of_printer").attr("disabled", true);
+    }else{
+      $("#total_calculation").text(total.toFixed(2))
+    }
     $("#total_amount").val(total.toFixed(2))
   }
   $('input:radio[name="period"]').change(function() {
