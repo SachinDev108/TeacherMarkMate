@@ -243,6 +243,10 @@
   #no_of_printer {
     width: 27% !important;
   }
+
+  .trail-page-speech-area{
+    margin-top: 33px;
+  }
 }
 
 @media (min-width: 768px) and (max-width: 1000px){

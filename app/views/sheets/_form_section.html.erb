@@ -98,7 +98,8 @@
 
     var question = function() {
       str = $("#dictation").val()
-      $("#dictation").val(str + '?')
+      //$("#dictation").val(str + '?')
+      CKEDITOR.instances.dictation.insertText('?');
     };
 
     // var remove = function() {
@@ -108,42 +109,50 @@
 
     var mark = function() {
       str = $("#dictation").val()
-      $("#dictation").val(str+'!')
+      //$("#dictation").val(str+'!')
+      CKEDITOR.instances.dictation.insertText('!');
     };
 
     var comma = function() {
       str = $("#dictation").val()
-      $("#dictation").val(str + ', ')
+      //$("#dictation").val(str + ', ')
+      CKEDITOR.instances.dictation.insertText(', ');
     };
 
     var colon = function() {
-       str = $("#dictation").val().replace(/\s+$/, '')
-      $("#dictation").val(str + ':')
+      str = $("#dictation").val().replace(/\s+$/, '')
+      //$("#dictation").val(str + ':')
+      CKEDITOR.instances.dictation.insertText(':');
     };
 
     var semicolon = function() {
-       str = $("#dictation").val().replace(/\s+$/, '')
-      $("#dictation").val(str + '; ')
+      str = $("#dictation").val().replace(/\s+$/, '')
+      //$("#dictation").val(str + '; ')
+      CKEDITOR.instances.dictation.insertText('; ');
     };
 
     var hyphen = function() {
-       str = $("#dictation").val().replace(/\s+$/, '')
-      $("#dictation").val(str + '-')
+      str = $("#dictation").val().replace(/\s+$/, '')
+      //$("#dictation").val(str + '-')
+      CKEDITOR.instances.dictation.insertText('-');
     };
 
     var nextLine = function() {
       str = $("#dictation").val()
-      $("#dictation").val(str + '\n ')
+      //$("#dictation").val(str + '\n ')
+      CKEDITOR.instances.dictation.insertText('\n ');
     };
 
     var stop = function() {
       str = $("#dictation").val().replace(/\s+$/, '')
-      $("#dictation").val(str + '. ')
+      //$("#dictation").val(str + '. ')
+      CKEDITOR.instances.dictation.insertText('. ');
     };
 
     var stopped = function() {
       str = $("#dictation").val().replace(/\s+$/, '')
-      $("#dictation").val(str + '. ')
+      //$("#dictation").val(str + '. ')
+      CKEDITOR.instances.dictation.insertText('. ');
     };
 
 
@@ -228,31 +237,41 @@
         });
       }
       else{
+        CKEDITOR.instances.dictation.focus();
+        var range = CKEDITOR.instances.dictation.createRange();
+        range.moveToElementEditEnd(range.root);
+        CKEDITOR.instances.dictation.getSelection().selectRanges([range]);
         str = $("#dictation").val()
         if (str == ""){
           text = repeat.substr(0,1).toUpperCase()+repeat.substr(1)
-          $("#dictation").val(text)
+          //$("#dictation").val(text)
+          CKEDITOR.instances.dictation.insertText(text);
         } else if ((str[str.length-2]=='.') || (str[str.length-1]=='.')){
           text = repeat.substr(0,1).toUpperCase()+repeat.substr(1)
-          $("#dictation").val(str +' '+text)
+          //$("#dictation").val(str +' '+text)
+          CKEDITOR.instances.dictation.insertText(' '+text);
         } else if (str[str.length-1]=='!'){
           text = repeat.substr(0,1).toUpperCase()+repeat.substr(1)
-          $("#dictation").val(str +' '+text)
+          //$("#dictation").val(str +' '+text)
+          CKEDITOR.instances.dictation.insertText(' '+text);
         } else if (str[str.length-1]=='?'){
           text = repeat.substr(0,1).toUpperCase()+repeat.substr(1)
-          $("#dictation").val(str +' '+text)
+          //$("#dictation").val(str +' '+text)
+          CKEDITOR.instances.dictation.insertText(' '+text);
         } else if (repeat=='.'){
-          $("#dictation").val(str +repeat +' ')
+          //$("#dictation").val(str +repeat +' ')
+          CKEDITOR.instances.dictation.insertText(repeat +' ');
         } else if (str[str.length-1]=='-'){
-          $("#dictation").val(str +repeat +' ')
+          //$("#dictation").val(str +repeat +' ')
+          CKEDITOR.instances.dictation.insertText(repeat +' ');
         } else {
-          $("#dictation").val(str+' '+repeat)
+          //$("#dictation").val(str+' '+repeat)
+          CKEDITOR.instances.dictation.insertText(' '+repeat);
         }
 
       }
       //$("#dictation").text(repeat);
     }
-
     // define our commands.
     // * The key is what you want your users to say say.
     // * The value is the action to do.
