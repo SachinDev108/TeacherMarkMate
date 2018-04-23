@@ -171,6 +171,15 @@
   padding-top: 10px;
 }
 
+.trial-free-text{
+  text-align: center;
+  margin-right: 97px;
+}
+
+.free-printer-text{
+  padding-left: 30px
+}
+
 @media (min-width: 300px) and (max-width: 767px){
   .nav-sell, #sidenav-closebtn {
     display: block;
@@ -247,6 +256,16 @@
   .trail-page-speech-area{
     margin-top: 33px;
   }
+
+  .trial-free-text{
+    text-align: center;
+    margin-right: 0px;
+  }
+
+
+.free-printer-text{
+  padding-left: 0px
+}
 }
 
 @media (min-width: 768px) and (max-width: 1000px){
@@ -329,7 +348,7 @@ hr{
 }
 
 .trial-sign-up-button {
-  margin-right: 53px;
+  margin-right: 0px;
 }
 
 .pull-left{

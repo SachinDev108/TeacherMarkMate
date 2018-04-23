@@ -25,9 +25,9 @@ function PrintDivTest(text) {
   popupWin.document.open();
   if (text.indexOf('span') == -1){
     popupWin.document.write('<html><body>' + '<span style="font-family:Comic Sans MS,cursive">' + text + '</span>' + '</html>');
-    
+
   } else {
-    popupWin.document.write('<html><body>' + text + '</html>'); 
+    popupWin.document.write('<html><body>' + text + '</html>');
   }
 }
 
@@ -45,9 +45,9 @@ function initilize_data() {
     }
   })
 
-  
+
   $('.child-name').first().addClass('active-child');
-  
+
   $('.child-name').on('click', function(){
     $(".child-name").removeClass('active-child');
     $(".label-name").text($(this).text())
@@ -56,7 +56,7 @@ function initilize_data() {
     $('.multiple-child').prop( "checked", false );
   });
 
-  
+
 
   $('.clear-label').click(function(){
     $("#dictation_test").val('')
@@ -72,9 +72,9 @@ function initilize_data() {
       PrintDivTest($("#dictation_test").val())
     }
   })
-  
 
-  var isRecording = false; 
+
+  var isRecording = false;
   $("#record-btn").click(function(event){
     event.preventDefault();
     // if we're recording when the button is clicked
@@ -83,7 +83,7 @@ function initilize_data() {
       isRecording = false;          // set recording var to false
       $("span",this).text('Start Speech');      // change btn text
       $(this).removeClass('btn-danger');    // turn off red class
-      
+
     // if we're not recording when the button is clicked
     } else {
       //annyang.abort()
@@ -95,7 +95,7 @@ function initilize_data() {
     }
   });
   if (annyang) {
-      // var isRecording = false; // create var to track recording state  
+      // var isRecording = false; // create var to track recording state
       var names = []; //insert names for annyang commands
       var grades = [];
       $('.student-list').find('a').each(function() {
@@ -104,12 +104,13 @@ function initilize_data() {
       $(':radio').each(function(){
         grades.push($(this).val().toLowerCase())
       });
-      
+
       // define the functions our commands will run.
-    
+
       var question = function() {
         str = $("#dictation_test").val()
-        $("#dictation_test").val(str + '?')
+        //$("#dictation_test").val(str + '?')
+        CKEDITOR.instances.dictation_test.insertText('?');
       };
 
       // var remove = function() {
@@ -119,49 +120,57 @@ function initilize_data() {
 
       var marked = function() {
         str = $("#dictation_test").val()
-        $("#dictation_test").val(str+'!')
+        //$("#dictation_test").val(str+'!')
+        CKEDITOR.instances.dictation_test.insertText('!');
       };
 
       var comma = function() {
         str = $("#dictation_test").val()
-        $("#dictation_test").val(str + ', ')
+        //$("#dictation_test").val(str + ', ')
+        CKEDITOR.instances.dictation_test.insertText(', ');
       };
       var nextLine = function() {
         str = $("#dictation_test").val()
-        $("#dictation_test").val(str + '\n ')
+        //$("#dictation_test").val(str + '\n ')
+        CKEDITOR.instances.dictation_test.insertText('\n ');
       };
 
       var colon = function() {
        str = $("#dictation_test").val().replace(/\s+$/, '')
-        $("#dictation_test").val(str + ':')
+        //$("#dictation_test").val(str + ':')
+        CKEDITOR.instances.dictation_test.insertText(':');
       };
 
       var semicolon = function() {
-         str = $("#dictation_test").val().replace(/\s+$/, '')
-        $("#dictation_test").val(str + '; ')
+        str = $("#dictation_test").val().replace(/\s+$/, '')
+        //$("#dictation_test").val(str + '; ')
+        CKEDITOR.instances.dictation_test.insertText('; ');
       };
 
       var hyphen = function() {
-         str = $("#dictation_test").val().replace(/\s+$/, '')
-        $("#dictation_test").val(str + '-')
+        str = $("#dictation_test").val().replace(/\s+$/, '')
+        //$("#dictation_test").val(str + '-')
+        CKEDITOR.instances.dictation_test.insertText('-');
       };
 
       var stop = function() {
         str = $("#dictation_test").val().replace(/\s+$/, '')
-        $("#dictation_test").val(str + '. ')
+        //$("#dictation_test").val(str + '. ')
+        CKEDITOR.instances.dictation_test.insertText('. ');
       };
 
       var stopped = function() {
         str = $("#dictation_test").val().replace(/\s+$/, '')
-        $("#dictation_test").val(str + '. ')
+        //$("#dictation_test").val(str + '. ')
+        CKEDITOR.instances.dictation_test.insertText('. ');
       };
-      
+
       var writeIt = function(repeat) {
 
         if (names.includes(repeat)) {
           $("#"+repeat).click()
           $("#dictation_test").val('')
-          
+
         }else if (grades.includes(repeat)) {
           $("input[data-grade='"+ repeat +"']").click()
           $(".text-size").val($("input[data-grade='"+ repeat +"']").data("marks"))
@@ -172,25 +181,35 @@ function initilize_data() {
           PrintDivTest($("#dictation_test").val())
         }
         else{
+          CKEDITOR.instances.dictation_test.focus();
+          var range = CKEDITOR.instances.dictation_test.createRange();
+          range.moveToElementEditEnd(range.root);
+          CKEDITOR.instances.dictation_test.getSelection().selectRanges([range]);
           str = $("#dictation_test").val()
           if (str == ""){
             text = repeat.substr(0,1).toUpperCase()+repeat.substr(1)
-            $("#dictation_test").val(text)
+            //$("#dictation_test").val(text)
+            CKEDITOR.instances.dictation_test.insertText(text);
           } else if ((str[str.length-2]=='.') || (str[str.length-1]=='.')){
             text = repeat.substr(0,1).toUpperCase()+repeat.substr(1)
-            $("#dictation_test").val(str +' '+text)
+            //$("#dictation_test").val(str +' '+text)
+            CKEDITOR.instances.dictation_test.insertText(' '+text);
           } else if (str[str.length-1]=='!'){
             text = repeat.substr(0,1).toUpperCase()+repeat.substr(1)
-            $("#dictation_test").val(str +' '+text)
+            //$("#dictation_test").val(str +' '+text)
+            CKEDITOR.instances.dictation_test.insertText(' '+text);
           } else if (str[str.length-1]=='?'){
             text = repeat.substr(0,1).toUpperCase()+repeat.substr(1)
-            $("#dictation_test").val(str +' '+text)
+            //$("#dictation_test").val(str +' '+text)
+            CKEDITOR.instances.dictation_test.insertText(' '+text);
           } else if (repeat=='.'){
-            $("#dictation_test").val(str +repeat +' ')
+            //$("#dictation_test").val(str +repeat +' ')
+            CKEDITOR.instances.dictation_test.insertText(repeat +' ');
           } else {
-            $("#dictation_test").val(str+' '+repeat)
+            //$("#dictation_test").val(str+' '+repeat)
+            CKEDITOR.instances.dictation_test.insertText(' '+repeat);
           }
-          
+
         }
         //$("#dictation").text(repeat);
       }
