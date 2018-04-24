@@ -132,7 +132,7 @@ function initilize_data() {
       var nextLine = function() {
         str = $("#dictation_test").val()
         //$("#dictation_test").val(str + '\n ')
-        CKEDITOR.instances.dictation_test.insertText('\n ');
+        CKEDITOR.instances.dictation_test.insertText('\n');
       };
 
       var colon = function() {
@@ -190,7 +190,7 @@ function initilize_data() {
             text = repeat.substr(0,1).toUpperCase()+repeat.substr(1)
             //$("#dictation_test").val(text)
             CKEDITOR.instances.dictation_test.insertText(text);
-          } else if ((str[str.length-2]=='.') || (str[str.length-1]=='.')){
+          } else if ((str[str.length-2]=='.') || (str[str.length-1]=='.') || (str[str.length-7] == '.')){
             text = repeat.substr(0,1).toUpperCase()+repeat.substr(1)
             //$("#dictation_test").val(str +' '+text)
             CKEDITOR.instances.dictation_test.insertText(' '+text);
@@ -207,7 +207,11 @@ function initilize_data() {
             CKEDITOR.instances.dictation_test.insertText(repeat +' ');
           } else {
             //$("#dictation_test").val(str+' '+repeat)
-            CKEDITOR.instances.dictation_test.insertText(' '+repeat);
+            if (str.slice(str.length - 13, str.length-7) == '<br />'){
+              CKEDITOR.instances.dictation_test.insertText(repeat);
+            } else {
+              CKEDITOR.instances.dictation_test.insertText(' '+repeat);
+            }
           }
 
         }

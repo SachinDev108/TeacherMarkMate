@@ -140,7 +140,7 @@
     var nextLine = function() {
       str = $("#dictation").val()
       //$("#dictation").val(str + '\n ')
-      CKEDITOR.instances.dictation.insertText('\n ');
+      CKEDITOR.instances.dictation.insertText('\n');
     };
 
     var stop = function() {
@@ -246,7 +246,7 @@
           text = repeat.substr(0,1).toUpperCase()+repeat.substr(1)
           //$("#dictation").val(text)
           CKEDITOR.instances.dictation.insertText(text);
-        } else if ((str[str.length-2]=='.') || (str[str.length-1]=='.')){
+        } else if ((str[str.length-2]=='.') || (str[str.length-1]=='.') || (str[str.length-7] == '.')){
           text = repeat.substr(0,1).toUpperCase()+repeat.substr(1)
           //$("#dictation").val(str +' '+text)
           CKEDITOR.instances.dictation.insertText(' '+text);
@@ -266,7 +266,11 @@
           CKEDITOR.instances.dictation.insertText(repeat +' ');
         } else {
           //$("#dictation").val(str+' '+repeat)
-          CKEDITOR.instances.dictation.insertText(' '+repeat);
+          if (str.slice(str.length - 13, str.length-7) == '<br />'){
+            CKEDITOR.instances.dictation.insertText(repeat);
+          } else {
+            CKEDITOR.instances.dictation.insertText(' '+repeat);
+          }
         }
 
       }
