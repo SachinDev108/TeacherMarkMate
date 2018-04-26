@@ -48,15 +48,16 @@
           <div class="col-xs-8" style="padding-left: 0px;">
             <div for="nameField" class="col-xs-12">
               <b>Individual £19.99/Month - 30 Days free, label printer included.</b><br>
-              <b>Individual £199/Year</b>
-            <div class="btn-group col-xs-12" data-toggle="buttons-radio">
-              <div class="row">
-                <%= radio_button_tag :period, "monthly", checked: true %>
-                <label for="first" class="">Monthly</label>
-                <%= radio_button_tag :period, "yearly" %>
-                <label for="second" class="">Yearly</label>
+              <div class="btn-group col-xs-12" data-toggle="buttons-radio">
+                <div class="row">
+                  <%= radio_button_tag :period, "monthly", checked: true %>
+                  <label for="first" class="">Monthly</label>
+                  <%= radio_button_tag :period, "yearly" %>
+                  <label for="second" class="">Yearly</label>
+                </div>
               </div>
-            </div></div>
+              <b>Individual £199/Year</b>
+            </div>
             <div for="nameField" class="col-xs-12"><b>2-5 &nbsp;&nbsp;&nbsp;&nbsp;Teachers £189/Year</b></div>
             <div for="nameField" class="col-xs-12"><b>6-10 &nbsp;&nbsp;Teachers £159/Year</b></div>
             <div for="nameField" class="col-xs-12"><b>11-20 Teachers £139/Year</b></div>
@@ -86,9 +87,11 @@
         </div>
         <hr>
         <div class="form-group">
-          <div class="col-xs-9"><b>Total due today</b></div>
+          <div class="col-xs-9"><b style="font-size: 16px">Total due today</b></div>
           <div class="col-xs-3">
-            £<span id="total_calculation">0.00</span>
+            <b style="font-size: 16px">
+              £<span id="total_calculation">0.00</span>
+            </b>
             <%= hidden_field_tag "total_calculation", '', id: 'total_amount' %>
           </div>
         </div>
@@ -97,11 +100,15 @@
           <div class="col-xs-9">
             <p>If you are unable to pay by card and would like to request an invoice.
             <%= link_to 'Please Contact Us', "http://www.markmate.co.uk/invoice.html", target: :_blank %></p>
+            <input type="checkbox" id="terms-and-condition-box" />
+            <span>
+            <%= link_to 'Please tick this box to indicate that you have read and understand our terms & conditions', "http://www.MarkMate.co.uk/terms-and-conditions", target: :_blank, style: "color: #333333" %></p>
+            </span>
             <img border="0" src="https://www.paypalobjects.com/en_US/i/logo/pp_secure_213wx37h.gif" alt="Payments by PayPal">
           </div>
 
           <div class="col-xs-3 pay-now">
-            <%= f.submit  "Pay Now", class: 'btn btn-primary btn-sm' %>
+            <button type="button" class="btn btn-primary btn-sm" id="sign-up-btn">Sign Up</button>
           </div>
         </div>
         <% end %>
@@ -197,5 +204,13 @@
         total_calculation();
       }
     //}
+  });
+
+  $("#sign-up-btn").click(function(){
+    if($("#terms-and-condition-box").is(':checked')){
+      $("#new_teacher").submit();
+    }else{
+      alert("Please ensure you have agreed to our Terms and Conditions")
+    }
   });
 </script>
