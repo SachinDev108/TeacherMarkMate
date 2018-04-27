@@ -44,7 +44,6 @@ RailsAdmin.config do |config|
       field :name
       field :email
       field :sign_in_count
-      field :last_sign_in_at
       field :current_sign_in_at
       field :created_at
       field :marked do
