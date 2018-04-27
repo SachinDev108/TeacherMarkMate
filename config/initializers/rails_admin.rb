@@ -26,7 +26,7 @@ RailsAdmin.config do |config|
   config.included_models = ['Teacher']
 
   config.actions do
-    dashboard 
+    dashboard
     index                         # mandatory
     new
     edit
@@ -45,6 +45,7 @@ RailsAdmin.config do |config|
       field :email
       field :sign_in_count
       field :last_sign_in_at
+      field :current_sign_in_at
       field :marked do
         def value
           bindings[:view] = bindings[:object].details.updated_in_between((Time.zone.now - 30.days), Time.zone.now).count
@@ -71,7 +72,7 @@ RailsAdmin.config do |config|
         render do
           bindings[:view].render :partial => 'new_partial', :locals => {:field => self, :form => bindings[:form]}
         end
-      end 
+      end
       field :subscription_plan do
         render do
           bindings[:view].render :partial => 'plan_status', :locals => {:field => self, :form => bindings[:form]}
