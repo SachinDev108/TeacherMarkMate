@@ -6,8 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-# Admin 
-Admin.create!(email: 'admin@teachermarkmate.com', password: 'admin@123')
+
 
 SubscriptionType.create(name: "Individual Plan", description: '', price: '19.99', yearly_price: '199', printer_price: '39.99', sort_order: '1')
 
