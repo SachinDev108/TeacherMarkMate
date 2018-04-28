@@ -1,5 +1,6 @@
 RailsAdmin.config do |config|
-
+   
+  config.total_columns_width = 1000 
   ### Popular gems integration
   config.main_app_name = [""]
 
